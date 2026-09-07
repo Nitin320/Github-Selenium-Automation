@@ -1,0 +1,49 @@
+﻿# ============================================================
+# GitHub Selenium Automation — .gitignore
+# Author: Arsath
+# ============================================================
+
+# Maven build output
+target/
+*.class
+*.jar
+*.war
+
+# IDE — IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# IDE — VS Code
+.vscode/
+
+# IDE — Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Allure results & reports (generated at runtime)
+allure-results/
+allure-report/
+
+# ExtentReports output (generated at runtime)
+test-output/
+reports/
+extent-reports/
+
+# Screenshots captured during test failures
+screenshots/
+
+# Logs
+*.log
+logs/
+
+# Cucumber JSON / XML reports (generated at runtime)
+cucumber-reports/
