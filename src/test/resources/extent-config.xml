@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ExtentReports configuration — Author: Sulthan -->
+<extentreports>
+    <configuration>
+        <theme>dark</theme>
+        <encoding>UTF-8</encoding>
+        <protocol>HTTPS</protocol>
+        <documentTitle>GitHub Selenium Automation</documentTitle>
+        <reportName>Test Execution Report</reportName>
+        <js></js>
+        <css></css>
+    </configuration>
+</extentreports>
