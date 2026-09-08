@@ -10,30 +10,19 @@ import utils.ConfigReader;
  */
 public class ProfilePage extends BasePage {
 
-    // Same current-GitHub-header locator as LoginPage — see comment there.
-    private final By accountMenuButton = By.cssSelector(
-            "button[data-login], img[data-testid='github-avatar']");
-    // The button itself (not the grouped locator) so we can read data-login directly.
+    private final By accountMenuButton = By.cssSelector("button[data-login], img[data-testid='github-avatar']");
     private final By accountMenuButtonOnly = By.cssSelector("button[data-login]");
 
     // GitHub's menu markup (classes/tags) changed along with the header
     // redesign. Instead of guessing new class names, these match on things
     // that don't change with a redesign: the actual profile URL, and the
     // visible text a screen reader / real user would rely on.
-    private final By yourProfileLink = By.xpath(
-            "//a[@href='/" + ConfigReader.getProperty("github.username") + "'] | " +
-                    "//a[contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'your profile')]"
-    );
-    private final By signOutButton = By.xpath(
-            "//button[contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'sign out')] | " +
-                    "//a[contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'sign out')]"
-    );
-
+    private final By yourProfileLink = By.xpath("//a[@href='/" + ConfigReader.getProperty("github.username") + "'] | " + "//a[contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'your profile')]");
+    private final By signOutButton = By.xpath("//button[contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'sign out')] | " + "//a[contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'sign out')]");
     private final By profileNameHeading = By.cssSelector("[itemprop='name']");
     private final By profileUsername    = By.cssSelector(".p-nickname.vcard-username");
     private final By profileBio         = By.cssSelector(".p-note.user-profile-bio div");
-    private final By editProfileButton  = By.cssSelector("a[href='/settings/profile']");
-
+    private final By editProfileButton = By.xpath("//button[normalize-space()='Edit profile']");
     /** Opens the logged-in user's profile via the header account menu. */
     public ProfilePage openViaMenu() {
         click(accountMenuButton);

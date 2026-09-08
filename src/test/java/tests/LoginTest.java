@@ -17,29 +17,23 @@ public class LoginTest extends BaseTest {
     @Test
     void validLoginSucceeds() {
         LoginPage loginPage = new LoginPage();
-        loginPage.open().loginFromConfig();
-
-        assertTrue(loginPage.isLoggedIn(),
-                "Expected the account menu to be visible after a valid login. " +
-                        "Instead landed on: " + loginPage.getCurrentPageInfo());
+        loginPage.open().loginFromConfigAndWaitForLogin();
+        assertTrue(loginPage.isLoggedIn(), "Expected the account menu to be visible after a valid login. " + "Instead landed on: " + loginPage.getCurrentPageInfo());
     }
 
-    /*@Test
-    void invalidUsernameShowsError() {
+    @Test
+    void invalidPasswordShowsError() {
         LoginPage loginPage = new LoginPage();
-        loginPage.open().login("invalid_user_xyz", "WrongPassword123!");
-
-        assertTrue(loginPage.isLoginErrorDisplayed(),
-                "Expected an error message for an invalid login");
-        assertFalse(loginPage.isLoggedIn());
-    }*/
+        String validUsername = ConfigReader.getProperty("github.username");
+        loginPage.open().login(validUsername, "WrongPassword123!");
+        assertTrue(loginPage.isLoginErrorDisplayed(), "Expected an error message for an invalid password");
+        assertFalse(loginPage.isLoggedIn(), "User must not be logged in with an invalid password");
+    }
 
     @Test
     void emptyPasswordDoesNotLogIn() {
         LoginPage loginPage = new LoginPage();
         loginPage.open().login(ConfigReader.getProperty("github.username"), "");
-
-        assertFalse(loginPage.isLoggedIn(),
-                "An empty password must never result in an authenticated session");
+        assertFalse(loginPage.isLoggedIn(), "An empty password must never result in an authenticated session");
     }
 }

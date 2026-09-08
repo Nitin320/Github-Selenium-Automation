@@ -11,8 +11,8 @@ Feature: GitHub Login
     Then I should be redirected to my GitHub dashboard
     And the account menu should be visible
 
-  Scenario: Login fails with an invalid username
-    When I log in with username "invalid_user_xyz" and password "WrongPassword123!"
+  Scenario: Login fails with an invalid password
+    When I log in with a valid username and password "WrongPassword123!"
     Then I should see a login error message
     And the account menu should not be visible
 
