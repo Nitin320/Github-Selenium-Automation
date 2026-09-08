@@ -5,4 +5,5 @@ package pages;
  * Author: Jothi Sri
  */
 public class LoginPage extends BasePage {
+
 }
