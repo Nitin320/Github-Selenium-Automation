@@ -1,10 +1,45 @@
 package tests;
 
 import base.BaseTest;
+import org.junit.jupiter.api.Test;
+import pages.LoginPage;
+import utils.ConfigReader;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * LoginTest — JUnit 5 tests for GitHub login scenarios.
+ * LoginTest — direct (non-BDD) JUnit 5 coverage for the login flow.
  * Author: Jothi Sri
  */
 public class LoginTest extends BaseTest {
+
+    @Test
+    void validLoginSucceeds() {
+        LoginPage loginPage = new LoginPage();
+        loginPage.open().loginFromConfig();
+
+        assertTrue(loginPage.isLoggedIn(),
+                "Expected the account menu to be visible after a valid login. " +
+                        "Instead landed on: " + loginPage.getCurrentPageInfo());
+    }
+
+    /*@Test
+    void invalidUsernameShowsError() {
+        LoginPage loginPage = new LoginPage();
+        loginPage.open().login("invalid_user_xyz", "WrongPassword123!");
+
+        assertTrue(loginPage.isLoginErrorDisplayed(),
+                "Expected an error message for an invalid login");
+        assertFalse(loginPage.isLoggedIn());
+    }*/
+
+    @Test
+    void emptyPasswordDoesNotLogIn() {
+        LoginPage loginPage = new LoginPage();
+        loginPage.open().login(ConfigReader.getProperty("github.username"), "");
+
+        assertFalse(loginPage.isLoggedIn(),
+                "An empty password must never result in an authenticated session");
+    }
 }
