@@ -31,7 +31,7 @@ public class BaseTest {
             }
         } finally {
             DriverManager.quitDriver();
-            ReportManager.flush();
+            ReportManager.flushReports();
         }
     }
 }

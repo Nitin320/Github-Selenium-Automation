@@ -1,7 +1,0 @@
-# github_testdata.xlsx — Expected columns (Author: Arsath)
-# This file is generated during test setup from the CSV below.
-# Sheet: TestData
-TestCase,Username,Password,RepoName,IssueTitle,GistDescription,SearchQuery,ExpectedResult
-TC001,test_user_1,,selenium-repo-001,Bug in login,Hello world gist,selenium,Pass
-TC002,test_user_2,,automation-repo-002,Feature request,Python snippet,automation framework,Pass
-TC003,invalid_user,,,,,,Fail
