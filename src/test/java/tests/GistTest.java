@@ -213,16 +213,18 @@ public class GistTest extends BaseTest {
                 gistViewPage.isPublic(),
                 "Expected the Gist to be public before deletion"
         );
+        String gistName = gistViewPage.getGistName();
 
         gistViewPage
                 .clickDelete()
                 .confirmDelete();
 
-        GistListPage gistListPage = new GistListPage().open();
+        GistListPage gistListPage =
+                new GistListPage().open();
 
         assertFalse(
-                gistListPage.isGistPresent(gistViewPage.getGistName()),
-                "Expected the public Gist to no longer exist after deletion"
+                gistListPage.isGistPresent(gistName),
+                "Expected the Gist to no longer exist after deletion"
         );
 
 
