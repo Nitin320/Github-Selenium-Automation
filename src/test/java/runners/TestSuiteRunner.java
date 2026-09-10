@@ -1,6 +1,9 @@
 package runners;
 
+<<<<<<< HEAD
+=======
 import org.junit.platform.suite.api.ConfigurationParameter;
+>>>>>>> 8ca7cf66475326cf2e520753cbae49a56e3325e1
 import org.junit.platform.suite.api.IncludeEngines;
 import org.junit.platform.suite.api.SelectClasspathResource;
 import org.junit.platform.suite.api.Suite;
@@ -27,10 +30,13 @@ import org.junit.platform.suite.api.Suite;
 @Suite
 @IncludeEngines("cucumber")
 @SelectClasspathResource("features")
+<<<<<<< HEAD
+=======
 @ConfigurationParameter(key = "cucumber.glue", value = "stepdefs")
 @ConfigurationParameter(key = "cucumber.plugin", value =
         "pretty, json:target/cucumber-reports/cucumber.json, html:target/cucumber-reports/cucumber.html, io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm")
 @ConfigurationParameter(key = "cucumber.junit-platform.naming-strategy", value = "long")
 @ConfigurationParameter(key = "cucumber.publish.quiet", value = "true")
+>>>>>>> 8ca7cf66475326cf2e520753cbae49a56e3325e1
 public class TestSuiteRunner {
 }

@@ -10,6 +10,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * Author: Jothi Sri
  */
 public class LoginPage extends BasePage {
+<<<<<<< HEAD
+
+}
+=======
     private final By usernameField = By.id("login_field");
     private final By passwordField = By.id("password");
     private final By signInButton = By.cssSelector("input[type='submit'][value='Sign in']");
@@ -87,3 +91,4 @@ public class LoginPage extends BasePage {
         return this;
     }
 }
+>>>>>>> 8ca7cf66475326cf2e520753cbae49a56e3325e1
