@@ -38,8 +38,18 @@ public class BasePage {
     }
 
     protected void type(By locator, String text) {
-        WebElement el = waitForVisibility(locator);
-        el.clear();
+        WebElement el = waitForClickable(locator);
+        try {
+            el.clear();
+        } catch (InvalidElementStateException e) {
+            // GitHub's live page occasionally reports an element as clickable
+            // a beat before it will accept clear()/sendKeys() (a repaint,
+            // animation, or focus shift in progress). One short re-wait and
+            // retry is enough to ride that out; a real interactability
+            // problem will fail again and surface normally.
+            el = wait.until(ExpectedConditions.elementToBeClickable(locator));
+            el.clear();
+        }
         el.sendKeys(text);
     }
 

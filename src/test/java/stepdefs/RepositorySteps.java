@@ -1,8 +1,43 @@
 package stepdefs;
 
-/**
- * RepositorySteps — step definitions for repository creation and navigation.
- * Author: Sujin
- */
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
+import io.cucumber.java.en.Then;
+import driver.DriverManager;
+import pages.NewRepoPage;
+import pages.RepoHomePage;
+
 public class RepositorySteps {
+
+    // Initialize pages using the ThreadLocal driver from DriverManager
+    NewRepoPage newRepoPage = new NewRepoPage(DriverManager.getDriver());
+    RepoHomePage repoHomePage = new RepoHomePage(DriverManager.getDriver());
+
+    @Given("the user is logged into GitHub")
+    public void the_user_is_logged_into_github() {
+        // Session login is typically handled via background/login steps or BaseTest
+    }
+
+    @When("the user navigates to the new repository page")
+    public void the_user_navigates_to_the_new_repository_page() {
+        DriverManager.getDriver().get("https://github.com/new");
+    }
+
+    @When("the user enters repository name {string} and clicks create")
+    public void the_user_enters_repository_name_and_clicks_create(String repoName) {
+        newRepoPage.enterRepoName(repoName);
+        newRepoPage.clickCreateRepository();
+    }
+
+    @Then("the repository should be successfully created")
+    public void the_repository_should_be_successfully_created() {
+        String title = repoHomePage.getRepoTitleText();
+        System.out.println("Repository successfully created: " + title);
+    }
+
+    @Then("the user deletes the repository for cleanup")
+    public void the_user_deletes_the_repository_for_cleanup() {
+        repoHomePage.clickSettings();
+        // Additional settings/deletion actions can be appended here if needed
+    }
 }
