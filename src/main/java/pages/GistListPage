@@ -1,0 +1,144 @@
+package pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+/**
+ * GistListPage — page object for the GitHub Gist listing page.
+ *
+ * Author: Naveen
+ */
+
+/**
+
+ GistListPage — page object for the GitHub Gist homepage/list.
+
+ Handles:
+
+ Opening the Gist page
+ Opening the New Gist form
+ Checking whether a Gist exists
+ Opening an existing Gist
+
+ Author: Naveen
+ */
+public class GistListPage extends BasePage {
+
+    /*
+
+    New Gist button.
+    */
+    private final By newGistButton =
+            By.id("gists-header-new-gist");
+
+    /**
+
+     Opens the GitHub Gist homepage.
+     */
+    public GistListPage open() {
+
+        navigateTo("https://gist.github.com/");
+
+        return this;
+    }
+
+    /**
+
+     Opens the New Gist creation form.
+     */
+    public GistCreatePage clickNewGist() {
+
+        click(newGistButton);
+
+        return new GistCreatePage();
+    }
+
+    /**
+
+     Checks whether a Gist with the supplied name is present.
+
+     @param gistName displayed Gist name
+
+     @return true if the Gist is displayed
+     */
+    public boolean isGistPresent(String gistName) {
+
+        By gistLocator = By.xpath(
+                "//a[normalize-space()=" + xpathLiteral(gistName) + "]"
+        );
+
+        return isDisplayed(gistLocator);
+    }
+
+    /**
+
+     Opens a Gist using its displayed name.
+
+     @param gistName displayed Gist name
+
+     @return GistViewPage for the selected Gist
+     */
+    public GistViewPage openGist(String gistName) {
+
+        By gistLocator = By.xpath(
+                "//a[normalize-space()=" + xpathLiteral(gistName) + "]"
+        );
+
+        click(gistLocator);
+
+        return new GistViewPage();
+    }
+
+    /**
+
+     Returns the number of visible Gists.
+
+     This locator may need adjustment if GitHub changes
+
+     the structure of the Gist listing.
+     */
+    public int getGistCount() {
+
+        By gistLinks =
+                By.cssSelector("a[href*='gist.github.com']");
+
+        return driver.findElements(gistLinks).size();
+    }
+
+    /**
+
+     Creates a safe XPath string literal.
+
+     This prevents XPath errors if a Gist name contains
+
+     an apostrophe or quotation mark.
+     */
+    private String xpathLiteral(String value) {
+
+        if (!value.contains("'")) {
+            return "'" + value + "'";
+        }
+
+        if (!value.contains("\"")) {
+            return "\"" + value + "\"";
+        }
+
+        String[] parts = value.split("'", -1);
+        StringBuilder result = new StringBuilder("concat(");
+
+        for (int i = 0; i < parts.length; i++) {
+
+            if (i > 0) {
+                result.append(", \"'\", ");
+            }
+
+            result.append("'").append(parts[i]).append("'");
+
+
+        }
+
+        result.append(")");
+
+        return result.toString();
+    }
+}
