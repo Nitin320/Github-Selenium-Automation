@@ -1,72 +1,64 @@
 package pages;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.TimeoutException;
 
 /**
-
- GistViewPage — page object for viewing, editing and deleting
-
- an existing GitHub Gist.
-
- Author: Naveen
+ * GistViewPage — page object for viewing, editing and deleting
+ * an existing GitHub Gist.
+ *
+ * Author: Naveen
  */
 public class GistViewPage extends BasePage {
 
-    /**
-
-     Gist identifier/name displayed in the Gist header.
+    /*
+     * Gist name/identifier.
      */
     private final By gistName =
             By.cssSelector(".css-truncate-target.mr-1");
 
-    /**
+    /*
+     * Edit button.
+     */
+    private final By editButton =
+            By.xpath(
+                    "//*[@id='gist-pjax-container']//a[contains(normalize-space(), 'Edit')]"
+            );
 
-     Edit button.
-     **/
-     private final By editButton =
-     By.xpath(
-     "//[@id='gist-pjax-container']//a[contains(normalize-space(), 'Edit')]"
-     );
+    /*
+     * Delete button.
+     */
+    private final By deleteButton =
+            By.xpath(
+                    "//*[@id='gist-pjax-container']//form//button[contains(normalize-space(), 'Delete')]"
+            );
 
-     /**
-
-     Delete button.
-     **/
-     private final By deleteButton =
-     By.xpath(
-     "//[@id='gist-pjax-container']//form//button[contains(normalize-space(), 'Delete')]"
-     );
-
-     /**
-
-     File content displayed on the Gist view page.
+    /*
+     * File content.
      */
     private final By fileContent =
             By.cssSelector(".blob-code-inner");
 
-    /**
+    /*
+     * Public indicator.
+     */
+    private final By publicIndicator =
+            By.xpath(
+                    "//*[@id='gist-pjax-container']//*[contains(normalize-space(), 'Public')]"
+            );
 
-     Public visibility indicator.
-     **/
-     private final By publicIndicator =
-     By.xpath(
-     "//[@id='gist-pjax-container']//*[contains(normalize-space(), 'Public')]"
-     );
+    /*
+     * Secret/Hidden indicator.
+     */
+    private final By secretIndicator =
+            By.xpath(
+                    "//*[@id='gist-pjax-container']//*[contains(normalize-space(), 'Secret') " +
+                            "or contains(normalize-space(), 'Hidden')]"
+            );
 
-     /**
-
-     Secret/Hidden visibility indicator.
-     **/
-     private final By secretIndicator =
-     By.xpath(
-     "//[@id='gist-pjax-container']//*[contains(normalize-space(), 'Secret') " +
-     "or contains(normalize-space(), 'Hidden')]"
-     );
-
-     /**
-
-     Flash message displayed after operations such as deletion.
+    /*
+     * Flash message.
      */
     private final By flashMessage =
             By.cssSelector(
@@ -75,32 +67,28 @@ public class GistViewPage extends BasePage {
             );
 
     /**
-
-     Gets the displayed Gist name.
+     * Gets the Gist name.
      */
     public String getGistName() {
         return getText(gistName);
     }
 
     /**
-
-     Checks whether the Gist is displayed.
+     * Checks whether the Gist is displayed.
      */
     public boolean isGistDisplayed() {
         return isDisplayed(gistName);
     }
 
     /**
-
-     Gets the visible file content.
+     * Gets the visible file content.
      */
     public String getFileContent() {
         return getText(fileContent);
     }
 
     /**
-
-     Checks whether the supplied content is displayed.
+     * Checks whether supplied content is displayed.
      */
     public boolean isContentDisplayed(String content) {
 
@@ -112,28 +100,21 @@ public class GistViewPage extends BasePage {
     }
 
     /**
-
-     Checks whether the current Gist is public.
+     * Checks whether Gist is public.
      */
     public boolean isPublic() {
         return isDisplayed(publicIndicator);
     }
 
     /**
-
-     Checks whether the current Gist is Secret/Hidden.
+     * Checks whether Gist is Secret/Hidden.
      */
     public boolean isSecret() {
         return isDisplayed(secretIndicator);
     }
 
     /**
-
-     Clicks the Edit button.
-
-     The GitHub edit form uses the same editor represented
-
-     by GistCreatePage.
+     * Opens the edit page.
      */
     public GistCreatePage clickEdit() {
 
@@ -143,8 +124,7 @@ public class GistViewPage extends BasePage {
     }
 
     /**
-
-     Clicks the Delete button.
+     * Deletes the Gist.
      */
     public GistViewPage clickDelete() {
 
@@ -154,40 +134,28 @@ public class GistViewPage extends BasePage {
     }
 
     /**
-
-     Confirms deletion if GitHub displays a browser alert.
-
-     Some GitHub UI versions may use an in-page confirmation
-
-     instead of a browser alert.
+     * Confirms browser alert if displayed.
      */
     public GistViewPage confirmDelete() {
 
         try {
             driver.switchTo().alert().accept();
         } catch (NoAlertPresentException e) {
-            /*
-             * No browser alert was displayed.
-             *
-             * If the current GitHub UI uses an in-page confirmation,
-             * that confirmation should be handled with its locator.
-             */
+            // No browser alert displayed.
         }
 
         return this;
     }
 
     /**
-
-     Checks whether a deletion/status flash message is displayed.
+     * Checks whether a flash message is displayed.
      */
     public boolean isFlashMessageDisplayed() {
         return isDisplayed(flashMessage);
     }
 
     /**
-
-     Gets the deletion/status flash message.
+     * Gets the flash message.
      */
     public String getFlashMessage() {
         return getText(flashMessage);
