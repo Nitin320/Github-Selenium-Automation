@@ -1,0 +1,100 @@
+package pages;
+
+import org.openqa.selenium.By;
+
+/**
+ * GistListPage — page object for the GitHub Gist homepage/list.
+ *
+ * Handles:
+ * - Opening the Gist page
+ * - Opening New Gist
+ * - Checking whether a Gist exists
+ * - Opening an existing Gist
+ *
+ * Author: Naveen
+ */
+public class GistListPage extends BasePage {
+
+    private final By newGistButton =
+            By.id("gists-header-new-gist");
+
+    /**
+     * Opens GitHub Gist homepage.
+     */
+    public GistListPage open() {
+
+        navigateTo("https://gist.github.com/");
+
+        return this;
+    }
+
+    /**
+     * Opens the New Gist creation form.
+     */
+    public GistCreatePage clickNewGist() {
+
+        click(newGistButton);
+
+        return new GistCreatePage();
+    }
+
+    /**
+     * Checks whether a Gist with the supplied name exists.
+     */
+    public boolean isGistPresent(String gistName) {
+
+        By gistLocator = By.xpath(
+                "//a[normalize-space()=" + xpathLiteral(gistName) + "]"
+        );
+
+        return isDisplayed(gistLocator);
+    }
+
+    /**
+     * Opens a Gist using its displayed name.
+     */
+    public GistViewPage openGist(String gistName) {
+
+        By gistLocator = By.xpath(
+                "//a[normalize-space()=" + xpathLiteral(gistName) + "]"
+        );
+
+        click(gistLocator);
+
+        return new GistViewPage();
+    }
+
+    /**
+     * Creates a safe XPath string literal.
+     */
+    private String xpathLiteral(String value) {
+
+        if (!value.contains("'")) {
+            return "'" + value + "'";
+        }
+
+        if (!value.contains("\"")) {
+            return "\"" + value + "\"";
+        }
+
+        String[] parts = value.split("'", -1);
+
+        StringBuilder result =
+                new StringBuilder("concat(");
+
+        for (int i = 0; i < parts.length; i++) {
+
+            if (i > 0) {
+                result.append(", \"'\", ");
+            }
+
+            result.append("'")
+                    .append(parts[i])
+                    .append("'");
+        }
+
+        result.append(")");
+
+        return result.toString();
+    }
+}
