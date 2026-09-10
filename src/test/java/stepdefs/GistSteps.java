@@ -6,7 +6,9 @@ import io.cucumber.java.en.Then;
 import pages.GistCreatePage;
 import pages.GistListPage;
 import pages.GistViewPage;
+import pages.LoginPage;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -22,19 +24,30 @@ public class GistSteps {
     private GistViewPage gistViewPage;
 
     private String expectedUpdatedContent;
+    private String deletedGistName;
 
     /**
 
-     Login/session handling is managed by the existing framework.
+     Logs the user into GitHub using configured credentials.
      */
     @Given("the user is logged into GitHub")
     public void the_user_is_logged_into_github() {
-// Existing login/session setup is handled by the framework.
+
+        LoginPage loginPage = new LoginPage();
+
+        loginPage
+                .open()
+                .loginFromConfigAndWaitForLogin();
+
+        assertTrue(
+                loginPage.isLoggedIn(),
+                "Expected the user to be logged into GitHub"
+        );
     }
 
     /**
 
-     Opens the new Gist creation form.
+     Opens the New Gist creation form.
      */
     @Given("the user navigates to the Gist creation page")
     public void the_user_navigates_to_the_gist_creation_page() {
@@ -66,7 +79,7 @@ public class GistSteps {
 
      Creates a secret Gist.
 
-     Secret/Hidden is the default Gist visibility.
+     GitHub Gists are Secret/Hidden by default.
      */
     @When("the user creates a secret gist with filename {string} and content {string}")
     public void the_user_creates_a_secret_gist(
@@ -95,6 +108,19 @@ public class GistSteps {
 
     /**
 
+     Verifies that the supplied Gist content is displayed.
+     */
+    @Then("the gist content should contain {string}")
+    public void the_gist_content_should_contain(String content) {
+
+        assertTrue(
+                gistViewPage.isContentDisplayed(content),
+                "Expected Gist to contain: " + content
+        );
+    }
+
+    /**
+
      Verifies that the Gist is public.
      */
     @Then("the gist should be public")
@@ -115,7 +141,7 @@ public class GistSteps {
 
         assertTrue(
                 gistViewPage.isSecret(),
-                "Expected the Gist to be secret/hidden"
+                "Expected the Gist to be Secret/Hidden"
         );
     }
 
@@ -157,6 +183,12 @@ public class GistSteps {
     @When("the user deletes the gist")
     public void the_user_deletes_the_gist() {
 
+/*
+
+Save the name before deletion.
+*/
+        deletedGistName = gistViewPage.getGistName();
+
         gistViewPage
                 .clickDelete()
                 .confirmDelete();
@@ -169,9 +201,16 @@ public class GistSteps {
     @Then("the gist should be deleted successfully")
     public void the_gist_should_be_deleted_successfully() {
 
-        assertTrue(
-                gistViewPage.isFlashMessageDisplayed(),
-                "Expected a confirmation message after deleting the Gist"
+/*
+
+Open the Gist list after deletion.
+*/
+        gistListPage = new GistListPage().open();
+
+        assertFalse(
+                gistListPage.isGistPresent(deletedGistName),
+                "Expected the deleted Gist to no longer exist: "
+                        + deletedGistName
         );
     }
 }
