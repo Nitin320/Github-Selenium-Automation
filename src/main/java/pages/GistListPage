@@ -3,31 +3,23 @@ package pages;
 import org.openqa.selenium.By;
 
 /**
-
- GistListPage — page object for the GitHub Gist homepage/list.
-
- Handles:
-
- Opening the Gist page
- Opening the New Gist form
- Checking whether a Gist exists
- Opening an existing Gist
- Counting visible Gists
-
- Author: Naveen
+ * GistListPage — page object for the GitHub Gist homepage/list.
+ *
+ * Handles:
+ * - Opening the Gist page
+ * - Opening New Gist
+ * - Checking whether a Gist exists
+ * - Opening an existing Gist
+ *
+ * Author: Naveen
  */
 public class GistListPage extends BasePage {
 
-    /**
-
-     New Gist button.
-     */
     private final By newGistButton =
             By.id("gists-header-new-gist");
 
     /**
-
-     Opens the GitHub Gist homepage.
+     * Opens GitHub Gist homepage.
      */
     public GistListPage open() {
 
@@ -37,8 +29,7 @@ public class GistListPage extends BasePage {
     }
 
     /**
-
-     Opens the New Gist creation form.
+     * Opens the New Gist creation form.
      */
     public GistCreatePage clickNewGist() {
 
@@ -48,13 +39,8 @@ public class GistListPage extends BasePage {
     }
 
     /**
-
-     Checks whether a Gist with the supplied name is present.
-
-     @param gistName displayed Gist name
-
-     @return true if the Gist is displayed
-     **/
+     * Checks whether a Gist with the supplied name exists.
+     */
     public boolean isGistPresent(String gistName) {
 
         By gistLocator = By.xpath(
@@ -65,12 +51,7 @@ public class GistListPage extends BasePage {
     }
 
     /**
-
-     Opens a Gist using its displayed name.
-
-     @param gistName displayed Gist name
-
-     @return GistViewPage for the selected Gist
+     * Opens a Gist using its displayed name.
      */
     public GistViewPage openGist(String gistName) {
 
@@ -84,29 +65,7 @@ public class GistListPage extends BasePage {
     }
 
     /**
-
-     Returns the number of visible Gists.
-
-     This locator may need adjustment if GitHub changes
-
-     the structure of the Gist listing.
-     */
-    public int getGistCount() {
-
-        By gistLinks = By.cssSelector(
-                "a[href^='https://gist.github.com/']"
-        );
-
-        return driver.findElements(gistLinks).size();
-    }
-
-    /**
-
-     Creates a safe XPath string literal.
-
-     This prevents XPath errors if a Gist name contains
-
-     an apostrophe or quotation mark.
+     * Creates a safe XPath string literal.
      */
     private String xpathLiteral(String value) {
 
@@ -115,29 +74,27 @@ public class GistListPage extends BasePage {
         }
 
         if (!value.contains("\"")) {
-return "\"" + value + "\"";
-}
+            return "\"" + value + "\"";
+        }
 
-String[] parts = value.split("'", -1);
+        String[] parts = value.split("'", -1);
 
-StringBuilder result =
-new StringBuilder("concat(");
+        StringBuilder result =
+                new StringBuilder("concat(");
 
-for (int i = 0; i < parts.length; i++) {
+        for (int i = 0; i < parts.length; i++) {
 
- if (i > 0) {
-     result.append(", \"'\", ");
- }
+            if (i > 0) {
+                result.append(", \"'\", ");
+            }
 
- result.append("'")
-         .append(parts[i])
-         .append("'");
+            result.append("'")
+                    .append(parts[i])
+                    .append("'");
+        }
 
+        result.append(")");
 
-}
-
-result.append(")");
-
-return result.toString();
-}
+        return result.toString();
+    }
 }
