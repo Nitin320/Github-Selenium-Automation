@@ -1,7 +1,11 @@
 package tests;
 
-import base.BaseTest;
+import driver.DriverFactory;
+import driver.DriverManager;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import pages.CodeBrowserPage;
 import pages.FileViewPage;
 import pages.LoginPage;
@@ -11,36 +15,30 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * CodeViewerTest — direct (non-BDD) JUnit 5 coverage for file navigation and viewing.
  *
- * <p>These tests exercise:
- * <ul>
- *   <li>Repository file tree visibility</li>
- *   <li>Entry existence in the file tree</li>
- *   <li>File blob content visibility</li>
- *   <li>Raw button presence and raw URL navigation</li>
- * </ul>
- *
- * <p>Tests run against the public {@code octocat/Hello-World} repository so no
- * repository setup or teardown is required; only login is needed.
+ * <p>Logs in once per class ({@code @BeforeAll}) so all tests share a single
+ * authenticated browser session — avoids a 120 s login wait per test method.
  *
  * Author: Neil Joe Augustine
  */
-public class CodeViewerTest extends BaseTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class CodeViewerTest {
 
     private static final String OWNER  = "octocat";
     private static final String REPO   = "Hello-World";
     private static final String BRANCH = "master";
     private static final String FILE   = "README";
 
-    // ------------------------------------------------------------------ //
-    //  Helper                                                              //
-    // ------------------------------------------------------------------ //
-
-    /** Logs in once using configured credentials and returns the active LoginPage. */
-    private LoginPage login() {
+    @BeforeAll
+    void loginOnce() {
+        DriverManager.setDriver(DriverFactory.createDriver());
         LoginPage loginPage = new LoginPage().open();
         loginPage.loginFromConfigAndWaitForLogin();
         assertTrue(loginPage.isLoggedIn(), "Login must succeed before code-viewer tests");
-        return loginPage;
+    }
+
+    @AfterAll
+    void quitDriver() {
+        DriverManager.quitDriver();
     }
 
     // ------------------------------------------------------------------ //
@@ -49,7 +47,6 @@ public class CodeViewerTest extends BaseTest {
 
     @Test
     void repositoryFileTreeIsVisible() {
-        login();
         CodeBrowserPage page = new CodeBrowserPage().openRepository(OWNER, REPO);
         assertTrue(page.isFileTreeVisible(),
             "File tree table should be visible on the repository root page");
@@ -57,7 +54,6 @@ public class CodeViewerTest extends BaseTest {
 
     @Test
     void fileTreeContainsAtLeastOneEntry() {
-        login();
         CodeBrowserPage page = new CodeBrowserPage().openRepository(OWNER, REPO);
         assertFalse(page.getEntryNames().isEmpty(),
             "The repository file tree must contain at least one entry");
@@ -65,7 +61,6 @@ public class CodeViewerTest extends BaseTest {
 
     @Test
     void readmeEntryExistsInFileTree() {
-        login();
         CodeBrowserPage page = new CodeBrowserPage().openRepository(OWNER, REPO);
         assertTrue(page.entryExists("README"),
             "A README entry should be present in the octocat/Hello-World repository");
@@ -77,7 +72,6 @@ public class CodeViewerTest extends BaseTest {
 
     @Test
     void fileContentIsVisibleInBlobView() {
-        login();
         FileViewPage page = new FileViewPage().openFile(OWNER, REPO, BRANCH, FILE);
         assertTrue(page.isFileContentVisible(),
             "File content (code blob) should be visible when opening a known file");
@@ -85,7 +79,6 @@ public class CodeViewerTest extends BaseTest {
 
     @Test
     void rawButtonIsVisible() {
-        login();
         FileViewPage page = new FileViewPage().openFile(OWNER, REPO, BRANCH, FILE);
         assertTrue(page.isRawButtonVisible(),
             "The Raw button should be present on the file blob page");
@@ -93,17 +86,15 @@ public class CodeViewerTest extends BaseTest {
 
     @Test
     void rawViewUrlContainsRawSegment() {
-        login();
         FileViewPage page = new FileViewPage().openFile(OWNER, REPO, BRANCH, FILE);
         page.viewRaw();
         String url = page.getCurrentUrl();
-        assertTrue(url.contains("/raw/"),
-            "After clicking Raw the URL should contain '/raw/'; actual URL: " + url);
+        assertTrue(url.contains("/raw/") || url.contains("raw.githubusercontent.com"),
+            "After clicking Raw the URL should be a raw content URL; actual URL: " + url);
     }
 
     @Test
     void rawContentIsNotEmpty() {
-        login();
         FileViewPage page = new FileViewPage().openFile(OWNER, REPO, BRANCH, FILE);
         page.viewRaw();
         assertFalse(page.getRawContent().isBlank(),

@@ -1,29 +1,21 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.By;
 
-public class RepoHomePage {
-    WebDriver driver;
+/**
+ * RepoHomePage — page object for a GitHub repository's home page.
+ * Author: Sujin
+ */
+public class RepoHomePage extends BasePage {
 
-    public RepoHomePage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-    }
-
-    @FindBy(css = "strong[itemprop='name'] a")
-    private WebElement repoTitleHeader;
-
-    @FindBy(id = "settings-tab")
-    private WebElement settingsTab;
+    private final By repoTitleHeader = By.cssSelector("strong[itemprop='name'] a");
+    private final By settingsTab     = By.id("settings-tab");
 
     public String getRepoTitleText() {
-        return repoTitleHeader.getText();
+        return getText(repoTitleHeader);
     }
 
     public void clickSettings() {
-        settingsTab.click();
+        click(settingsTab);
     }
 }

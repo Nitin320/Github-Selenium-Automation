@@ -1,7 +1,11 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.ConfigReader;
+
+import java.time.Duration;
 
 /**
  * FileViewPage — page object for viewing a single file on GitHub.
@@ -11,8 +15,7 @@ import utils.ConfigReader;
  *   <li>Navigate directly to a file URL</li>
  *   <li>Read the displayed file content (rendered blob view)</li>
  *   <li>Switch to the raw view and read the raw source</li>
- *   <li>Read the file name shown in the breadcrumb</li>
- *   <li>Detect language badge / syntax highlighting</li>
+ *   <li>Detect Raw button presence</li>
  * </ul>
  *
  * Author: Neil Joe Augustine
@@ -20,48 +23,50 @@ import utils.ConfigReader;
 public class FileViewPage extends BasePage {
 
     // ------------------------------------------------------------------ //
-    //  Locators                                                            //
+    //  Locators  (GitHub React UI — verified against live DOM)            //
     // ------------------------------------------------------------------ //
 
-    /** Each line of the rendered code blob. */
-    private final By codeLines       = By.cssSelector("table.highlight td.blob-code, .react-code-lines .react-code-line-contents");
+    /** Rendered code lines container (React code view). */
+    private final By codeLines = By.cssSelector(".react-code-lines");
 
-    /** The "Raw" button that opens the raw file URL. */
-    private final By rawButton       = By.cssSelector("a#raw-url, a[data-testid='raw-button'], a[href*='/raw/']");
-
-    /** The file-name segment at the end of the breadcrumb. */
-    private final By fileNameBreadcrumb = By.cssSelector("nav[aria-label='Breadcrumb'] .final-path, .js-path-segment:last-child a, span[class*='final-path']");
-
-    /** Language badge shown above the blob (e.g. "Java", "Python"). */
-    private final By languageBadge   = By.cssSelector("[class*='language'] span, .blob-num ~ td .pl-ent");
+    /** The "Raw" button (data-testid confirmed on live DOM). */
+    private final By rawButton = By.cssSelector("a[data-testid='raw-button']");
 
     /** Raw page: the pre element containing the full raw text. */
-    private final By rawContent      = By.cssSelector("pre");
+    private final By rawContent = By.cssSelector("pre");
+
+    // ------------------------------------------------------------------ //
+    //  Helpers                                                             //
+    // ------------------------------------------------------------------ //
+
+    private void waitForReact() {
+        new WebDriverWait(driver, Duration.ofSeconds(20)).until(d ->
+            ((JavascriptExecutor) d).executeScript("return document.readyState").equals("complete")
+        );
+        try { Thread.sleep(2000); } catch (InterruptedException ignored) {}
+    }
 
     // ------------------------------------------------------------------ //
     //  Navigation                                                          //
     // ------------------------------------------------------------------ //
 
-    /**
-     * Opens the blob view for a specific file path inside {@code owner/repo}.
-     *
-     * @param owner    GitHub username or organisation
-     * @param repo     repository name
-     * @param branch   branch name (e.g. "main")
-     * @param filePath path relative to repo root (e.g. "README.md")
-     */
     public FileViewPage openFile(String owner, String repo, String branch, String filePath) {
         navigateTo(ConfigReader.getProperty("base.url")
                    + "/" + owner + "/" + repo + "/blob/" + branch + "/" + filePath);
+        waitForReact();
         return this;
     }
 
     /**
-     * Clicks the "Raw" button to switch to the plain-text raw view.
-     * After this call the current URL changes to the raw content URL.
+     * Clicks the "Raw" button and waits for navigation to the raw content host.
+     * GitHub redirects to raw.githubusercontent.com after clicking Raw.
      */
     public FileViewPage viewRaw() {
         click(rawButton);
+        // Wait for navigation away from github.com to the raw host
+        new WebDriverWait(driver, Duration.ofSeconds(15)).until(d ->
+            d.getCurrentUrl().contains("raw.githubusercontent.com") || d.getCurrentUrl().contains("/raw/")
+        );
         return this;
     }
 
@@ -69,47 +74,22 @@ public class FileViewPage extends BasePage {
     //  Queries                                                             //
     // ------------------------------------------------------------------ //
 
-    /**
-     * Returns the full text content of all rendered code lines joined by newlines.
-     */
     public String getFileContent() {
-        StringBuilder sb = new StringBuilder();
-        driver.findElements(codeLines).forEach(el -> sb.append(el.getText()).append("\n"));
-        return sb.toString().trim();
+        return getText(codeLines);
     }
 
-    /**
-     * Returns the raw source text from the raw-view {@code <pre>} element.
-     * Call {@link #viewRaw()} first.
-     */
     public String getRawContent() {
         return getText(rawContent);
     }
 
-    /**
-     * Returns the file name shown at the end of the page breadcrumb.
-     */
-    public String getDisplayedFileName() {
-        return getText(fileNameBreadcrumb);
-    }
-
-    /**
-     * Returns {@code true} when the code blob area is present and visible.
-     */
     public boolean isFileContentVisible() {
         return isDisplayed(codeLines);
     }
 
-    /**
-     * Returns {@code true} when the Raw button is present and clickable.
-     */
     public boolean isRawButtonVisible() {
         return isDisplayed(rawButton);
     }
 
-    /**
-     * Returns the current page URL, useful for asserting the raw URL pattern.
-     */
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }

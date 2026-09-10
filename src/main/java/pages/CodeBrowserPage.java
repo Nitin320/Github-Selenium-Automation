@@ -1,9 +1,12 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.ConfigReader;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,61 +26,58 @@ import java.util.stream.Collectors;
 public class CodeBrowserPage extends BasePage {
 
     // ------------------------------------------------------------------ //
-    //  Locators                                                            //
+    //  Locators  (GitHub React UI — verified against live DOM)            //
     // ------------------------------------------------------------------ //
 
-    /** Rows in the repository file table (both files and directories). */
-    private final By fileTableRows    = By.cssSelector("table.files tbody tr, [aria-label='Files'] .Box-row");
+    /** Any file or directory name link in the rendered file tree. */
+    private final By entryLinks = By.cssSelector(
+        "a.Link--primary[href*='/blob/'], a.Link--primary[href*='/tree/']"
+    );
 
-    /** File/folder name link inside each row. */
-    private final By entryNameLink    = By.cssSelector("a.js-navigation-open[role='rowheader'], a[data-pjax='#repo-content-pjax-container']");
+    /** Presence sentinel: the filename column rendered by React. */
+    private final By fileTreeSentinel = By.cssSelector(
+        ".react-directory-filename-column, a.Link--primary[href*='/blob/'], a.Link--primary[href*='/tree/']"
+    );
 
-    /** Breadcrumb items that make up the current path. */
-    private final By breadcrumbItems  = By.cssSelector("nav[aria-label='Breadcrumb'] a, .js-path-segment a");
+    /** Breadcrumb items. */
+    private final By breadcrumbItems = By.cssSelector(
+        "nav[aria-label='Breadcrumb'] a, .js-path-segment a"
+    );
 
-    /** The repository name heading on the code tab. */
-    private final By repoNameHeading  = By.cssSelector("strong[itemprop='name'] a, h1[itemprop='name'] a");
+    // ------------------------------------------------------------------ //
+    //  Helpers                                                             //
+    // ------------------------------------------------------------------ //
 
-    /** "Code" tab that returns to the file tree from any sub-page. */
-    private final By codeTab          = By.cssSelector("a[data-tab-item='code'], a#code-tab");
+    /** Waits for document.readyState == complete then pauses for React hydration. */
+    private void waitForReact() {
+        new WebDriverWait(driver, Duration.ofSeconds(20)).until(d ->
+            ((JavascriptExecutor) d).executeScript("return document.readyState").equals("complete")
+        );
+        try { Thread.sleep(2000); } catch (InterruptedException ignored) {}
+    }
 
     // ------------------------------------------------------------------ //
     //  Navigation                                                          //
     // ------------------------------------------------------------------ //
 
-    /**
-     * Opens the root file tree for {@code owner/repo}.
-     *
-     * @param owner GitHub username or organisation
-     * @param repo  repository name
-     * @return this page for fluent chaining
-     */
     public CodeBrowserPage openRepository(String owner, String repo) {
         navigateTo(ConfigReader.getProperty("base.url") + "/" + owner + "/" + repo);
+        waitForReact();
         return this;
     }
 
-    /**
-     * Opens the root file tree for the configured {@code test.repo} repository.
-     * The owner is derived from {@code github.username}.
-     */
     public CodeBrowserPage openConfiguredRepository() {
         String owner = ConfigReader.getProperty("github.username");
         String repo  = ConfigReader.getProperty("test.repo", "Hello-World");
         return openRepository(owner, repo);
     }
 
-    /**
-     * Navigates into a folder or file by its visible name in the file tree.
-     *
-     * @param name exact file or folder name shown in the table
-     */
     public CodeBrowserPage clickEntry(String name) {
         By locator = By.xpath(
-            "//a[contains(@class,'js-navigation-open') and normalize-space()='" + name + "']" +
-            " | //a[@data-pjax='#repo-content-pjax-container' and normalize-space()='" + name + "']"
+            "//a[contains(@class,'Link--primary') and normalize-space()='" + name + "']"
         );
         click(locator);
+        waitForReact();
         return this;
     }
 
@@ -86,26 +86,20 @@ public class CodeBrowserPage extends BasePage {
     // ------------------------------------------------------------------ //
 
     /**
-     * Returns the visible names of all entries in the current directory.
+     * Returns the visible names of all file/folder entries — skips blank-text duplicates.
      */
     public List<String> getEntryNames() {
-        List<WebElement> links = driver.findElements(entryNameLink);
-        return links.stream()
-                    .map(WebElement::getText)
-                    .filter(t -> !t.isBlank())
-                    .collect(Collectors.toList());
+        return driver.findElements(entryLinks).stream()
+                     .map(WebElement::getText)
+                     .filter(t -> !t.isBlank())
+                     .distinct()
+                     .collect(Collectors.toList());
     }
 
-    /**
-     * Returns {@code true} when the file tree table is present on the page.
-     */
     public boolean isFileTreeVisible() {
-        return isDisplayed(fileTableRows);
+        return !driver.findElements(fileTreeSentinel).isEmpty();
     }
 
-    /**
-     * Returns the current breadcrumb path segments joined by " / ".
-     */
     public String getBreadcrumbPath() {
         return driver.findElements(breadcrumbItems).stream()
                      .map(WebElement::getText)
@@ -113,16 +107,7 @@ public class CodeBrowserPage extends BasePage {
                      .collect(Collectors.joining(" / "));
     }
 
-    /**
-     * Returns {@code true} when an entry with the given name exists in the tree.
-     */
     public boolean entryExists(String name) {
         return getEntryNames().stream().anyMatch(n -> n.equalsIgnoreCase(name));
-    }
-
-    /** Clicks the "Code" tab to return to the repository root file tree. */
-    public CodeBrowserPage goToCodeTab() {
-        click(codeTab);
-        return this;
     }
 }
