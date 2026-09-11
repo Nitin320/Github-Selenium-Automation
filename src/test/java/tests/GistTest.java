@@ -5,20 +5,20 @@
 
 package tests;
 
-import base.BaseTest;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.AfterEach;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import base.BaseTest;
 import pages.GistCreatePage;
 import pages.GistListPage;
 import pages.GistViewPage;
 import pages.LoginPage;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * GistTest — direct JUnit 5 coverage for GitHub Gist functionality.
@@ -112,8 +112,7 @@ public class GistTest extends BaseTest {
                 .enterDescription(description)
                 .enterFilename(filename)
                 .enterFileContent(content)
-                .selectSecret()
-                .createGist();
+                .selectSecretAndCreate();
 
         assertTrue(
                 gistViewPage.isGistDisplayed(),
@@ -162,6 +161,10 @@ public class GistTest extends BaseTest {
                 updatedGist.isContentDisplayed(updatedContent),
                 "Expected the updated public Gist content to be displayed"
         );
+        assertTrue(
+                updatedGist.isEditButtonDisplayed(),
+                "Expected to stay on the updated Gist page where the Edit button is present"
+        );
 
         gistsToDelete.add(updatedGist.getGistName());
     }
@@ -180,8 +183,7 @@ public class GistTest extends BaseTest {
                 .enterDescription(description)
                 .enterFilename(filename)
                 .enterFileContent(originalContent)
-                .selectSecret()
-                .createGist();
+                .selectSecretAndCreate();
 
         assertTrue(
                 gistViewPage.isSecret(),
@@ -196,6 +198,10 @@ public class GistTest extends BaseTest {
         assertTrue(
                 updatedGist.isContentDisplayed(updatedContent),
                 "Expected the updated secret Gist content to be displayed"
+        );
+        assertTrue(
+                updatedGist.isEditButtonDisplayed(),
+                "Expected to stay on the updated Gist page where the Edit button is present"
         );
 
         gistsToDelete.add(updatedGist.getGistName());
@@ -228,7 +234,8 @@ public class GistTest extends BaseTest {
                 .clickDelete()
                 .confirmDelete();
 
-        GistListPage gistListPage = new GistListPage().open();
+        // After deletion, GitHub automatically redirects to the Gist list page
+        GistListPage gistListPage = new GistListPage();
 
         assertFalse(
                 gistListPage.isGistPresent(gistName),
@@ -249,8 +256,7 @@ public class GistTest extends BaseTest {
                 .enterDescription(description)
                 .enterFilename(filename)
                 .enterFileContent(content)
-                .selectSecret()
-                .createGist();
+                .selectSecretAndCreate();
 
         assertTrue(
                 gistViewPage.isSecret(),
@@ -263,7 +269,8 @@ public class GistTest extends BaseTest {
                 .clickDelete()
                 .confirmDelete();
 
-        GistListPage gistListPage = new GistListPage().open();
+        // After deletion, GitHub automatically redirects to the Gist list page
+        GistListPage gistListPage = new GistListPage();
 
         assertFalse(
                 gistListPage.isGistPresent(gistName),
