@@ -35,7 +35,7 @@ public class GistViewPage extends BasePage {
             );
 
     /*
-     * File content.
+     * File content — all rendered lines of the gist.
      */
     private final By fileContent =
             By.cssSelector(".blob-code-inner");
@@ -81,22 +81,26 @@ public class GistViewPage extends BasePage {
     }
 
     /**
-     * Gets the visible file content.
+     * Gets the full visible file content by concatenating all rendered lines.
      */
     public String getFileContent() {
-        return getText(fileContent);
+        try {
+            return wait.until(
+                    org.openqa.selenium.support.ui.ExpectedConditions
+                            .presenceOfAllElementsLocatedBy(fileContent)
+            ).stream()
+                    .map(el -> el.getText())
+                    .collect(java.util.stream.Collectors.joining("\n"));
+        } catch (TimeoutException e) {
+            return "";
+        }
     }
 
     /**
-     * Checks whether supplied content is displayed.
+     * Checks whether supplied content is displayed across all file lines.
      */
     public boolean isContentDisplayed(String content) {
-
-        try {
-            return getFileContent().contains(content);
-        } catch (TimeoutException e) {
-            return false;
-        }
+        return getFileContent().contains(content);
     }
 
     /**
@@ -149,13 +153,15 @@ public class GistViewPage extends BasePage {
 
     /**
      * Checks whether a flash message is displayed.
+     * Useful for verifying success/error feedback after create, edit, or delete.
      */
     public boolean isFlashMessageDisplayed() {
         return isDisplayed(flashMessage);
     }
 
     /**
-     * Gets the flash message.
+     * Gets the flash message text.
+     * Useful for verifying the specific message shown after create, edit, or delete.
      */
     public String getFlashMessage() {
         return getText(flashMessage);
