@@ -6,37 +6,67 @@
 package tests;
 
 import base.BaseTest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.GistCreatePage;
 import pages.GistListPage;
 import pages.GistViewPage;
 import pages.LoginPage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
-
- GistTest — direct JUnit 5 coverage for GitHub Gist functionality.
-
- Covers:
-
- Create public Gist
- Create secret Gist
- Edit public Gist
- Edit secret Gist
- Delete public Gist
- Delete secret Gist
-
- Author: Naveen
+ * GistTest — direct JUnit 5 coverage for GitHub Gist functionality.
+ *
+ * Covers:
+ *   Create public Gist
+ *   Create secret Gist
+ *   Edit public Gist
+ *   Edit secret Gist
+ *   Delete public Gist
+ *   Delete secret Gist
+ *
+ * Author: Naveen
  */
 public class GistTest extends BaseTest {
 
+    /**
+     * Tracks gist names created during create/edit tests so they can be
+     * cleaned up in @AfterEach, preventing orphaned gists in the account.
+     */
+    private final List<String> gistsToDelete = new ArrayList<>();
+
+    @BeforeEach
+    @Override
+    public void setUp() {
+        super.setUp();
+        new LoginPage().open().loginFromConfigAndWaitForLogin();
+    }
+
+    @AfterEach
+    public void deleteOrphanedGists() {
+        if (gistsToDelete.isEmpty()) {
+            return;
+        }
+        GistListPage listPage = new GistListPage().open();
+        for (String gistName : gistsToDelete) {
+            if (listPage.isGistPresent(gistName)) {
+                listPage.openGist(gistName)
+                        .clickDelete()
+                        .confirmDelete();
+                // Return to list for the next iteration
+                listPage = new GistListPage().open();
+            }
+        }
+    }
+
     @Test
     void createPublicGist() {
-
-        LoginPage loginPage = new LoginPage();
-        loginPage.open().loginFromConfigAndWaitForLogin();
 
         String description = "Public Gist Test";
         String filename = "public-test.txt";
@@ -56,25 +86,20 @@ public class GistTest extends BaseTest {
                 gistViewPage.isGistDisplayed(),
                 "Expected the public Gist to be displayed after creation"
         );
-
         assertTrue(
                 gistViewPage.isContentDisplayed(content),
                 "Expected the created Gist to contain the supplied content"
         );
-
         assertTrue(
                 gistViewPage.isPublic(),
                 "Expected the created Gist to be public"
         );
 
-
+        gistsToDelete.add(gistViewPage.getGistName());
     }
 
     @Test
     void createSecretGist() {
-
-        LoginPage loginPage = new LoginPage();
-        loginPage.open().loginFromConfigAndWaitForLogin();
 
         String description = "Secret Gist Test";
         String filename = "secret-test.txt";
@@ -94,37 +119,29 @@ public class GistTest extends BaseTest {
                 gistViewPage.isGistDisplayed(),
                 "Expected the secret Gist to be displayed after creation"
         );
-
         assertTrue(
                 gistViewPage.isContentDisplayed(content),
                 "Expected the created Gist to contain the supplied content"
         );
-
         assertTrue(
                 gistViewPage.isSecret(),
                 "Expected the created Gist to be secret"
         );
 
-
+        gistsToDelete.add(gistViewPage.getGistName());
     }
 
     @Test
     void editPublicGist() {
-
-        LoginPage loginPage = new LoginPage();
-        loginPage.open().loginFromConfigAndWaitForLogin();
 
         String description = "Editable Public Gist";
         String filename = "edit-public.txt";
         String originalContent = "Original public Gist content.";
         String updatedContent = "Updated public Gist content.";
 
-        GistCreatePage gistCreatePage =
-                new GistListPage()
-                        .open()
-                        .clickNewGist();
-
-        GistViewPage gistViewPage = gistCreatePage
+        GistViewPage gistViewPage = new GistListPage()
+                .open()
+                .clickNewGist()
                 .enterDescription(description)
                 .enterFilename(filename)
                 .enterFileContent(originalContent)
@@ -136,9 +153,8 @@ public class GistTest extends BaseTest {
                 "Expected the Gist to be public before editing"
         );
 
-        GistCreatePage editPage = gistViewPage.clickEdit();
-
-        GistViewPage updatedGist = editPage
+        GistViewPage updatedGist = gistViewPage
+                .clickEdit()
                 .enterFileContent(updatedContent)
                 .updateGist();
 
@@ -147,26 +163,20 @@ public class GistTest extends BaseTest {
                 "Expected the updated public Gist content to be displayed"
         );
 
-
+        gistsToDelete.add(updatedGist.getGistName());
     }
 
     @Test
     void editSecretGist() {
-
-        LoginPage loginPage = new LoginPage();
-        loginPage.open().loginFromConfigAndWaitForLogin();
 
         String description = "Editable Secret Gist";
         String filename = "edit-secret.txt";
         String originalContent = "Original secret Gist content.";
         String updatedContent = "Updated secret Gist content.";
 
-        GistCreatePage gistCreatePage =
-                new GistListPage()
-                        .open()
-                        .clickNewGist();
-
-        GistViewPage gistViewPage = gistCreatePage
+        GistViewPage gistViewPage = new GistListPage()
+                .open()
+                .clickNewGist()
                 .enterDescription(description)
                 .enterFilename(filename)
                 .enterFileContent(originalContent)
@@ -178,76 +188,86 @@ public class GistTest extends BaseTest {
                 "Expected the Gist to be secret before editing"
         );
 
-        GistCreatePage editPage = gistViewPage.clickEdit();
+        GistViewPage updatedGist = gistViewPage
+                .clickEdit()
+                .enterFileContent(updatedContent)
+                .updateGist();
 
-        GistViewPage updatedGist = editPage.enterFileContent(updatedContent).updateGist();
-
-        assertTrue(updatedGist.isContentDisplayed(updatedContent),
+        assertTrue(
+                updatedGist.isContentDisplayed(updatedContent),
                 "Expected the updated secret Gist content to be displayed"
         );
 
-
+        gistsToDelete.add(updatedGist.getGistName());
     }
 
     @Test
     void deletePublicGist() {
 
-        LoginPage loginPage = new LoginPage();
-        loginPage.open().loginFromConfigAndWaitForLogin();
-
         String description = "Delete Public Gist";
         String filename = "delete-public.txt";
         String content = "Public Gist to be deleted.";
 
-        GistViewPage gistViewPage =
-                new GistListPage()
-                        .open()
-                        .clickNewGist()
-                        .enterDescription(description)
-                        .enterFilename(filename)
-                        .enterFileContent(content)
-                        .selectPublic()
-                        .createGist();
+        GistViewPage gistViewPage = new GistListPage()
+                .open()
+                .clickNewGist()
+                .enterDescription(description)
+                .enterFilename(filename)
+                .enterFileContent(content)
+                .selectPublic()
+                .createGist();
 
         assertTrue(
                 gistViewPage.isPublic(),
                 "Expected the Gist to be public before deletion"
         );
+
         String gistName = gistViewPage.getGistName();
 
         gistViewPage
                 .clickDelete()
                 .confirmDelete();
 
-        GistListPage gistListPage =
-                new GistListPage().open();
+        GistListPage gistListPage = new GistListPage().open();
 
         assertFalse(
                 gistListPage.isGistPresent(gistName),
                 "Expected the Gist to no longer exist after deletion"
         );
-
-
     }
 
     @Test
     void deleteSecretGist() {
 
-        LoginPage loginPage = new LoginPage();
-        loginPage.open().loginFromConfigAndWaitForLogin();
-
         String description = "Delete Secret Gist";
         String filename = "delete-secret.txt";
         String content = "Secret Gist to be deleted.";
 
-        GistViewPage gistViewPage = new GistListPage().open().clickNewGist().enterDescription(description).enterFilename(filename).enterFileContent(content).selectSecret().createGist();
+        GistViewPage gistViewPage = new GistListPage()
+                .open()
+                .clickNewGist()
+                .enterDescription(description)
+                .enterFilename(filename)
+                .enterFileContent(content)
+                .selectSecret()
+                .createGist();
 
-        assertTrue(gistViewPage.isSecret(),"Expected the Gist to be secret before deletion"
+        assertTrue(
+                gistViewPage.isSecret(),
+                "Expected the Gist to be secret before deletion"
         );
+
         String gistName = gistViewPage.getGistName();
-        gistViewPage.clickDelete().confirmDelete();
+
+        gistViewPage
+                .clickDelete()
+                .confirmDelete();
+
         GistListPage gistListPage = new GistListPage().open();
-        assertFalse(gistListPage.isGistPresent(gistName),"Expected the secret Gist to no longer exist after deletion"
+
+        assertFalse(
+                gistListPage.isGistPresent(gistName),
+                "Expected the secret Gist to no longer exist after deletion"
         );
     }
 }
