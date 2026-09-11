@@ -1,5 +1,9 @@
 package stepdefs;
 
+import driver.DriverFactory;
+import driver.DriverManager;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
@@ -12,10 +16,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
-
- GistSteps — Cucumber step definitions for GitHub Gist operations.
-
- Author: Naveen
+ * GistSteps — Cucumber step definitions for GitHub Gist operations.
+ *
+ * Author: Naveen
  */
 public class GistSteps {
 
@@ -26,9 +29,18 @@ public class GistSteps {
     private String expectedUpdatedContent;
     private String deletedGistName;
 
-    /**
+    @Before
+    public void setUp() {
+        DriverManager.setDriver(DriverFactory.createDriver());
+    }
 
-     Logs the user into GitHub using configured credentials.
+    @After
+    public void tearDown() {
+        DriverManager.quitDriver();
+    }
+
+    /**
+     * Logs the user into GitHub using configured credentials.
      */
     @Given("the user is logged into GitHub")
     public void the_user_is_logged_into_github() {
@@ -174,6 +186,10 @@ public class GistSteps {
                 "Expected updated Gist content to be displayed: "
                         + expectedUpdatedContent
         );
+        assertTrue(
+                gistViewPage.isEditButtonDisplayed(),
+                "Expected to stay on the updated Gist page where the Edit button is present"
+        );
     }
 
     /**
@@ -201,11 +217,8 @@ Save the name before deletion.
     @Then("the gist should be deleted successfully")
     public void the_gist_should_be_deleted_successfully() {
 
-/*
-
-Open the Gist list after deletion.
-*/
-        gistListPage = new GistListPage().open();
+        // Stay on the redirected page (Gist list with flash message) after delete
+        gistListPage = new GistListPage();
 
         assertFalse(
                 gistListPage.isGistPresent(deletedGistName),
