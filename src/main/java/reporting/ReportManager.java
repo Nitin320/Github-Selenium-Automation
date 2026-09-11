@@ -4,7 +4,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
-import com.group5.github.config.ConfigReader;
+import utils.ConfigReader;
 
 import java.io.File;
 import java.time.LocalDateTime;
@@ -45,7 +45,7 @@ public class ReportManager {
      */
     public static synchronized ExtentReports getInstance() {
         if (extent == null) {
-            String dir        = ConfigReader.getReportsDir();
+            String dir        = ConfigReader.getProperty("reports.dir", "target/extent-reports");
             String reportPath = dir + "/ExtentReport_" + TIMESTAMP + ".html";
             new File(dir).mkdirs();
 
@@ -63,8 +63,8 @@ public class ReportManager {
             extent.setSystemInfo("Project",     "GitHub Selenium Automation");
             extent.setSystemInfo("Team",        "Group 5 — IBM QE Training");
             extent.setSystemInfo("Environment", "github.com (production)");
-            extent.setSystemInfo("Browser",     ConfigReader.getBrowser());
-            extent.setSystemInfo("Headless",    String.valueOf(ConfigReader.isHeadless()));
+            extent.setSystemInfo("Browser",     ConfigReader.getProperty("browser", "chrome"));
+            extent.setSystemInfo("Headless",    ConfigReader.getProperty("headless", "false"));
         }
         return extent;
     }

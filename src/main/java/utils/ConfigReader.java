@@ -41,8 +41,20 @@ public class ConfigReader {
     /**
      * Returns the resolved value for {@code key}, or {@code defaultValue}
      * when the key is absent.
+     *
+     * <p>Resolution order:
+     * <ol>
+     *   <li>Java system property ({@code -Dkey=value} on the command line)</li>
+     *   <li>{@code config.properties} on the classpath</li>
+     *   <li>{@code defaultValue}</li>
+     * </ol>
      */
     public static String getProperty(String key, String defaultValue) {
+        // 1. System property wins (e.g. -Dheadless=true passed by Maven/CI)
+        String sysProp = System.getProperty(key);
+        if (sysProp != null && !sysProp.isEmpty()) {
+            return sysProp;
+        }
         String raw = PROPERTIES.getProperty(key, defaultValue);
         return resolveEnvPlaceholder(raw);
     }
@@ -50,10 +62,16 @@ public class ConfigReader {
     /**
      * Returns the resolved value for {@code key}.
      *
-     * @throws IllegalArgumentException when the key is absent and no
-     *                                  environment variable covers it.
+     * <p>Resolution order: system property → config.properties → env placeholder.
+     *
+     * @throws IllegalArgumentException when the key is absent everywhere.
      */
     public static String getProperty(String key) {
+        // 1. System property wins (e.g. -Dheadless=true passed by Maven/CI)
+        String sysProp = System.getProperty(key);
+        if (sysProp != null && !sysProp.isEmpty()) {
+            return sysProp;
+        }
         String raw = PROPERTIES.getProperty(key);
         if (raw == null) {
             throw new IllegalArgumentException(
