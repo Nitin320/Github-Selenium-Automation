@@ -23,22 +23,17 @@ public class GistCreatePage extends BasePage {
             By.cssSelector("input[name='gist[files][][name]']");
 
     private final By codeEditor =
-            By.id("code-editor");
+            By.cssSelector(".CodeMirror textarea, #code-editor");
 
     /*
-     * Visibility dropdown.
-     */
-    private final By visibilityButton =
-            By.xpath("//*[@id='new_gist']//button");
-
-    /*
-     * Visibility menu.
+     * Visibility dropdown — the <summary> element that opens the
+     * details/menu panel. A single click on it is sufficient.
      */
     private final By visibilitySummary =
             By.xpath("//*[@id='new_gist']//details/summary");
 
     /*
-     * Public option.
+     * Public option inside the open visibility menu.
      */
     private final By publicOption =
             By.xpath(
@@ -56,14 +51,6 @@ public class GistCreatePage extends BasePage {
      */
     private final By updateGistButton =
             By.xpath("//button[contains(normalize-space(), 'Update')]");
-
-    /**
-     * Opens the GitHub Gist homepage.
-     */
-    public GistCreatePage open() {
-        navigateTo("https://gist.github.com/");
-        return this;
-    }
 
     /**
      * Enters Gist description.
@@ -98,24 +85,11 @@ public class GistCreatePage extends BasePage {
 
     /**
      * Changes the Gist visibility to Public.
+     * Opens the details/summary dropdown then clicks the Public label.
      */
     public GistCreatePage selectPublic() {
-
-        click(visibilityButton);
-
-        /*
-         * If the details menu is present, open it.
-         */
-        try {
-            if (isDisplayed(visibilitySummary)) {
-                click(visibilitySummary);
-            }
-        } catch (Exception ignored) {
-            // Menu may already be open.
-        }
-
+        click(visibilitySummary);
         click(publicOption);
-
         return this;
     }
 
