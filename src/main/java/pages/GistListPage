@@ -51,7 +51,8 @@ public class GistListPage extends BasePage {
     }
 
     /**
-     * Opens a Gist using its displayed name.
+     * Opens a Gist by clicking its displayed name link.
+     * Use this to navigate directly into an existing gist from the list page.
      */
     public GistViewPage openGist(String gistName) {
 
