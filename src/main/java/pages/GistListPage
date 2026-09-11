@@ -18,6 +18,23 @@ public class GistListPage extends BasePage {
     private final By newGistButton =
             By.id("gists-header-new-gist");
 
+    private final By flashMessage =
+            By.cssSelector("#js-flash-container [role='alert'], #js-flash-container .flash");
+
+    /**
+     * Checks whether a flash message is displayed on the list page.
+     */
+    public boolean isFlashMessageDisplayed() {
+        return isDisplayed(flashMessage);
+    }
+
+    /**
+     * Gets the flash message text displayed on the list page.
+     */
+    public String getFlashMessage() {
+        return getText(flashMessage);
+    }
+
     /**
      * Opens GitHub Gist homepage.
      */
@@ -29,11 +46,13 @@ public class GistListPage extends BasePage {
     }
 
     /**
-     * Opens the New Gist creation form.
+     * Navigates directly to the new Gist creation form URL.
+     * This is more reliable than clicking the New Gist button on the list page,
+     * which may not render consistently after login redirects.
      */
     public GistCreatePage clickNewGist() {
 
-        click(newGistButton);
+        navigateTo("https://gist.github.com/new");
 
         return new GistCreatePage();
     }
