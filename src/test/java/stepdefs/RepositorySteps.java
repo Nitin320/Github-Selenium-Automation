@@ -1,12 +1,19 @@
 package stepdefs;
 
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import driver.DriverManager;
 import pages.NewRepoPage;
 import pages.RepoHomePage;
 
+/**
+ * RepositorySteps — step definitions for repository creation and navigation.
+ * Author: Sujin
+ *
+ * NOTE: The "the user is logged into GitHub" step is defined in GistSteps
+ * (which performs the actual login). It is intentionally NOT duplicated here
+ * to avoid Cucumber's AmbiguousStepDefinitionsException.
+ */
 public class RepositorySteps {
 
     // Pages are lazily created after the driver is set in @Before
@@ -21,11 +28,6 @@ public class RepositorySteps {
     private RepoHomePage repoHomePage() {
         if (repoHomePage == null) repoHomePage = new RepoHomePage();
         return repoHomePage;
-    }
-
-    @Given("the user is logged into GitHub")
-    public void the_user_is_logged_into_github() {
-        // Session login is typically handled via background/login steps or BaseTest
     }
 
     @When("the user navigates to the new repository page")
