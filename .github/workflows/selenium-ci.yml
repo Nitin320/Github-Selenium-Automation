@@ -4,8 +4,8 @@
 # Role: CI/CD Execution
 #
 # This workflow runs the full BDD Cucumber + Selenium test suite
-# against the live GitHub.com website using headless Chrome on
-# an ubuntu-latest runner.
+# against the live GitHub.com website using Chrome (non-headless)
+# on an ubuntu-latest runner backed by a real Xvfb virtual display.
 # ============================================================
 
 name: Selenium CI
@@ -24,13 +24,13 @@ on:
   workflow_dispatch:
     inputs:
       headless:
-        description: 'Run browser in headless mode'
+        description: 'Run browser in headless mode (false = visible Chrome via Xvfb)'
         required: false
-        default: 'true'
+        default: 'false'
         type: choice
         options:
-          - 'true'
           - 'false'
+          - 'true'
 
 jobs:
   selenium-test:
@@ -61,10 +61,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-m2
 
-      # ── 4. Install Google Chrome (stable) ────────────────────────────────
-      #    ubuntu-latest ships Chrome, but we pin to a known-good version
-      #    and print it for traceability in the CI log.
-      - name: Install Chrome
+      # ── 4. Install Google Chrome (stable) + Xvfb virtual display ─────────
+      #    Chrome is installed and Xvfb provides a virtual screen so Chrome
+      #    runs in non-headless mode (visible window on the virtual display).
+      - name: Install Chrome and Xvfb
         run: |
           google-chrome --version || (
             wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add - &&
@@ -72,30 +72,44 @@ jobs:
             sudo apt-get update -q &&
             sudo apt-get install -y google-chrome-stable
           )
+          sudo apt-get install -y xvfb
           echo "Chrome version: $(google-chrome --version)"
+          echo "Xvfb installed: $(which Xvfb)"
 
-      # ── 5. Run tests (headless Chrome via WebDriverManager) ───────────────
+      # ── 5. Start Xvfb virtual display ─────────────────────────────────────
+      #    Xvfb provides a real X11 display on :99 so Chrome can open a
+      #    visible window even though there is no physical monitor.
+      #    This is equivalent to running Chrome on a real desktop screen.
+      - name: Start Xvfb virtual display
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -ac +extension GLX +render -noreset &
+          echo "XVFB_PID=$!" >> $GITHUB_ENV
+          export DISPLAY=:99
+          sleep 2
+          echo "Xvfb started on display :99 (1920x1080x24)"
+
+      # ── 6. Run tests (Chrome NON-headless via Xvfb virtual display) ───────
       #    GITHUB_USERNAME and GITHUB_PASSWORD are stored as GitHub Secrets.
       #    They are passed as environment variables and resolved by ConfigReader
       #    through the ${GITHUB_USERNAME} / ${GITHUB_PASSWORD} placeholders in
       #    config.properties.
       #
-      #    -Dheadless=true   → picked up by ConfigReader system-property check
-      #    --no-transfer-progress → cleaner logs (no per-byte download noise)
-      - name: Run Selenium BDD Tests (headless)
+      #    -Dheadless=false  → Chrome opens a real (Xvfb) window, not headless
+      #    DISPLAY=:99       → points Chrome at the Xvfb virtual screen
+      - name: Run Selenium BDD Tests (Chrome on Xvfb display)
         env:
           GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME }}
           GITHUB_PASSWORD: ${{ secrets.GITHUB_PASSWORD }}
           DISPLAY: :99
         run: |
-          # Start a virtual display for any non-headless fallback paths
-          Xvfb :99 -screen 0 1920x1080x24 &
+          echo "Running Chrome in NON-HEADLESS mode on Xvfb display :99"
+          echo "Username configured: $([ -n '${{ secrets.GITHUB_USERNAME }}' ] && echo 'YES' || echo 'NO - Secret missing!')"
           mvn test \
             --no-transfer-progress \
-            -Dheadless=${{ github.event.inputs.headless || 'true' }} \
+            -Dheadless=${{ github.event.inputs.headless || 'false' }} \
             -Dbrowser=chrome
 
-      # ── 6. Print test summary to CI log ───────────────────────────────────
+      # ── 7. Print test summary to CI log ───────────────────────────────────
       - name: Print test summary
         if: always()
         run: |
@@ -128,7 +142,7 @@ jobs:
           fi
           echo "============================================"
 
-      # ── 7. Upload Cucumber HTML report ────────────────────────────────────
+      # ── 8. Upload Cucumber HTML report ────────────────────────────────────
       - name: Upload Cucumber HTML report
         if: always()
         uses: actions/upload-artifact@v4
@@ -138,7 +152,7 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
 
-      # ── 8. Upload ExtentReports HTML ──────────────────────────────────────
+      # ── 9. Upload ExtentReports HTML ──────────────────────────────────────
       - name: Upload ExtentReports
         if: always()
         uses: actions/upload-artifact@v4
@@ -148,7 +162,7 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
 
-      # ── 9. Upload Allure results (raw JSON for allure serve) ──────────────
+      # ── 10. Upload Allure results (raw JSON for allure serve) ─────────────
       - name: Upload Allure results
         if: always()
         uses: actions/upload-artifact@v4
@@ -158,7 +172,7 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
 
-      # ── 10. Upload failure screenshots ────────────────────────────────────
+      # ── 11. Upload failure screenshots ────────────────────────────────────
       - name: Upload screenshots
         if: always()
         uses: actions/upload-artifact@v4
@@ -168,7 +182,7 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
 
-      # ── 11. Upload full Surefire logs ─────────────────────────────────────
+      # ── 12. Upload full Surefire logs ─────────────────────────────────────
       - name: Upload Surefire logs
         if: always()
         uses: actions/upload-artifact@v4
