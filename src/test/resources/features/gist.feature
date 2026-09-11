@@ -1,7 +1,6 @@
 # GitHub Gist Feature
 # Author: Naveen
 
-Feature: GitHub Gist
 Feature: GitHub Gist management
 
   Background:

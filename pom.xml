@@ -14,8 +14,7 @@
     <description>BDD Selenium automation framework for GitHub UI testing</description>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <selenium.version>4.21.0</selenium.version>
         <webdrivermanager.version>5.8.0</webdrivermanager.version>
@@ -75,6 +74,19 @@
             <version>1.10.2</version>
             <scope>test</scope>
         </dependency>
+        <!-- Required by maven-surefire-plugin 3.x when using JUnit Platform -->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>1.10.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite-engine</artifactId>
+            <version>1.10.2</version>
+            <scope>test</scope>
+        </dependency>
 
         <!-- ExtentReports -->
         <dependency>
@@ -124,15 +136,39 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
+                    <!--
+                      Run ONLY the JUnit Platform Suite runner (TestSuiteRunner).
+                      This activates the Cucumber engine which discovers all feature files
+                      under src/test/resources/features via @SelectClasspathResource("features").
+
+                      Plain JUnit 5 test classes (LoginTest, ProfileTest, LogoutTest, etc.)
+                      are NOT included here intentionally: they require real GitHub credentials
+                      and a live browser, so they are separated from the Cucumber BDD suite to
+                      avoid double-running scenarios that are already covered by the feature files.
+                      To run plain JUnit tests, use: mvn test -Dtest=LoginTest,ProfileTest,...
+                    -->
                     <includes>
                         <include>**/TestSuiteRunner.java</include>
                     </includes>
+                    <!--
+                      Pass -Dheadless=true (and any other -D flags) through to the JVM
+                      that Surefire forks so ConfigReader.getProperty() can see them.
+                    -->
+                    <systemPropertyVariables>
+                        <headless>${headless}</headless>
+                        <browser>${browser}</browser>
+                    </systemPropertyVariables>
+                    <!-- Inherit all -D flags from the Maven command line -->
+                    <argLine>-Dfile.encoding=UTF-8</argLine>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>2.12.0</version>
+                <configuration>
+                    <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
+                </configuration>
             </plugin>
         </plugins>
     </build>
