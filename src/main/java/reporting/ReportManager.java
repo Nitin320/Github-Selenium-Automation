@@ -45,7 +45,11 @@ public class ReportManager {
      */
     public static synchronized ExtentReports getInstance() {
         if (extent == null) {
+<<<<<<< HEAD
             String dir        = ConfigReader.getProperty("reports.dir", "target/extent-reports");
+=======
+            String dir        = "target/reports/";
+>>>>>>> 88ba56c0622438413eb3be9ef97c70fbcc92d835
             String reportPath = dir + "/ExtentReport_" + TIMESTAMP + ".html";
             new File(dir).mkdirs();
 
@@ -63,8 +67,13 @@ public class ReportManager {
             extent.setSystemInfo("Project",     "GitHub Selenium Automation");
             extent.setSystemInfo("Team",        "Group 5 — IBM QE Training");
             extent.setSystemInfo("Environment", "github.com (production)");
+<<<<<<< HEAD
             extent.setSystemInfo("Browser",     ConfigReader.getProperty("browser", "chrome"));
             extent.setSystemInfo("Headless",    ConfigReader.getProperty("headless", "false"));
+=======
+            extent.setSystemInfo("Browser", "chrome");
+            extent.setSystemInfo("Headless", "true");
+>>>>>>> 88ba56c0622438413eb3be9ef97c70fbcc92d835
         }
         return extent;
     }
