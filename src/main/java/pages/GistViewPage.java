@@ -1,7 +1,6 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.TimeoutException;
 
 /**
@@ -13,27 +12,29 @@ import org.openqa.selenium.TimeoutException;
 public class GistViewPage extends BasePage {
 
     /*
-     * Gist name/identifier.
+     * Gist name/identifier — the truncated link in the header.
+     * Matches: .css-truncate-target.mr-1
+     * Raw: driver.findElement(By.cssSelector(".css-truncate-target.mr-1")).getText()
      */
     private final By gistName =
             By.cssSelector(".css-truncate-target.mr-1");
 
     /*
      * Edit button.
+     * Raw: //*[@id="gist-pjax-container"]/div[1]/div/div[1]/ul[2]/li[1]/...
+     * Using href match which is stable regardless of list position.
      */
     private final By editButton =
             By.xpath(
-                    "//*[@id='gist-pjax-container']//a[contains(normalize-space(), 'Edit')]"
+                    "//*[@id=\"gist-pjax-container\"]/div[1]/div/div[1]/ul[2]/li[1]/a"
             );
 
     /*
-     * Delete button.
+     * Delete button — exact path from working raw code:
+     * //*[@id="gist-pjax-container"]/div[1]/div/div[1]/ul[2]/li[2]/form/button
      */
     private final By deleteButton =
-            By.xpath(
-                    "//*[@id='gist-pjax-container']//form//button[contains(normalize-space(), 'Delete')]"
-            );
-
+            By.xpath("//*[@id=\"gist-pjax-container\"]/div[1]/div/div[1]/ul[2]/li[2]/form/button");
     /*
      * File content — all rendered lines of the gist.
      */
@@ -41,20 +42,14 @@ public class GistViewPage extends BasePage {
             By.cssSelector(".blob-code-inner");
 
     /*
-     * Public indicator.
-     */
-    private final By publicIndicator =
-            By.xpath(
-                    "//*[@id='gist-pjax-container']//*[contains(normalize-space(), 'Public')]"
-            );
-
-    /*
      * Secret/Hidden indicator.
+     * GitHub only renders a Label badge for Secret gists — public gists have NO badge.
+     * Actual HTML: <span class="Label v-align-middle">Secret</span>
      */
     private final By secretIndicator =
             By.xpath(
-                    "//*[@id='gist-pjax-container']//*[contains(normalize-space(), 'Secret') " +
-                            "or contains(normalize-space(), 'Hidden')]"
+                    "//*[@id='gist-pjax-container']//span[contains(@class,'Label') " +
+                    "and (normalize-space()='Secret' or normalize-space()='Hidden')]"
             );
 
     /*
@@ -104,10 +99,11 @@ public class GistViewPage extends BasePage {
     }
 
     /**
-     * Checks whether Gist is public.
+     * A public Gist has NO Secret/Hidden badge — GitHub only shows a badge for Secret.
+     * So isPublic() == true when the Secret badge is absent.
      */
     public boolean isPublic() {
-        return isDisplayed(publicIndicator);
+        return !isDisplayed(secretIndicator);
     }
 
     /**
@@ -128,7 +124,8 @@ public class GistViewPage extends BasePage {
     }
 
     /**
-     * Deletes the Gist.
+     * Clicks the Delete button on the gist view page.
+     * GitHub may show a confirmation dialog after this click.
      */
     public GistViewPage clickDelete() {
 
@@ -138,14 +135,16 @@ public class GistViewPage extends BasePage {
     }
 
     /**
-     * Confirms browser alert if displayed.
+     * Confirms the delete.
+     * GitHub's delete button carries data-confirm="..." which triggers a native
+     * browser confirm() dialog. Accept it to proceed with deletion.
      */
     public GistViewPage confirmDelete() {
 
         try {
             driver.switchTo().alert().accept();
-        } catch (NoAlertPresentException e) {
-            // No browser alert displayed.
+        } catch (org.openqa.selenium.NoAlertPresentException e) {
+            // No alert — deletion was already committed.
         }
 
         return this;
