@@ -1,8 +1,10 @@
 # GitHub Search Feature
 # Author: Yazeen
 
+@smoke @regression
 Feature: GitHub Search and Explore
 
+  @smoke
   Scenario: Search GitHub repositories
     Given I am on the GitHub search page
     When I search for "selenium"

@@ -1,9 +1,6 @@
 package stepdefs;
 
-import driver.DriverFactory;
 import driver.DriverManager;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -16,6 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * IssueSteps — step definitions for GitHub Issues scenarios.
+ *
+ * Driver lifecycle is managed centrally by {@link Hooks}.
  * Author: Deva Vignan
  */
 public class IssueSteps {
@@ -25,11 +24,13 @@ public class IssueSteps {
     private String issuesUrl;
     private String issueTitle;
 
-    @Before
-    public void setUp() {
-        DriverManager.setDriver(DriverFactory.createDriver());
-        driver = DriverManager.getDriver();
-        issuePage = new IssuePage();
+    // Lazily initialise page object after Hooks has set the driver
+    private IssuePage issuePage() {
+        if (driver == null) {
+            driver = DriverManager.getDriver();
+            issuePage = new IssuePage();
+        }
+        return issuePage;
     }
 
     @Given("a GitHub repository is configured")
@@ -45,40 +46,35 @@ public class IssueSteps {
 
     @When("I open the repository issues page")
     public void openRepositoryIssuesPage() {
-        driver.get(issuesUrl);
+        DriverManager.getDriver().get(issuesUrl);
     }
 
     @Then("the issues page should be displayed")
     public void issuesPageShouldBeDisplayed() {
-        assertTrue(issuePage.isIssuesPageDisplayed(),
+        assertTrue(issuePage().isIssuesPageDisplayed(),
                 "The repository issues page was not displayed");
     }
 
     @When("I create an issue with title {string}")
     public void createIssueWithTitle(String title) {
         issueTitle = title;
-        issuePage.clickNewIssue();
-        issuePage.enterIssueTitle(title);
+        issuePage().clickNewIssue();
+        issuePage().enterIssueTitle(title);
     }
 
     @When("I enter the issue description {string}")
     public void enterIssueDescription(String description) {
-        issuePage.enterIssueDescription(description);
+        issuePage().enterIssueDescription(description);
     }
 
     @When("I submit the issue")
     public void submitIssue() {
-        issuePage.submitIssue();
+        issuePage().submitIssue();
     }
 
     @Then("the issue should be created successfully")
     public void issueShouldBeCreatedSuccessfully() {
-        assertTrue(issuePage.isIssueCreated(issueTitle),
+        assertTrue(issuePage().isIssueCreated(issueTitle),
                 "The created issue title was not displayed");
-    }
-
-    @After
-    public void tearDown() {
-        DriverManager.quitDriver();
     }
 }

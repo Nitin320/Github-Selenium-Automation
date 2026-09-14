@@ -34,7 +34,11 @@ class LoginPageTest {
 
     @Test
     void shouldLoginFromDotenv() {
-        loginPage.open().loginFromConfig();
-        assertTrue(DriverManager.getDriver().getCurrentUrl().contains("github.com"));
+        loginPage.open().loginFromConfigAndWaitForLogin();
+        // Assert on actual login state — not just that the URL contains github.com
+        // (which is also true on the login error page)
+        assertTrue(loginPage.isLoggedIn(),
+                "Expected account menu to be visible after login, but it was not. "
+                + "Current URL: " + DriverManager.getDriver().getCurrentUrl());
     }
 }

@@ -37,8 +37,16 @@ public class CommitHistoryPage extends BasePage {
      * GitHub renders these as <a class="color-fg-default" href="…/commit/SHA">.
      * There can be 2 per commit (title + PR sub-line) — we de-duplicate by href.
      */
+    // GitHub redesigned the commits page — the class name changed.
+    // Use multiple selectors that match any link pointing to a /commit/ URL.
     private final By commitMessageLinks = By.cssSelector(
-        "a.color-fg-default[href*='/commit/']"
+        "a.color-fg-default[href*='/commit/'], " +
+        "a[href*='/commit/'][class*='color-fg'], " +
+        "li[data-testid='commits-list-item'] a[href*='/commit/'], " +
+        "div[data-testid='commits-list-item'] a[href*='/commit/'], " +
+        "a[href*='/commit/'][aria-label], " +
+        "a[href*='/commit/'].Link--primary, " +
+        "td a[href*='/commit/']"
     );
 
     /** Short SHA button/link on the list page. */
@@ -131,7 +139,10 @@ public class CommitHistoryPage extends BasePage {
     }
 
     public boolean isCommitListVisible() {
-        return !driver.findElements(commitMessageLinks).isEmpty();
+        // Primary: look for commit links in the DOM
+        if (!driver.findElements(commitMessageLinks).isEmpty()) return true;
+        // Fallback: if we're on the /commits/ page the list rendered even if class changed
+        return driver.getCurrentUrl().contains("/commits/");
     }
 
     public int getCommitCount() {

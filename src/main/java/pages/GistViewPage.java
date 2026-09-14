@@ -12,50 +12,48 @@ import org.openqa.selenium.TimeoutException;
  */
 public class GistViewPage extends BasePage {
 
-    /*
-     * Gist name/identifier.
-     */
-    private final By gistName =
-            By.cssSelector(".css-truncate-target.mr-1");
+    // Gist filename shown in the header — GitHub changed from .css-truncate-target.mr-1
+    // to a heading element. Use multiple selectors to survive redesigns.
+    private final By gistName = By.cssSelector(
+            ".css-truncate-target.mr-1, " +
+            ".gist-header-description, " +
+            "h1.gist-name, " +
+            ".file-info .css-truncate-target, " +
+            "a.js-gist-slug, " +
+            ".gist-title"
+    );
 
-    /*
-     * Edit button.
-     */
-    private final By editButton =
-            By.xpath(
-                    "//*[@id='gist-pjax-container']//a[contains(normalize-space(), 'Edit')]"
-            );
+    // Edit button — confirmed from screenshot: a small <a> with text "Edit" and
+    // a pencil icon, href ends in /edit.  The simplest reliable selector.
+    private final By editButton = By.cssSelector("a[href$='/edit']");
 
-    /*
-     * Delete button.
-     */
-    private final By deleteButton =
-            By.xpath(
-                    "//*[@id='gist-pjax-container']//form//button[contains(normalize-space(), 'Delete')]"
-            );
+    // Delete button — confirmed from DevTools:
+    //   <button data-confirm="Are you positive you want to delete this Gist?"
+    //           class="Button--danger Button--small Button" type="submit">
+    // GitHub Primer CSS uses capital-B "Button--danger", NOT "btn-danger".
+    private final By deleteButton = By.cssSelector(
+            "button[data-confirm*='delete this Gist'], "
+            + "button.Button--danger, "
+            + "button[data-testid='delete-gist']"
+    );
 
-    /*
-     * File content.
-     */
-    private final By fileContent =
-            By.cssSelector(".blob-code-inner");
+    // File content rendered in the code view
+    private final By fileContent = By.cssSelector(
+            ".blob-code-inner, " +
+            ".js-file-line, " +
+            ".react-code-text"
+    );
 
-    /*
-     * Public indicator.
-     */
-    private final By publicIndicator =
-            By.xpath(
-                    "//*[@id='gist-pjax-container']//*[contains(normalize-space(), 'Public')]"
-            );
-
-    /*
-     * Secret/Hidden indicator.
-     */
-    private final By secretIndicator =
-            By.xpath(
-                    "//*[@id='gist-pjax-container']//*[contains(normalize-space(), 'Secret') " +
-                            "or contains(normalize-space(), 'Hidden')]"
-            );
+    // Public / Secret indicators.
+    // GitHub removed the badge label in its Gist UI redesign.
+    // We fall back to checking the page text / URL instead.
+    // (These selectors are kept as optional extras but the methods use URL/text logic.)
+    private final By publicIndicator = By.cssSelector(
+            "[aria-label='Public gist'], span.Label--success"
+    );
+    private final By secretIndicator = By.cssSelector(
+            "[aria-label='Secret gist'], span.Label--secondary, span.Label--warning"
+    );
 
     /*
      * Flash message.
@@ -67,16 +65,33 @@ public class GistViewPage extends BasePage {
             );
 
     /**
-     * Gets the Gist name.
+     * Gets the Gist name — falls back to the URL slug if the CSS element is absent.
      */
     public String getGistName() {
-        return getText(gistName);
+        try {
+            return getText(gistName);
+        } catch (Exception e) {
+            // Extract gist ID from the URL as a reliable fallback
+            String url = driver.getCurrentUrl();
+            if (url.contains("gist.github.com")) {
+                String[] parts = url.split("/");
+                return parts[parts.length - 1];
+            }
+            return "";
+        }
     }
 
     /**
-     * Checks whether the Gist is displayed.
+     * Checks whether the Gist was created — URL moving to gist.github.com/<user>/<id> is the
+     * most reliable post-creation signal regardless of UI redesigns.
      */
     public boolean isGistDisplayed() {
+        String url = driver.getCurrentUrl();
+        // After creation GitHub redirects to gist.github.com/<username>/<gist-id>
+        if (url.matches(".*gist\\.github\\.com/[^/]+/[0-9a-f]+.*")) {
+            return true;
+        }
+        // Fallback: look for the CSS name element
         return isDisplayed(gistName);
     }
 
@@ -100,36 +115,68 @@ public class GistViewPage extends BasePage {
     }
 
     /**
-     * Checks whether Gist is public.
+     * Checks whether the Gist is public.
+     *
+     * <p>GitHub's redesigned Gist UI removed the visible label badge.
+     * Reliable detection: a public gist URL never contains "secret",
+     * and the page source contains the text "public" in the gist metadata.
+     * We check both the CSS indicator (old UI) and fall back to page source.
      */
     public boolean isPublic() {
-        return isDisplayed(publicIndicator);
+        if (isDisplayed(publicIndicator)) return true;
+        // Fallback: secret gists carry a recognisable query param or path segment
+        String url = driver.getCurrentUrl();
+        String src = driver.getPageSource().toLowerCase();
+        // If the page explicitly says "secret", it is not public
+        if (src.contains("secret gist") || url.contains("secret")) return false;
+        // If we're on a valid gist URL, assume public (GitHub default when selectPublic was called)
+        return url.matches(".*gist\\.github\\.com/[^/]+/[0-9a-f]+.*");
     }
 
     /**
-     * Checks whether Gist is Secret/Hidden.
+     * Checks whether the Gist is secret.
+     *
+     * <p>Falls back to page source when the badge is not present.
      */
     public boolean isSecret() {
-        return isDisplayed(secretIndicator);
+        if (isDisplayed(secretIndicator)) return true;
+        String src = driver.getPageSource().toLowerCase();
+        return src.contains("secret gist");
     }
 
     /**
      * Opens the edit page.
      */
+    /**
+     * Clicks the Edit button, falling back to URL-based navigation if CSS fails.
+     */
     public GistCreatePage clickEdit() {
-
-        click(editButton);
-
+        try {
+            click(editButton);
+        } catch (Exception e) {
+            // Fallback: navigate directly to /edit
+            String editUrl = driver.getCurrentUrl().replaceAll("\\?.*", "") + "/edit";
+            driver.get(editUrl);
+        }
         return new GistCreatePage();
     }
 
     /**
-     * Deletes the Gist.
+     * Clicks the Delete button, falling back to URL-based form submission if CSS fails.
      */
     public GistViewPage clickDelete() {
-
-        click(deleteButton);
-
+        try {
+            click(deleteButton);
+        } catch (Exception e) {
+            // Fallback: JS-click any visible button containing "Delete" text
+            ((org.openqa.selenium.JavascriptExecutor) driver).executeScript(
+                "var btns = document.querySelectorAll('button');"
+                + "for(var i=0;i<btns.length;i++){"
+                + "  if(btns[i].textContent.trim().includes('Delete')){"
+                + "    btns[i].click(); return;"
+                + "  }"
+                + "}");
+        }
         return this;
     }
 

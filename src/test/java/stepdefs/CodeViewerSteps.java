@@ -1,9 +1,5 @@
 package stepdefs;
 
-import driver.DriverFactory;
-import driver.DriverManager;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -33,20 +29,6 @@ public class CodeViewerSteps {
     private CodeBrowserPage  codeBrowserPage;
     private FileViewPage     fileViewPage;
     private CommitHistoryPage commitHistoryPage;
-
-    // ------------------------------------------------------------------ //
-    //  Lifecycle                                                           //
-    // ------------------------------------------------------------------ //
-
-    @Before
-    public void setUp() {
-        DriverManager.setDriver(DriverFactory.createDriver());
-    }
-
-    @After
-    public void tearDown() {
-        DriverManager.quitDriver();
-    }
 
     // ------------------------------------------------------------------ //
     //  Background                                                          //

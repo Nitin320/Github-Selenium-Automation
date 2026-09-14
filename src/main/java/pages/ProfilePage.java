@@ -18,7 +18,17 @@ public class ProfilePage extends BasePage {
     // that don't change with a redesign: the actual profile URL, and the
     // visible text a screen reader / real user would rely on.
     private final By yourProfileLink = By.xpath("//a[@href='/" + ConfigReader.getProperty("github.username") + "'] | " + "//a[contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'your profile')]");
-    private final By signOutButton = By.xpath("//button[contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'sign out')] | " + "//a[contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'sign out')]");
+    // GitHub's sign-out is now a form submission button. Try multiple selectors.
+    // Confirmed from screenshot: the menu shows a plain list item "→ Sign out"
+    // rendered as a <button> or <a> inside the slide-out panel.
+    // There is NO <form action="/logout"> wrapper in the new GitHub UI.
+    // The button text is exactly "Sign out" (capital S, space, lowercase o-u-t).
+    private final By signOutButton = By.xpath(
+            "//button[normalize-space()='Sign out'] | "
+            + "//a[normalize-space()='Sign out'] | "
+            + "//button[.//span[normalize-space()='Sign out']] | "
+            + "//a[.//span[normalize-space()='Sign out']]"
+    );
     private final By profileNameHeading = By.cssSelector("[itemprop='name']");
     private final By profileUsername    = By.cssSelector(".p-nickname.vcard-username");
     private final By profileBio         = By.cssSelector(".p-note.user-profile-bio div");
@@ -62,9 +72,32 @@ public class ProfilePage extends BasePage {
         return isDisplayed(editProfileButton);
     }
 
-    /** Signs out of the current session via the account menu. */
+    /**
+     * Signs out of the current session.
+     *
+     * <p>GitHub's header shows a round avatar button (confirmed from screenshot).
+     * Clicking it opens a slide-out panel.  "Sign out" appears as a plain
+     * {@code <button>} at the bottom of that panel with an icon and the text
+     * "Sign out".  We click the avatar, wait for the item to appear, then use
+     * JavaScript to click it (avoids any stale element / intercepted click issues
+     * caused by the slide animation still running).
+     */
     public void signOut() {
+        // 1. Open the user menu
         click(accountMenuButton);
-        click(signOutButton);
+
+        // 2. Wait up to 15 s for "Sign out" to become visible (menu has a slide animation)
+        org.openqa.selenium.support.ui.WebDriverWait menuWait =
+                new org.openqa.selenium.support.ui.WebDriverWait(driver, java.time.Duration.ofSeconds(15));
+        org.openqa.selenium.WebElement btn = menuWait.until(
+                org.openqa.selenium.support.ui.ExpectedConditions
+                        .visibilityOfElementLocated(signOutButton));
+
+        // 3. JS-click to avoid interception by the sliding animation
+        ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
+
+        // 4. Wait until the avatar/account button disappears (session ended)
+        wait.until(org.openqa.selenium.support.ui.ExpectedConditions
+                .invisibilityOfElementLocated(By.cssSelector("button[data-login]")));
     }
 }

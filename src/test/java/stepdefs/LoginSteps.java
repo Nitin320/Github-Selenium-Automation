@@ -1,9 +1,6 @@
 package stepdefs;
 
-import driver.DriverFactory;
 import driver.DriverManager;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -16,22 +13,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * LoginSteps — Cucumber step definitions backing login.feature.
+ *
+ * Driver lifecycle is managed centrally by {@link Hooks}.
  * Author: Jothi Sri
  */
 public class LoginSteps {
 
     private LoginPage loginPage;
     private ProfilePage profilePage;
-
-    @Before
-    public void setUp() {
-        DriverManager.setDriver(DriverFactory.createDriver());
-    }
-
-    @After
-    public void tearDown() {
-        DriverManager.quitDriver();
-    }
 
     @Given("I am on the GitHub login page")
     public void i_am_on_the_github_login_page() {

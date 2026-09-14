@@ -1,3 +1,7 @@
+# GitHub Login Feature
+# Author: Jothi Sri
+
+@smoke @regression
 Feature: GitHub Login
   As a GitHub user
   I want to log in and out of my account
@@ -6,16 +10,19 @@ Feature: GitHub Login
   Background:
     Given I am on the GitHub login page
 
+  @smoke
   Scenario: Successful login with valid credentials
     When I log in with valid credentials
     Then I should be redirected to my GitHub dashboard
     And the account menu should be visible
 
+  @negative
   Scenario: Login fails with an invalid password
     When I log in with a valid username and password "WrongPassword123!"
     Then I should see a login error message
     And the account menu should not be visible
 
+  @negative
   Scenario: Login fails with an empty password
     When I log in with a valid username and an empty password
     Then the account menu should not be visible

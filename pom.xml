@@ -157,6 +157,11 @@
                     <systemPropertyVariables>
                         <headless>${headless}</headless>
                         <browser>${browser}</browser>
+                        <!--
+                          Forward -Dcucumber.filter.tags to the Cucumber engine.
+                          Usage: mvn test -Dcucumber.filter.tags="@smoke"
+                        -->
+                        <cucumber.filter.tags>${cucumber.filter.tags}</cucumber.filter.tags>
                     </systemPropertyVariables>
                     <!-- Inherit all -D flags from the Maven command line -->
                     <argLine>-Dfile.encoding=UTF-8</argLine>
