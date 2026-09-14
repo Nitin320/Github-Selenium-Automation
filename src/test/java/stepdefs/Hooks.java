@@ -11,6 +11,8 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import reporting.ReportManager;
+import session.SessionManager;
+import utils.AdaptiveWait;
 import utils.ScreenshotUtils;
 
 import java.io.IOException;
@@ -117,7 +119,14 @@ public class Hooks {
             + "╚══════════════════════════════════════════════════════════════╝";
         LOG.info(banner);
 
-        // Start a fresh driver for this scenario
+        // Start a fresh driver for this scenario.
+        // NOTE: We do NOT call SessionManager.ensureLoggedIn() here — that is the
+        // responsibility of the step definitions that require a session
+        // (the "the user is logged into GitHub" Given step in GistSteps / IssueSteps,
+        // and "I am logged in to GitHub" in CodeViewerSteps).  SessionManager caches
+        // the session cookies after the first real login so that every subsequent
+        // scenario reuses them via a fast cookie-inject + refresh (~1s) instead of
+        // a full login form interaction (~10–20s).
         WebDriver driver = DriverFactory.createDriver();
         DriverManager.setDriver(driver);
 
@@ -152,6 +161,20 @@ public class Hooks {
 
     @After(order = 0)
     public void endScenario(Scenario scenario) {
+        // If the scenario explicitly signed out, invalidate the cached session
+        // so the next scenario does a fresh login rather than planting stale cookies.
+        if (scenario.getSourceTagNames().contains("@logout")
+                || scenario.getName().toLowerCase().contains("logout")
+                || scenario.getName().toLowerCase().contains("sign out")) {
+            SessionManager.invalidateSession();
+            LOG.info("  🗑️  Session cache invalidated after logout scenario");
+        }
+
+        // Print adaptive-wait timing summary once per scenario at DEBUG level
+        if (LOG.isDebugEnabled()) {
+            AdaptiveWait.logTimingSummary();
+        }
+
         String status = scenario.isFailed() ? "❌ FAILED" : "✅ PASSED";
 
         if (scenario.isFailed()) {
@@ -193,7 +216,8 @@ public class Hooks {
         // Flush ExtentReports after every scenario so partial results survive a crash
         ReportManager.flushReports();
 
-        // Always quit the driver
+        // Always quit the driver — but keep session cookies alive in SessionManager
+        // so the NEXT scenario can reuse them without another full login.
         try {
             DriverManager.quitDriver();
         } catch (Exception e) {

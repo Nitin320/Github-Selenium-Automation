@@ -6,7 +6,7 @@ import io.cucumber.java.en.Then;
 import pages.GistCreatePage;
 import pages.GistListPage;
 import pages.GistViewPage;
-import pages.LoginPage;
+import session.SessionManager;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -27,22 +27,14 @@ public class GistSteps {
     private String deletedGistName;
 
     /**
-
-     Logs the user into GitHub using configured credentials.
+     * Logs the user into GitHub — reuses the cached session cookie when available
+     * so only the first scenario in a run incurs the full login cost (~10–20 s).
+     * All subsequent scenarios restore the session via cookie injection (~1 s).
      */
     @Given("the user is logged into GitHub")
     public void the_user_is_logged_into_github() {
-
-        LoginPage loginPage = new LoginPage();
-
-        loginPage
-                .open()
-                .loginFromConfigAndWaitForLogin();
-
-        assertTrue(
-                loginPage.isLoggedIn(),
-                "Expected the user to be logged into GitHub"
-        );
+        boolean ok = SessionManager.ensureLoggedIn();
+        assertTrue(ok, "Expected the user to be logged into GitHub via SessionManager");
     }
 
     /**

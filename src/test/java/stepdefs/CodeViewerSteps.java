@@ -7,7 +7,7 @@ import io.cucumber.java.en.When;
 import pages.CodeBrowserPage;
 import pages.CommitHistoryPage;
 import pages.FileViewPage;
-import pages.LoginPage;
+import session.SessionManager;
 import utils.ConfigReader;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,9 +36,8 @@ public class CodeViewerSteps {
 
     @Given("I am logged in to GitHub")
     public void i_am_logged_in_to_github() {
-        LoginPage loginPage = new LoginPage().open();
-        loginPage.loginFromConfigAndWaitForLogin();
-        assertTrue(loginPage.isLoggedIn(), "Must be logged in before running Code Viewer scenarios");
+        boolean ok = SessionManager.ensureLoggedIn();
+        assertTrue(ok, "Must be logged in before running Code Viewer scenarios");
     }
 
     // ------------------------------------------------------------------ //
