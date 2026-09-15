@@ -84,8 +84,19 @@ public class NewRepoPage extends BasePage {
         return this;
     }
 
+    /**
+     * Clicks the "Create repository" button and waits for GitHub to redirect
+     * away from {@code /new} to the newly created repository page.
+     *
+     * <p>GitHub's React form submits asynchronously — the redirect can take
+     * 3–8 seconds.  Without this wait the caller reads the title while the
+     * URL is still {@code /new}, which always returns "new" as the repo name.
+     */
     public NewRepoPage clickCreateRepository() {
         click(createRepoButton);
+        // Wait until the URL no longer contains "/new" (redirect completed)
+        new org.openqa.selenium.support.ui.WebDriverWait(driver, java.time.Duration.ofSeconds(30))
+                .until(d -> !d.getCurrentUrl().contains("/new"));
         return this;
     }
 }

@@ -16,7 +16,9 @@ public class RepoHomePage extends BasePage {
             "strong[itemprop='name'] a, "
             + "h1[itemprop='name'] a, "
             + "[data-testid='repo-title-name'], "
-            + ".AppHeader-context-full a[href*='/Group5ProjectIBM/']"
+            + ".AppHeader-context-full a[href*='/'], "
+            + "nav[aria-label='Repository'] a, "
+            + "[data-pjax='#repo-content-pjax-container'] h1 a"
     );
     private final By settingsTab = By.cssSelector(
             "#settings-tab, "
@@ -37,12 +39,19 @@ public class RepoHomePage extends BasePage {
      * Falls back to extracting it from the URL if the CSS element is not found.
      */
     public String getRepoTitleText() {
+        // First ensure the page has actually loaded the repo (not still on /new or blank)
+        try {
+            new org.openqa.selenium.support.ui.WebDriverWait(driver, java.time.Duration.ofSeconds(15))
+                    .until(d -> !d.getCurrentUrl().endsWith("/new")
+                             && !d.getCurrentUrl().contains("/new?"));
+        } catch (Exception ignored) { /* best effort — proceed to read */ }
+
         try {
             return getText(repoTitleHeader);
         } catch (Exception e) {
             // Fallback: extract repo name from the URL  github.com/owner/repo-name
             String url = driver.getCurrentUrl();
-            String[] parts = url.replaceAll("\\?.*", "").split("/");
+            String[] parts = url.replaceAll("\\?.*", "").replaceAll("/$", "").split("/");
             return parts.length >= 2 ? parts[parts.length - 1] : "";
         }
     }

@@ -25,7 +25,16 @@ public class GistViewPage extends BasePage {
 
     // Edit button — confirmed from screenshot: a small <a> with text "Edit" and
     // a pencil icon, href ends in /edit.  The simplest reliable selector.
-    private final By editButton = By.cssSelector("a[href$='/edit']");
+    // Edit button — GitHub redesigns the Gist header regularly.
+    // Primary: any <a> whose href ends with /edit.
+    // Fallbacks: data-testid, aria-label, button text, pencil icon aria.
+    private final By editButton = By.cssSelector(
+            "a[href$='/edit'], "
+            + "a[data-testid='edit-gist'], "
+            + "a[aria-label*='dit'], "
+            + "a[aria-label*='Edit'], "
+            + "button[aria-label*='Edit gist']"
+    );
 
     // Delete button — confirmed from DevTools:
     //   <button data-confirm="Are you positive you want to delete this Gist?"
@@ -154,9 +163,19 @@ public class GistViewPage extends BasePage {
         try {
             click(editButton);
         } catch (Exception e) {
-            // Fallback: navigate directly to /edit
-            String editUrl = driver.getCurrentUrl().replaceAll("\\?.*", "") + "/edit";
-            driver.get(editUrl);
+            // Fallback 1: XPath text-based search
+            try {
+                click(By.xpath(
+                        "//a[normalize-space()='Edit'] | "
+                        + "//button[normalize-space()='Edit'] | "
+                        + "//a[contains(@href,'/edit')]"));
+            } catch (Exception e2) {
+                // Fallback 2: navigate directly to /edit URL
+                String editUrl = driver.getCurrentUrl().replaceAll("\\?.*", "");
+                // Strip any trailing slash, then append /edit
+                editUrl = editUrl.replaceAll("/$", "") + "/edit";
+                driver.get(editUrl);
+            }
         }
         return new GistCreatePage();
     }

@@ -11,7 +11,6 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import reporting.ReportManager;
-import session.SessionManager;
 import utils.AdaptiveWait;
 import utils.ScreenshotUtils;
 
@@ -161,14 +160,13 @@ public class Hooks {
 
     @After(order = 0)
     public void endScenario(Scenario scenario) {
-        // If the scenario explicitly signed out, invalidate the cached session
-        // so the next scenario does a fresh login rather than planting stale cookies.
-        if (scenario.getSourceTagNames().contains("@logout")
-                || scenario.getName().toLowerCase().contains("logout")
-                || scenario.getName().toLowerCase().contains("sign out")) {
-            SessionManager.invalidateSession();
-            LOG.info("  🗑️  Session cache invalidated after logout scenario");
-        }
+        // NOTE: We do NOT invalidate the SessionManager cache here, even after a
+        // logout scenario.  SessionManager.tryRestoreSession() already detects a
+        // stale/logged-out session and falls back to a fresh login transparently.
+        // Calling invalidateSession() here caused a race condition: the next scenario
+        // opened a new driver, SessionManager tried a fresh login over the network,
+        // and if the network was briefly unavailable that produced ERR_NAME_NOT_RESOLVED
+        // for every subsequent scenario in the run.
 
         // Print adaptive-wait timing summary once per scenario at DEBUG level
         if (LOG.isDebugEnabled()) {
