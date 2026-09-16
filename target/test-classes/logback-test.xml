@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  logback.xml — Logging configuration for the Selenium test suite.
+  Author: Group 5
+
+  Console output is formatted so that the terminal clearly shows:
+    - Timestamp
+    - Log level (coloured in supported terminals)
+    - Which class emitted the message
+    - The message itself
+
+  This config produces the banner-style scenario/test logs from
+  Hooks.java and BaseTest.java.
+-->
+<configuration>
+
+    <!-- ── ANSI colour support for terminals that support it ── -->
+    <conversionRule conversionWord="clr"
+                    converterClass="ch.qos.logback.core.pattern.color.ANSIConstants"/>
+
+    <!-- ── Console appender ── -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- ── File appender — full run log ── -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>target/logs/test-run.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- Keep 7 days of log files -->
+            <fileNamePattern>target/logs/test-run.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- ── Root logger ── -->
+    <!-- INFO level keeps the output readable; change to DEBUG for troubleshooting -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+    <!-- ── Silence noisy Selenium / WebDriverManager internals ── -->
+    <logger name="io.github.bonigarcia" level="WARN"/>
+    <logger name="org.openqa.selenium"  level="WARN"/>
+    <logger name="io.netty"             level="WARN"/>
+
+</configuration>

@@ -1,0 +1,45 @@
+{
+  "runLabel": "CucumberGoal",
+  "goal": "navigate to /explore then assert url contains explore then navigate to /trending then assert url contains trending",
+  "generatedAt": "20260916_110629",
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0
+  },
+  "tasks": [
+    {
+      "name": "Navigate:https://github.com/to /explore",
+      "status": "PASS",
+      "durationMs": 795,
+      "startedAt": "2026-09-16T11:06:27.8012303+05:30",
+      "screenshotPath": null,
+      "details": ["Navigated to: https://github.com/to%20/explore"]
+    },
+    {
+      "name": "Assert:url contains explore",
+      "status": "PASS",
+      "durationMs": 35,
+      "startedAt": "2026-09-16T11:06:28.5963743+05:30",
+      "screenshotPath": null,
+      "details": ["PASS: URL «https://github.com/to%20/explore» contains «explore»"]
+    },
+    {
+      "name": "Navigate:https://github.com/to /trending",
+      "status": "PASS",
+      "durationMs": 688,
+      "startedAt": "2026-09-16T11:06:28.6323122+05:30",
+      "screenshotPath": null,
+      "details": ["Navigated to: https://github.com/to%20/trending"]
+    },
+    {
+      "name": "Assert:url contains trending",
+      "status": "PASS",
+      "durationMs": 5,
+      "startedAt": "2026-09-16T11:06:29.3212836+05:30",
+      "screenshotPath": null,
+      "details": ["PASS: URL «https://github.com/to%20/trending» contains «trending»"]
+    }
+  ]
+}

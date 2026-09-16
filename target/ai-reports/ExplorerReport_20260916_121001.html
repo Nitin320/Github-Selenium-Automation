@@ -1,0 +1,613 @@
+<!DOCTYPE html><html lang='en'><head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Explorer Report — 20260916_121001</title>
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"Segoe UI",system-ui,sans-serif;font-size:14px;
+     line-height:1.6;background:#0d1117;color:#c9d1d9}
+
+/* ── Header ── */
+.header{background:#161b22;border-bottom:1px solid #30363d;padding:20px 32px}
+.header h1{font-size:20px;color:#f0f6fc;margin-bottom:6px}
+.meta{color:#8b949e;font-size:12px;margin-bottom:2px}
+.meta code,.meta b{color:#79c0ff}
+.meta code{background:#21262d;padding:1px 6px;border-radius:3px;font-size:11px}
+
+/* ── Summary cards ── */
+.summary{display:flex;gap:12px;padding:16px 32px;background:#161b22;
+         border-bottom:1px solid #30363d;flex-wrap:wrap}
+.card{background:#21262d;border:1px solid #30363d;border-radius:6px;
+      padding:10px 16px;min-width:110px;text-align:center}
+.card .num{display:block;font-size:26px;font-weight:700;margin-bottom:2px}
+.card .lbl{font-size:10px;color:#8b949e;text-transform:uppercase;letter-spacing:.04em}
+.card.blue   .num{color:#58a6ff}
+.card.purple .num{color:#bc8cff}
+.card.green  .num{color:#3fb950}
+.card.yellow .num{color:#d29922}
+.card.orange .num{color:#e3b341}
+.card.red    .num{color:#f85149}
+
+/* ── Sections ── */
+.section{border-bottom:1px solid #21262d}
+.section-title{padding:14px 32px 6px;font-size:14px;font-weight:600;color:#f0f6fc;
+               background:#0d1117;position:sticky;top:0;z-index:1}
+.section-body{padding:8px 32px 18px}
+
+/* ── Tables ── */
+table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px}
+th{background:#161b22;padding:8px 12px;text-align:left;
+   border-bottom:2px solid #30363d;font-size:11px;text-transform:uppercase;
+   color:#8b949e;letter-spacing:.04em}
+td{padding:7px 12px;border-bottom:1px solid #21262d;vertical-align:top}
+tr.row-ok      td{border-left:3px solid #3fb950}
+tr.row-redirect td{border-left:3px solid #d29922}
+tr.row-error    td{border-left:3px solid #f85149}
+
+/* ── Badges ── */
+.badge{display:inline-block;padding:1px 8px;border-radius:10px;
+       font-size:11px;font-weight:600}
+.badge.green {background:#1a3a1a;color:#3fb950}
+.badge.yellow{background:#3a2e1a;color:#d29922}
+.badge.red   {background:#3a1a1a;color:#f85149}
+.depth{display:inline-block;padding:1px 6px;border-radius:3px;font-size:11px;
+       font-weight:700;background:#21262d;color:#79c0ff}
+
+/* ── Text helpers ── */
+.mono{font-family:monospace;font-size:12px}
+.small{font-size:11px}
+.grey{color:#8b949e}
+.num{text-align:right;white-space:nowrap}
+.yellow{color:#d29922}
+.redirect-arrow{color:#d29922;font-weight:700;margin-right:4px}
+.redirect-url{color:#d29922}
+.error-msg{color:#f85149;font-family:monospace;font-size:11px}
+.muted{color:#57606a;font-size:11px}
+.title-cell{max-width:200px;overflow:hidden;text-overflow:ellipsis;
+            white-space:nowrap;font-size:12px;color:#f0f6fc}
+a{color:#58a6ff;text-decoration:none}
+a:hover{text-decoration:underline}
+a.ext-link{color:#e3b341}
+
+/* ── URL lists ── */
+.url-list{list-style:none;padding:4px 0}
+.url-list li{padding:4px 0;font-size:13px;border-bottom:1px solid #21262d;
+             display:flex;gap:8px;align-items:baseline}
+.url-list.green li a{color:#3fb950}
+.url-list.red   li{color:#f85149}
+.idx{font-size:10px;color:#57606a;min-width:22px;text-align:right}
+.empty{color:#8b949e;font-size:13px;padding:8px 0}
+
+/* ── Per-page cards ── */
+.page-card{margin:10px 0;background:#161b22;border:1px solid #30363d;
+           border-radius:6px;overflow:hidden}
+.page-header{padding:12px 16px;background:#1c2128;border-bottom:1px solid #30363d}
+.page-url{font-family:monospace;font-size:11px;color:#79c0ff;margin-bottom:2px}
+.page-url a{color:#79c0ff}
+.page-title{font-size:13px;font-weight:600;color:#f0f6fc;margin-bottom:6px}
+.page-stats{display:flex;gap:6px;flex-wrap:wrap}
+.stat-pill{font-size:10px;padding:1px 8px;border-radius:10px;font-weight:600}
+.stat-pill.blue  {background:#0d2137;color:#58a6ff}
+.stat-pill.orange{background:#2d1b00;color:#e3b341}
+.stat-pill.purple{background:#1d0f3a;color:#bc8cff}
+.stat-pill.green {background:#0d2f13;color:#3fb950}
+.stat-pill.yellow{background:#2d2000;color:#d29922}
+
+.inv-section{padding:8px 16px;border-bottom:1px solid #21262d}
+.inv-section:last-child{border-bottom:none}
+.inv-label{font-size:10px;text-transform:uppercase;color:#8b949e;
+           letter-spacing:.04em;margin-bottom:6px;font-weight:600}
+
+.btn-grid{display:flex;flex-wrap:wrap;gap:6px}
+.btn-chip{background:#21262d;border:1px solid #30363d;border-radius:4px;
+          padding:2px 10px;font-size:11px;color:#d29922}
+
+.link-list{list-style:none;padding:0}
+.link-list li{padding:3px 0;font-size:12px;border-bottom:1px solid #21262d;
+              display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.link-list li a{flex-shrink:0}
+.link-list .mono.small.grey{word-break:break-all}
+
+footer{padding:16px 32px;color:#57606a;font-size:12px;
+       border-top:1px solid #21262d;text-align:center}
+</style></head><body>
+<div class='header'>
+<h1>🕷️ Autonomous Explorer Report</h1>
+<div class='meta'>Generated: <b>Sept 16, 2026 12:10:01</b></div>
+<div class='meta'>Started from: <code>https://github.com/Group5ProjectIBM/test-automation-repo</code></div>
+</div>
+<div class='summary'>
+<div class='card blue'><span class='num'>6</span><span class='lbl'>Pages Visited</span></div>
+<div class='card purple'><span class='num'>5</span><span class='lbl'>Nav Steps</span></div>
+<div class='card yellow'><span class='num'>1</span><span class='lbl'>Redirections</span></div>
+<div class='card red'><span class='num'>0</span><span class='lbl'>Load Errors</span></div>
+<div class='card green'><span class='num'>1</span><span class='lbl'>Repos Sampled</span></div>
+<div class='card orange'><span class='num'>4</span><span class='lbl'>External Links</span></div>
+<div class='card red'><span class='num'>0</span><span class='lbl'>Danger Elements</span></div>
+</div>
+<div class='section'>
+<h2 class='section-title'>🗺️ Crawl Timeline — 5 Navigation Steps</h2>
+<div class='section-body'>
+<table>
+<thead><tr>
+<th>#</th><th>Depth</th><th>Status</th>
+<th>Requested URL</th><th>Landed URL / Redirect</th>
+<th>Page Title</th><th>Duration</th>
+</tr></thead><tbody>
+<tr class='row-ok'>
+<td class='num'>1</td>
+<td class='depth-badge'><span class='depth'>D0</span></td>
+<td><span class='badge green'>OK</span></td>
+<td class='mono small'><a href='https://github.com/Group5ProjectIBM/test-automation-repo' target='_blank'>https://github.com/Group5ProjectIBM/test-automation-repo</a></td>
+<td class='mono small'><span class='muted'>same</span></td>
+<td class='title-cell'>Group5ProjectIBM/test-automation-repo</td>
+<td class='num'>1632ms</td>
+</tr>
+<tr class='row-ok'>
+<td class='num'>2</td>
+<td class='depth-badge'><span class='depth'>D1</span></td>
+<td><span class='badge green'>OK</span></td>
+<td class='mono small'><a href='https://github.com/' target='_blank'>https://github.com/</a></td>
+<td class='mono small'><span class='muted'>same</span></td>
+<td class='title-cell'>GitHub</td>
+<td class='num'>1806ms</td>
+</tr>
+<tr class='row-ok'>
+<td class='num'>3</td>
+<td class='depth-badge'><span class='depth'>D1</span></td>
+<td><span class='badge green'>OK</span></td>
+<td class='mono small'><a href='https://github.com/Group5ProjectIBM' target='_blank'>https://github.com/Group5ProjectIBM</a></td>
+<td class='mono small'><span class='muted'>same</span></td>
+<td class='title-cell'>Group5ProjectIBM</td>
+<td class='num'>1220ms</td>
+</tr>
+<tr class='row-ok'>
+<td class='num'>4</td>
+<td class='depth-badge'><span class='depth'>D1</span></td>
+<td><span class='badge green'>OK</span></td>
+<td class='mono small'><a href='https://github.com/copilot' target='_blank'>https://github.com/copilot</a></td>
+<td class='mono small'><span class='muted'>same</span></td>
+<td class='title-cell'>New conversation · GitHub Copilot</td>
+<td class='num'>1225ms</td>
+</tr>
+<tr class='row-redirect'>
+<td class='num'>5</td>
+<td class='depth-badge'><span class='depth'>D1</span></td>
+<td><span class='badge yellow'>REDIRECT</span></td>
+<td class='mono small'><a href='https://github.com/issues' target='_blank'>https://github.com/issues</a></td>
+<td class='mono small'><span class='redirect-arrow'>↪</span> <a href='https://github.com/issues/assigned' target='_blank' class='redirect-url'>https://github.com/issues/assigned</a></td>
+<td class='title-cell'>Assigned to me · Issues</td>
+<td class='num'>1437ms</td>
+</tr>
+</tbody></table>
+</div></div>
+<div class='section'>
+<h2 class='section-title'>✅ All Pages Visited (6)</h2>
+<div class='section-body'>
+<ul class='url-list green'>
+<li><span class='idx'>1</span><a href='https://github.com/Group5ProjectIBM/test-automation-repo' target='_blank'>https://github.com/Group5ProjectIBM/test-automation-repo</a></li>
+<li><span class='idx'>2</span><a href='https://github.com/' target='_blank'>https://github.com/</a></li>
+<li><span class='idx'>3</span><a href='https://github.com/Group5ProjectIBM' target='_blank'>https://github.com/Group5ProjectIBM</a></li>
+<li><span class='idx'>4</span><a href='https://github.com/copilot' target='_blank'>https://github.com/copilot</a></li>
+<li><span class='idx'>5</span><a href='https://github.com/issues' target='_blank'>https://github.com/issues</a></li>
+<li><span class='idx'>6</span><a href='https://github.com/issues/assigned' target='_blank'>https://github.com/issues/assigned</a></li>
+</ul>
+</div></div>
+<div class='section'>
+<h2 class='section-title'>🌐 External Links — Where GitHub Would Redirect (4)</h2>
+<div class='section-body'>
+<table><thead><tr>
+<th>#</th><th>Link Text</th><th>Destination (outside github.com)</th><th>Found on Page</th>
+</tr></thead><tbody>
+<tr>
+<td class='num'>1</td>
+<td>Status</td>
+<td class='mono yellow'><a href='https://www.githubstatus.com/' target='_blank'>https://www.githubstatus.com/</a></td>
+<td class='mono small'><a href='https://github.com/Group5ProjectIBM/test-automation-repo' target='_blank'>https://github.com/Group5ProjectIBM/test-automation-repo</a></td>
+</tr>
+<tr>
+<td class='num'>2</td>
+<td>Download for Windows</td>
+<td class='mono yellow'><a href='https://gh.io/copilot-app-win64' target='_blank'>https://gh.io/copilot-app-win64</a></td>
+<td class='mono small'><a href='https://github.com/' target='_blank'>https://github.com/</a></td>
+</tr>
+<tr>
+<td class='num'>3</td>
+<td>Start playlist</td>
+<td class='mono yellow'><a href='https://www.youtube.com/watch?v=r8jQ9hVA2qs&amp;list=PL0lo9MOBetEFcp4SCWinBdpml9B2U25-f' target='_blank'>https://www.youtube.com/watch?v=r8jQ9hVA2qs&amp;list=PL0lo9MOBetEFcp4SCWinBdpml9B2U25-f</a></td>
+<td class='mono small'><a href='https://github.com/' target='_blank'>https://github.com/</a></td>
+</tr>
+<tr>
+<td class='num'>4</td>
+<td>Download</td>
+<td class='mono yellow'><a href='https://code.visualstudio.com/download' target='_blank'>https://code.visualstudio.com/download</a></td>
+<td class='mono small'><a href='https://github.com/' target='_blank'>https://github.com/</a></td>
+</tr>
+</tbody></table>
+</div></div>
+<div class='section'>
+<h2 class='section-title'>🔬 Other-User Repos Sampled (1)</h2>
+<div class='section-body'>
+<table><thead><tr>
+<th>Repo URL</th><th>Page Title</th><th>Loaded?</th><th>Buttons</th><th>Links</th>
+</tr></thead><tbody>
+<tr>
+<td class='mono'><a href='https://github.com/copilot' target='_blank'>https://github.com/copilot</a></td>
+<td>New conversation · GitHub Copilot</td>
+<td><span class='badge green'>YES</span></td>
+<td class='num'>17</td>
+<td class='num'>9</td>
+</tr>
+</tbody></table>
+</div></div>
+<div class='section'>
+<h2 class='section-title'>⚠️ Dangerous Elements Found — Not Clicked (0)</h2>
+<div class='section-body'>
+<p class='empty'>None found — all clear.</p>
+</div></div>
+<div class='section'>
+<h2 class='section-title'>📋 Per-Page Element Inventory (5 pages)</h2>
+<div class='section-body'>
+<div class='page-card'>
+<div class='page-header'>
+<div class='page-url'><a href='https://github.com/Group5ProjectIBM/test-automation-repo' target='_blank'>https://github.com/Group5ProjectIBM/test-automation-repo</a></div>
+<div class='page-title'>📄 Group5ProjectIBM/test-automation-repo</div>
+<div class='page-stats'>
+  <span class='stat-pill blue'>37 links</span>
+  <span class='stat-pill orange'>19 buttons</span>
+  <span class='stat-pill purple'>5 forms</span>
+  <span class='stat-pill green'>36 internal</span>
+  <span class='stat-pill yellow'>1 external</span>
+</div></div>
+<div class='inv-section'>
+<div class='inv-label'>🔘 Buttons (14)</div>
+<div class='btn-grid'>
+<span class='btn-chip'>Type
+/
+to search</span>
+<span class='btn-chip'>Open Copilot…</span>
+<span class='btn-chip'>Pin</span>
+<span class='btn-chip'>Watch
+0
+ (0)</span>
+<span class='btn-chip'>Fork 0 Cannot fork because you own this repository and are not a member of any organizations.</span>
+<span class='btn-chip'>See your forks of this repository</span>
+<span class='btn-chip'>Star 0</span>
+<span class='btn-chip'>HTTPS</span>
+<span class='btn-chip'>SSH</span>
+<span class='btn-chip'>Copy to clipboard</span>
+<span class='btn-chip'>Copy to clipboard</span>
+<span class='btn-chip'>Copy to clipboard</span>
+<span class='btn-chip'>Manage cookies</span>
+<span class='btn-chip'>Do not share my personal information</span>
+</div></div>
+<div class='inv-section'>
+<div class='inv-label'>📝 Form Actions (5)</div><ul class='link-list'>
+<li class='mono small'>https://github.com/Group5ProjectIBM/test-automation-repo/profile_pin</li>
+<li class='mono small'>https://github.com/Group5ProjectIBM/test-automation-repo/unstar</li>
+<li class='mono small'>https://github.com/Group5ProjectIBM/test-automation-repo/star</li>
+<li class='mono small'>https://github.com/users/set_protocol?protocol_selector=http&amp;protocol_type=push</li>
+<li class='mono small'>https://github.com/users/set_protocol?protocol_selector=ssh&amp;protocol_type=push</li>
+</ul></div>
+<div class='inv-section'>
+<div class='inv-label'>🔗 Internal Links (36)</div><ul class='link-list'>
+<li><a href='https://github.com/Group5ProjectIBM/test-automation-repo#start-of-content' target='_blank'>Skip to content</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-automation-repo#start-of-content</span></li>
+<li><a href='https://github.com/' target='_blank'>https://github.com/</a> <span class='mono small grey'>https://github.com/</span></li>
+<li><a href='https://github.com/Group5ProjectIBM' target='_blank'>Group5ProjectIBM</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-automation-repo' target='_blank'>test-automation-repo</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-automation-repo</span></li>
+<li><a href='https://github.com/copilot' target='_blank'>https://github.com/copilot</a> <span class='mono small grey'>https://github.com/copilot</span></li>
+<li><a href='https://github.com/issues' target='_blank'>https://github.com/issues</a> <span class='mono small grey'>https://github.com/issues</span></li>
+<li><a href='https://github.com/pulls' target='_blank'>https://github.com/pulls</a> <span class='mono small grey'>https://github.com/pulls</span></li>
+<li><a href='https://github.com/repos' target='_blank'>https://github.com/repos</a> <span class='mono small grey'>https://github.com/repos</span></li>
+<li><a href='https://github.com/notifications' target='_blank'>https://github.com/notifications</a> <span class='mono small grey'>https://github.com/notifications</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-automation-repo' target='_blank'>Code</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-automation-repo</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-automation-repo/issues' target='_blank'>Issues
+62
+ (62)</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-automation-repo/issues</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-automation-repo/pulls' target='_blank'>Pull requests</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-automation-repo/pulls</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-automation-repo/agents?author=Group5ProjectIBM' target='_blank'>Agents</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-automation-repo/agents?author=Group5ProjectIBM</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-automation-repo/discussions' target='_blank'>Discussions</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-automation-repo/discussions</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-automation-repo/actions' target='_blank'>Actions</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-automation-repo/actions</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-automation-repo/projects' target='_blank'>Projects</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-automation-repo/projects</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-automation-repo/wiki' target='_blank'>Wiki</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-automation-repo/wiki</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-automation-repo/security' target='_blank'>Security and quality</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-automation-repo/security</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-automation-repo/pulse' target='_blank'>Insights</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-automation-repo/pulse</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-automation-repo/settings' target='_blank'>Settings</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-automation-repo/settings</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-automation-repo' target='_blank'>test-automation-repo</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-automation-repo</span></li>
+<li><a href='https://github.com/codespaces/new/Group5ProjectIBM/test-automation-repo?auto_init=1&amp;resume=1' target='_blank'>Create a codespace</a> <span class='mono small grey'>https://github.com/codespaces/new/Group5ProjectIBM/test-automation-repo?auto_init=1&amp;resume=1</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-automation-repo/settings/access' target='_blank'>Invite collaborators</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-automation-repo/settings/access</span></li>
+<li><a href='https://desktop.github.com/' target='_blank'>Set up in Desktop</a> <span class='mono small grey'>https://desktop.github.com/</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-automation-repo/new/main' target='_blank'>creating a new file</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-automation-repo/new/main</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-automation-repo/upload' target='_blank'>uploading an existing file</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-automation-repo/upload</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-automation-repo/new/main?readme=1' target='_blank'>README</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-automation-repo/new/main?readme=1</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-automation-repo/new/main?filename=LICENSE.md' target='_blank'>LICENSE</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-automation-repo/new/main?filename=LICENSE.md</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-automation-repo/new/main?filename=.gitignore' target='_blank'>.gitignore</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-automation-repo/new/main?filename=.gitignore</span></li>
+<li><a href='https://github.com/' target='_blank'>https://github.com/</a> <span class='mono small grey'>https://github.com/</span></li>
+<li><a href='https://docs.github.com/site-policy/github-terms/github-terms-of-service' target='_blank'>Terms</a> <span class='mono small grey'>https://docs.github.com/site-policy/github-terms/github-terms-of-service</span></li>
+<li><a href='https://docs.github.com/site-policy/privacy-policies/github-privacy-statement' target='_blank'>Privacy</a> <span class='mono small grey'>https://docs.github.com/site-policy/privacy-policies/github-privacy-statement</span></li>
+<li><a href='https://github.com/security' target='_blank'>Security</a> <span class='mono small grey'>https://github.com/security</span></li>
+<li><a href='https://github.community/' target='_blank'>Community</a> <span class='mono small grey'>https://github.community/</span></li>
+<li><a href='https://docs.github.com/' target='_blank'>Docs</a> <span class='mono small grey'>https://docs.github.com/</span></li>
+<li><a href='https://support.github.com/?tags=dotcom-footer' target='_blank'>Contact</a> <span class='mono small grey'>https://support.github.com/?tags=dotcom-footer</span></li>
+</ul></div>
+<div class='inv-section'>
+<div class='inv-label'>🌍 External Links (1)</div><ul class='link-list'>
+<li><a href='https://www.githubstatus.com/' target='_blank' class='ext-link'>Status</a> <span class='mono small grey'>https://www.githubstatus.com/</span></li>
+</ul></div>
+</div>
+<div class='page-card'>
+<div class='page-header'>
+<div class='page-url'><a href='https://github.com/' target='_blank'>https://github.com/</a></div>
+<div class='page-title'>📄 GitHub</div>
+<div class='page-stats'>
+  <span class='stat-pill blue'>44 links</span>
+  <span class='stat-pill orange'>29 buttons</span>
+  <span class='stat-pill purple'>3 forms</span>
+  <span class='stat-pill green'>39 internal</span>
+  <span class='stat-pill yellow'>5 external</span>
+</div></div>
+<div class='inv-section'>
+<div class='inv-label'>🔘 Buttons (15)</div>
+<div class='btn-grid'>
+<span class='btn-chip'>Type
+/
+to search</span>
+<span class='btn-chip'>Open Copilot…</span>
+<span class='btn-chip'>Show more</span>
+<span class='btn-chip'>Ask</span>
+<span class='btn-chip'>All repositories</span>
+<span class='btn-chip'>Model:
+Auto</span>
+<span class='btn-chip'>Debug</span>
+<span class='btn-chip'>Agent</span>
+<span class='btn-chip'>Create issue</span>
+<span class='btn-chip'>Write code</span>
+<span class='btn-chip'>Git</span>
+<span class='btn-chip'>Pull requests</span>
+<span class='btn-chip'>Start chat</span>
+<span class='btn-chip'>Manage cookies</span>
+<span class='btn-chip'>Do not share my personal information</span>
+</div></div>
+<div class='inv-section'>
+<div class='inv-label'>📝 Form Actions (3)</div><ul class='link-list'>
+<li class='mono small'>https://github.com/dashboard/ajax_my_repositories?location=left</li>
+<li class='mono small'>https://github.com/</li>
+<li class='mono small'>https://github.com/dashboard/ajax_my_repositories?location=center</li>
+</ul></div>
+<div class='inv-section'>
+<div class='inv-label'>🔗 Internal Links (39)</div><ul class='link-list'>
+<li><a href='https://github.com/#start-of-content' target='_blank'>Skip to content</a> <span class='mono small grey'>https://github.com/#start-of-content</span></li>
+<li><a href='https://github.com/' target='_blank'>https://github.com/</a> <span class='mono small grey'>https://github.com/</span></li>
+<li><a href='https://github.com/' target='_blank'>Dashboard</a> <span class='mono small grey'>https://github.com/</span></li>
+<li><a href='https://github.com/copilot' target='_blank'>https://github.com/copilot</a> <span class='mono small grey'>https://github.com/copilot</span></li>
+<li><a href='https://github.com/issues' target='_blank'>https://github.com/issues</a> <span class='mono small grey'>https://github.com/issues</span></li>
+<li><a href='https://github.com/pulls' target='_blank'>https://github.com/pulls</a> <span class='mono small grey'>https://github.com/pulls</span></li>
+<li><a href='https://github.com/repos' target='_blank'>https://github.com/repos</a> <span class='mono small grey'>https://github.com/repos</span></li>
+<li><a href='https://github.com/notifications' target='_blank'>https://github.com/notifications</a> <span class='mono small grey'>https://github.com/notifications</span></li>
+<li><a href='https://github.com/new' target='_blank'>New</a> <span class='mono small grey'>https://github.com/new</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-automation-repo' target='_blank'>https://github.com/Group5ProjectIBM/test-automation-repo</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-automation-repo</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-automation-repo' target='_blank'>Group5ProjectIBM/test-automation-repo</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-automation-repo</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/repo-test-77274' target='_blank'>https://github.com/Group5ProjectIBM/repo-test-77274</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/repo-test-77274</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/repo-test-77274' target='_blank'>Group5ProjectIBM/repo-test-77274</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/repo-test-77274</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/repo-test-75691' target='_blank'>https://github.com/Group5ProjectIBM/repo-test-75691</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/repo-test-75691</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/repo-test-75691' target='_blank'>Group5ProjectIBM/repo-test-75691</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/repo-test-75691</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/repo-test-79725' target='_blank'>https://github.com/Group5ProjectIBM/repo-test-79725</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/repo-test-79725</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/repo-test-79725' target='_blank'>Group5ProjectIBM/repo-test-79725</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/repo-test-79725</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/repo-test-66660' target='_blank'>https://github.com/Group5ProjectIBM/repo-test-66660</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/repo-test-66660</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/repo-test-66660' target='_blank'>Group5ProjectIBM/repo-test-66660</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/repo-test-66660</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-repo-mole-0692' target='_blank'>https://github.com/Group5ProjectIBM/test-repo-mole-0692</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-repo-mole-0692</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-repo-mole-0692' target='_blank'>Group5ProjectIBM/test-repo-mole-0692</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-repo-mole-0692</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-repo-yellowjacket-2415' target='_blank'>https://github.com/Group5ProjectIBM/test-repo-yellowjacket-2415</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-repo-yellowjacket-2415</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-repo-yellowjacket-2415' target='_blank'>Group5ProjectIBM/test-repo-yellowjacket-2415</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-repo-yellowjacket-2415</span></li>
+<li><a href='https://docs.github.com/' target='_blank'>GitHub Documentation
+Help for wherever you are on your journey</a> <span class='mono small grey'>https://docs.github.com/</span></li>
+<li><a href='https://docs.github.com/en/get-started/start-your-journey/about-github-and-git' target='_blank'>About GitHub and Git
+Read · Est. 2m</a> <span class='mono small grey'>https://docs.github.com/en/get-started/start-your-journey/about-github-and-git</span></li>
+<li><a href='https://docs.github.com/repositories/creating-and-managing-repositories/quickstart-for-repositories' target='_blank'>How to create your first repository
+Read · Est. 5m</a> <span class='mono small grey'>https://docs.github.com/repositories/creating-and-managing-repositories/quickstart-for-repositories</span></li>
+<li><a href='https://docs.github.com/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request' target='_blank'>Creating a pull request
+Read · Est. 6m</a> <span class='mono small grey'>https://docs.github.com/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request</span></li>
+<li><a href='https://docs.github.com/copilot/about-github-copilot/what-is-github-copilot' target='_blank'>What is GitHub Copilot?
+Read · Est. 6m</a> <span class='mono small grey'>https://docs.github.com/copilot/about-github-copilot/what-is-github-copilot</span></li>
+<li><a href='https://docs.github.com/get-started/using-github/github-flow' target='_blank'>GitHub flow
+Read · Est. 4m</a> <span class='mono small grey'>https://docs.github.com/get-started/using-github/github-flow</span></li>
+<li><a href='https://docs.github.com/get-started/start-your-journey/hello-world' target='_blank'>Hello World exercise
+Read · Est. 6m</a> <span class='mono small grey'>https://docs.github.com/get-started/start-your-journey/hello-world</span></li>
+<li><a href='https://docs.github.com/copilot/copilot-chat-cookbook' target='_blank'>Copilot Chat Cookbook
+Read · Est. 2m</a> <span class='mono small grey'>https://docs.github.com/copilot/copilot-chat-cookbook</span></li>
+<li><a href='https://desktop.github.com/' target='_blank'>Download</a> <span class='mono small grey'>https://desktop.github.com/</span></li>
+<li><a href='https://github.com/' target='_blank'>https://github.com/</a> <span class='mono small grey'>https://github.com/</span></li>
+<li><a href='https://docs.github.com/site-policy/github-terms/github-terms-of-service' target='_blank'>Terms</a> <span class='mono small grey'>https://docs.github.com/site-policy/github-terms/github-terms-of-service</span></li>
+<li><a href='https://docs.github.com/site-policy/privacy-policies/github-privacy-statement' target='_blank'>Privacy</a> <span class='mono small grey'>https://docs.github.com/site-policy/privacy-policies/github-privacy-statement</span></li>
+<li><a href='https://github.com/security' target='_blank'>Security</a> <span class='mono small grey'>https://github.com/security</span></li>
+<li><a href='https://github.community/' target='_blank'>Community</a> <span class='mono small grey'>https://github.community/</span></li>
+<li><a href='https://docs.github.com/' target='_blank'>Docs</a> <span class='mono small grey'>https://docs.github.com/</span></li>
+<li><a href='https://support.github.com/?tags=dotcom-footer' target='_blank'>Contact</a> <span class='mono small grey'>https://support.github.com/?tags=dotcom-footer</span></li>
+</ul></div>
+<div class='inv-section'>
+<div class='inv-label'>🌍 External Links (5)</div><ul class='link-list'>
+<li><a href='https://gh.io/copilot-app-win64' target='_blank' class='ext-link'>Download for Windows</a> <span class='mono small grey'>https://gh.io/copilot-app-win64</span></li>
+<li><a href='https://www.youtube.com/watch?v=r8jQ9hVA2qs&amp;list=PL0lo9MOBetEFcp4SCWinBdpml9B2U25-f' target='_blank' class='ext-link'>Start playlist</a> <span class='mono small grey'>https://www.youtube.com/watch?v=r8jQ9hVA2qs&amp;list=PL0lo9MOBetEFcp4SCWinBdpml9B2U25-f</span></li>
+<li><a href='https://www.youtube.com/watch?v=r8jQ9hVA2qs&amp;list=PL0lo9MOBetEFcp4SCWinBdpml9B2U25-f' target='_blank' class='ext-link'>https://www.youtube.com/watch?v=r8jQ9hVA2qs&amp;list=PL0lo9MOBetEFcp4SCWinBdpml9B2U25-f</a> <span class='mono small grey'>https://www.youtube.com/watch?v=r8jQ9hVA2qs&amp;list=PL0lo9MOBetEFcp4SCWinBdpml9B2U25-f</span></li>
+<li><a href='https://code.visualstudio.com/download' target='_blank' class='ext-link'>Download</a> <span class='mono small grey'>https://code.visualstudio.com/download</span></li>
+<li><a href='https://www.githubstatus.com/' target='_blank' class='ext-link'>Status</a> <span class='mono small grey'>https://www.githubstatus.com/</span></li>
+</ul></div>
+</div>
+<div class='page-card'>
+<div class='page-header'>
+<div class='page-url'><a href='https://github.com/Group5ProjectIBM' target='_blank'>https://github.com/Group5ProjectIBM</a></div>
+<div class='page-title'>📄 Group5ProjectIBM</div>
+<div class='page-stats'>
+  <span class='stat-pill blue'>28 links</span>
+  <span class='stat-pill orange'>14 buttons</span>
+  <span class='stat-pill purple'>4 forms</span>
+  <span class='stat-pill green'>27 internal</span>
+  <span class='stat-pill yellow'>1 external</span>
+</div></div>
+<div class='inv-section'>
+<div class='inv-label'>🔘 Buttons (10)</div>
+<div class='btn-grid'>
+<span class='btn-chip'>Type
+/
+to search</span>
+<span class='btn-chip'>Open Copilot…</span>
+<span class='btn-chip'>Edit profile</span>
+<span class='btn-chip'>Customize your pins</span>
+<span class='btn-chip'>Contribution settings</span>
+<span class='btn-chip'>Created 15 other repositories</span>
+<span class='btn-chip'>Opened 60 other issues in 1 repository</span>
+<span class='btn-chip'>Group5ProjectIBM/test-automation-repo
+60 open</span>
+<span class='btn-chip'>Manage cookies</span>
+<span class='btn-chip'>Do not share my personal information</span>
+</div></div>
+<div class='inv-section'>
+<div class='inv-label'>📝 Form Actions (4)</div><ul class='link-list'>
+<li class='mono small'>https://github.com/users/Group5ProjectIBM</li>
+<li class='mono small'>https://github.com/users/Group5ProjectIBM/set_private_contributions_preference</li>
+<li class='mono small'>https://github.com/users/Group5ProjectIBM/set_activity_overview_preference</li>
+<li class='mono small'>https://github.com/Group5ProjectIBM?tab=overview&amp;from=2026-08-01&amp;to=2026-08-31&amp;include_header=no</li>
+</ul></div>
+<div class='inv-section'>
+<div class='inv-label'>🔗 Internal Links (27)</div><ul class='link-list'>
+<li><a href='https://github.com/Group5ProjectIBM#start-of-content' target='_blank'>Skip to content</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM#start-of-content</span></li>
+<li><a href='https://github.com/' target='_blank'>https://github.com/</a> <span class='mono small grey'>https://github.com/</span></li>
+<li><a href='https://github.com/Group5ProjectIBM' target='_blank'>Group5ProjectIBM</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM</span></li>
+<li><a href='https://github.com/copilot' target='_blank'>https://github.com/copilot</a> <span class='mono small grey'>https://github.com/copilot</span></li>
+<li><a href='https://github.com/issues' target='_blank'>https://github.com/issues</a> <span class='mono small grey'>https://github.com/issues</span></li>
+<li><a href='https://github.com/pulls' target='_blank'>https://github.com/pulls</a> <span class='mono small grey'>https://github.com/pulls</span></li>
+<li><a href='https://github.com/repos' target='_blank'>https://github.com/repos</a> <span class='mono small grey'>https://github.com/repos</span></li>
+<li><a href='https://github.com/notifications' target='_blank'>https://github.com/notifications</a> <span class='mono small grey'>https://github.com/notifications</span></li>
+<li><a href='https://github.com/Group5ProjectIBM' target='_blank'>Overview</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM</span></li>
+<li><a href='https://github.com/Group5ProjectIBM?tab=repositories' target='_blank'>Repositories
+16
+ (16)</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM?tab=repositories</span></li>
+<li><a href='https://github.com/Group5ProjectIBM?tab=projects' target='_blank'>Projects</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM?tab=projects</span></li>
+<li><a href='https://github.com/Group5ProjectIBM?tab=packages' target='_blank'>Packages</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM?tab=packages</span></li>
+<li><a href='https://github.com/Group5ProjectIBM?tab=stars' target='_blank'>Stars
+1
+ (1)</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM?tab=stars</span></li>
+<li><a href='https://github.com/account' target='_blank'>https://github.com/account</a> <span class='mono small grey'>https://github.com/account</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-automation-repo' target='_blank'>test-automation-repo</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-automation-repo</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-repo-beaver-7881' target='_blank'>test-repo-beaver-7881</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-repo-beaver-7881</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-repo-pig-0696' target='_blank'>test-repo-pig-0696</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-repo-pig-0696</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-repo-buffalo-5962' target='_blank'>test-repo-buffalo-5962</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-repo-buffalo-5962</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-repo-prairie-dog-8751' target='_blank'>test-repo-prairie-dog-8751</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-repo-prairie-dog-8751</span></li>
+<li><a href='https://github.com/Group5ProjectIBM/test-repo-panda-0725' target='_blank'>test-repo-panda-0725</a> <span class='mono small grey'>https://github.com/Group5ProjectIBM/test-repo-panda-0725</span></li>
+<li><a href='https://github.com/' target='_blank'>https://github.com/</a> <span class='mono small grey'>https://github.com/</span></li>
+<li><a href='https://docs.github.com/site-policy/github-terms/github-terms-of-service' target='_blank'>Terms</a> <span class='mono small grey'>https://docs.github.com/site-policy/github-terms/github-terms-of-service</span></li>
+<li><a href='https://docs.github.com/site-policy/privacy-policies/github-privacy-statement' target='_blank'>Privacy</a> <span class='mono small grey'>https://docs.github.com/site-policy/privacy-policies/github-privacy-statement</span></li>
+<li><a href='https://github.com/security' target='_blank'>Security</a> <span class='mono small grey'>https://github.com/security</span></li>
+<li><a href='https://github.community/' target='_blank'>Community</a> <span class='mono small grey'>https://github.community/</span></li>
+<li><a href='https://docs.github.com/' target='_blank'>Docs</a> <span class='mono small grey'>https://docs.github.com/</span></li>
+<li><a href='https://support.github.com/?tags=dotcom-footer' target='_blank'>Contact</a> <span class='mono small grey'>https://support.github.com/?tags=dotcom-footer</span></li>
+</ul></div>
+<div class='inv-section'>
+<div class='inv-label'>🌍 External Links (1)</div><ul class='link-list'>
+<li><a href='https://www.githubstatus.com/' target='_blank' class='ext-link'>Status</a> <span class='mono small grey'>https://www.githubstatus.com/</span></li>
+</ul></div>
+</div>
+<div class='page-card'>
+<div class='page-header'>
+<div class='page-url'><a href='https://github.com/copilot' target='_blank'>https://github.com/copilot</a></div>
+<div class='page-title'>📄 New conversation · GitHub Copilot</div>
+<div class='page-stats'>
+  <span class='stat-pill blue'>9 links</span>
+  <span class='stat-pill orange'>17 buttons</span>
+  <span class='stat-pill purple'>1 forms</span>
+  <span class='stat-pill green'>8 internal</span>
+  <span class='stat-pill yellow'>1 external</span>
+</div></div>
+<div class='inv-section'>
+<div class='inv-label'>🔘 Buttons (11)</div>
+<div class='btn-grid'>
+<span class='btn-chip'>Collapse</span>
+<span class='btn-chip'>Group5ProjectIBM</span>
+<span class='btn-chip'>Condense sidebar</span>
+<span class='btn-chip'>Ask</span>
+<span class='btn-chip'>All repositories</span>
+<span class='btn-chip'>Debug</span>
+<span class='btn-chip'>Agent</span>
+<span class='btn-chip'>Create issue</span>
+<span class='btn-chip'>Write code</span>
+<span class='btn-chip'>Git</span>
+<span class='btn-chip'>Pull requests</span>
+</div></div>
+<div class='inv-section'>
+<div class='inv-label'>📝 Form Actions (1)</div><ul class='link-list'>
+<li class='mono small'>https://github.com/copilot</li>
+</ul></div>
+<div class='inv-section'>
+<div class='inv-label'>🔗 Internal Links (8)</div><ul class='link-list'>
+<li><a href='https://github.com/copilot#start-of-content' target='_blank'>Skip to content</a> <span class='mono small grey'>https://github.com/copilot#start-of-content</span></li>
+<li><a href='https://github.com/' target='_blank'>https://github.com/</a> <span class='mono small grey'>https://github.com/</span></li>
+<li><a href='https://github.com/copilot' target='_blank'>New chat</a> <span class='mono small grey'>https://github.com/copilot</span></li>
+<li><a href='https://github.com/copilot/agents' target='_blank'>Agents</a> <span class='mono small grey'>https://github.com/copilot/agents</span></li>
+<li><a href='https://github.com/copilot/spaces' target='_blank'>Spaces</a> <span class='mono small grey'>https://github.com/copilot/spaces</span></li>
+<li><a href='https://github.com/features/copilot/plans' target='_blank'>Upgrade</a> <span class='mono small grey'>https://github.com/features/copilot/plans</span></li>
+<li><a href='https://github.com/features/ai/github-app' target='_blank'>Download</a> <span class='mono small grey'>https://github.com/features/ai/github-app</span></li>
+<li><a href='https://docs.github.com/en/copilot/responsible-use-of-github-copilot-features/responsible-use-of-github-copilot-chat-in-githubcom' target='_blank'>Copilot</a> <span class='mono small grey'>https://docs.github.com/en/copilot/responsible-use-of-github-copilot-features/responsible-use-of-github-copilot-chat-in-githubcom</span></li>
+</ul></div>
+<div class='inv-section'>
+<div class='inv-label'>🌍 External Links (1)</div><ul class='link-list'>
+<li><a href='https://gh.io/copilot-app-win64' target='_blank' class='ext-link'>Download for Windows</a> <span class='mono small grey'>https://gh.io/copilot-app-win64</span></li>
+</ul></div>
+</div>
+<div class='page-card'>
+<div class='page-header'>
+<div class='page-url'><a href='https://github.com/issues/assigned' target='_blank'>https://github.com/issues/assigned</a></div>
+<div class='page-title'>📄 Assigned to me · Issues</div>
+<div class='page-stats'>
+  <span class='stat-pill blue'>22 links</span>
+  <span class='stat-pill orange'>15 buttons</span>
+  <span class='stat-pill purple'>0 forms</span>
+  <span class='stat-pill green'>21 internal</span>
+  <span class='stat-pill yellow'>1 external</span>
+</div></div>
+<div class='inv-section'>
+<div class='inv-label'>🔘 Buttons (6)</div>
+<div class='btn-grid'>
+<span class='btn-chip'>Type
+/
+to search</span>
+<span class='btn-chip'>Open Copilot…</span>
+<span class='btn-chip'>New issue</span>
+<span class='btn-chip'>Updated</span>
+<span class='btn-chip'>Manage cookies</span>
+<span class='btn-chip'>Do not share my personal information</span>
+</div></div>
+<div class='inv-section'>
+<div class='inv-label'>🔗 Internal Links (21)</div><ul class='link-list'>
+<li><a href='https://github.com/issues/assigned#start-of-content' target='_blank'>Skip to content</a> <span class='mono small grey'>https://github.com/issues/assigned#start-of-content</span></li>
+<li><a href='https://github.com/' target='_blank'>https://github.com/</a> <span class='mono small grey'>https://github.com/</span></li>
+<li><a href='https://github.com/copilot' target='_blank'>https://github.com/copilot</a> <span class='mono small grey'>https://github.com/copilot</span></li>
+<li><a href='https://github.com/issues' target='_blank'>https://github.com/issues</a> <span class='mono small grey'>https://github.com/issues</span></li>
+<li><a href='https://github.com/pulls' target='_blank'>https://github.com/pulls</a> <span class='mono small grey'>https://github.com/pulls</span></li>
+<li><a href='https://github.com/repos' target='_blank'>https://github.com/repos</a> <span class='mono small grey'>https://github.com/repos</span></li>
+<li><a href='https://github.com/notifications' target='_blank'>https://github.com/notifications</a> <span class='mono small grey'>https://github.com/notifications</span></li>
+<li><a href='https://github.com/issues/assigned' target='_blank'>Assigned to me</a> <span class='mono small grey'>https://github.com/issues/assigned</span></li>
+<li><a href='https://github.com/issues/created' target='_blank'>Created by me</a> <span class='mono small grey'>https://github.com/issues/created</span></li>
+<li><a href='https://github.com/issues/mentioned' target='_blank'>Mentioning me</a> <span class='mono small grey'>https://github.com/issues/mentioned</span></li>
+<li><a href='https://github.com/issues/recent' target='_blank'>Recently updated</a> <span class='mono small grey'>https://github.com/issues/recent</span></li>
+<li><a href='https://github.com/issues/assigned#' target='_blank'>Open
+0
+ (0)</a> <span class='mono small grey'>https://github.com/issues/assigned#</span></li>
+<li><a href='https://github.com/issues/assigned#' target='_blank'>Closed
+0
+ (0)</a> <span class='mono small grey'>https://github.com/issues/assigned#</span></li>
+<li><a href='https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/filtering-and-searching-issues-and-pull-requests' target='_blank'>Learn more about searching and filtering issues and pull requests.</a> <span class='mono small grey'>https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/filtering-and-searching-issues-and-pull-requests</span></li>
+<li><a href='https://github.com/' target='_blank'>https://github.com/</a> <span class='mono small grey'>https://github.com/</span></li>
+<li><a href='https://docs.github.com/site-policy/github-terms/github-terms-of-service' target='_blank'>Terms</a> <span class='mono small grey'>https://docs.github.com/site-policy/github-terms/github-terms-of-service</span></li>
+<li><a href='https://docs.github.com/site-policy/privacy-policies/github-privacy-statement' target='_blank'>Privacy</a> <span class='mono small grey'>https://docs.github.com/site-policy/privacy-policies/github-privacy-statement</span></li>
+<li><a href='https://github.com/security' target='_blank'>Security</a> <span class='mono small grey'>https://github.com/security</span></li>
+<li><a href='https://github.community/' target='_blank'>Community</a> <span class='mono small grey'>https://github.community/</span></li>
+<li><a href='https://docs.github.com/' target='_blank'>Docs</a> <span class='mono small grey'>https://docs.github.com/</span></li>
+<li><a href='https://support.github.com/?tags=dotcom-footer' target='_blank'>Contact</a> <span class='mono small grey'>https://support.github.com/?tags=dotcom-footer</span></li>
+</ul></div>
+<div class='inv-section'>
+<div class='inv-label'>🌍 External Links (1)</div><ul class='link-list'>
+<li><a href='https://www.githubstatus.com/' target='_blank' class='ext-link'>Status</a> <span class='mono small grey'>https://www.githubstatus.com/</span></li>
+</ul></div>
+</div>
+</div></div>
+<footer>Made with IBM Bob &mdash; Autonomous Explorer &mdash; Group 5</footer>
+</body></html>

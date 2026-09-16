@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Autonomous Report — CucumberGoal</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+  font-size: 14px; line-height: 1.6;
+  background: #0d1117; color: #c9d1d9;
+}
+.header {
+  background: #161b22; border-bottom: 1px solid #30363d;
+  padding: 20px 32px;
+}
+.header h1 { font-size: 22px; color: #f0f6fc; margin-bottom: 6px; }
+.meta, .goal { color: #8b949e; font-size: 13px; }
+.goal { margin-top: 4px; }
+.goal code {
+  background: #21262d; padding: 2px 6px; border-radius: 4px;
+  font-size: 12px; color: #79c0ff;
+}
+.summary {
+  display: flex; gap: 16px;
+  padding: 20px 32px; background: #161b22;
+  border-bottom: 1px solid #30363d;
+}
+.stat {
+  background: #21262d; border: 1px solid #30363d;
+  border-radius: 6px; padding: 12px 20px; text-align: center; min-width: 120px;
+}
+.stat span { display: block; font-size: 28px; font-weight: 700; }
+.stat { font-size: 11px; color: #8b949e; text-transform: uppercase; letter-spacing: .04em; }
+.stat-pass span { color: #3fb950; }
+.stat-fail span { color: #f85149; }
+.stat-skip span { color: #d29922; }
+.stat-time span { color: #58a6ff; }
+table {
+  width: 100%; border-collapse: collapse; margin: 0;
+}
+th {
+  background: #161b22; padding: 10px 16px; text-align: left;
+  border-bottom: 2px solid #30363d; font-size: 12px;
+  text-transform: uppercase; letter-spacing: .04em; color: #8b949e;
+}
+td {
+  padding: 10px 16px; border-bottom: 1px solid #21262d;
+  vertical-align: top;
+}
+.row-pass td { border-left: 3px solid #3fb950; }
+.row-fail td { border-left: 3px solid #f85149; }
+.row-skip td { border-left: 3px solid #d29922; }
+.task-name { font-family: monospace; font-size: 13px; color: #79c0ff; max-width: 320px; word-break: break-all; }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 10px;
+  font-size: 11px; font-weight: 600;
+}
+.badge-pass  { background: #1a3a1a; color: #3fb950; }
+.badge-fail  { background: #3a1a1a; color: #f85149; }
+.badge-error { background: #3a1a2a; color: #ff7b72; }
+.badge-skip  { background: #3a2e1a; color: #d29922; }
+.detail-list { list-style: none; padding: 0; }
+.detail-list li { font-size: 12px; color: #8b949e; padding: 1px 0; }
+.detail-redirect { color: #d29922 !important; font-weight: 600; }
+.detail-error    { color: #f85149 !important; }
+.detail-title    { color: #79c0ff !important; font-style: italic; }
+table a { color: #58a6ff; }
+footer {
+  padding: 20px 32px; color: #57606a; font-size: 12px;
+  border-top: 1px solid #21262d; text-align: center;
+}
+
+</style></head><body>
+<div class='header'>
+  <h1>🤖 Autonomous Test Report</h1>
+  <div class='meta'>Run: <b>CucumberGoal</b> &nbsp;|&nbsp; Sept 16, 2026 11:47:32</div>
+  <div class='goal'>Goal: <code>navigate to /dashboard then assert url contains github.com</code></div>
+</div>
+<div class='summary'>
+  <div class='stat stat-pass'><span>2</span>PASSED</div>
+  <div class='stat stat-fail'><span>0</span>FAILED</div>
+  <div class='stat stat-skip'><span>0</span>SKIPPED</div>
+  <div class='stat stat-time'><span>2235ms</span>TOTAL TIME</div>
+</div>
+<table>
+<thead><tr><th>#</th><th>Task</th><th>Status</th><th>Duration</th><th>Details</th><th>Screenshot</th></tr></thead>
+<tbody>
+<tr class='row-pass'>
+  <td>1</td>
+  <td class='task-name'>Navigate:https://github.com/dashboard</td>
+  <td><span class='badge badge-pass'>PASS</span></td>
+  <td>2228ms</td>
+  <td><ul class='detail-list'><li>Requested: https://github.com/dashboard</li><li>Arrived at: https://github.com/dashboard</li><li class='detail-title'>Page title: GitHub Dashboard</li></ul></td>
+  <td>—</td>
+</tr>
+<tr class='row-pass'>
+  <td>2</td>
+  <td class='task-name'>Assert:url contains github.com</td>
+  <td><span class='badge badge-pass'>PASS</span></td>
+  <td>7ms</td>
+  <td><ul class='detail-list'><li>PASS: URL «https://github.com/dashboard» contains «github.com»</li></ul></td>
+  <td>—</td>
+</tr>
+</tbody></table>
+<footer>Made with IBM Bob &mdash; Autonomous AI Engine &mdash; Group 5</footer>
+</body></html>

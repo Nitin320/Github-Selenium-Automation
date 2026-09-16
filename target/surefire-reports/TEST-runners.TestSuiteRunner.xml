@@ -1,0 +1,815 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="runners.TestSuiteRunner" time="336.578" tests="56" errors="0" skipped="43" failures="0">
+  <properties>
+    <property name="sun.desktop" value="windows"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.specification.version" value="25"/>
+    <property name="jdk.extensions.version" value="25.0.4.0"/>
+    <property name="webdriver.chrome.driver" value="C:\Users\MuhammadSulthanSulth\.cache\selenium\chromedriver\win64\152.0.7977.82\chromedriver.exe"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\MuhammadSulthanSulth\Downloads\Github-Selenium-Automation\target\test-classes;C:\Users\MuhammadSulthanSulth\Downloads\Github-Selenium-Automation\target\classes;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-java\4.27.0\selenium-java-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-api\4.27.0\selenium-api-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\jspecify\jspecify\1.0.0\jspecify-1.0.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\4.27.0\selenium-chrome-driver-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\google\auto\service\auto-service-annotations\1.1.1\auto-service-annotations-1.1.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-chromium-driver\4.27.0\selenium-chromium-driver-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-json\4.27.0\selenium-json-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-manager\4.27.0\selenium-manager-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v129\4.27.0\selenium-devtools-v129-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v130\4.27.0\selenium-devtools-v130-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v131\4.27.0\selenium-devtools-v131-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v85\4.27.0\selenium-devtools-v85-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-edge-driver\4.27.0\selenium-edge-driver-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-firefox-driver\4.27.0\selenium-firefox-driver-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-http\4.27.0\selenium-http-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\dev\failsafe\failsafe\3.3.2\failsafe-3.3.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-ie-driver\4.27.0\selenium-ie-driver-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\4.27.0\selenium-remote-driver-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\google\guava\guava\33.3.1-jre\guava-33.3.1-jre.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\google\guava\failureaccess\1.0.2\failureaccess-1.0.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\google\guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\checkerframework\checker-qual\3.43.0\checker-qual-3.43.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\google\j2objc\j2objc-annotations\3.0.0\j2objc-annotations-3.0.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\semconv\opentelemetry-semconv\1.25.0-alpha\opentelemetry-semconv-1.25.0-alpha.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\opentelemetry-api\1.44.1\opentelemetry-api-1.44.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\opentelemetry-context\1.44.1\opentelemetry-context-1.44.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\opentelemetry-exporter-logging\1.44.1\opentelemetry-exporter-logging-1.44.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\opentelemetry-sdk-common\1.44.1\opentelemetry-sdk-common-1.44.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure-spi\1.44.1\opentelemetry-sdk-extension-autoconfigure-spi-1.44.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure\1.44.1\opentelemetry-sdk-extension-autoconfigure-1.44.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\opentelemetry-api-incubator\1.44.1-alpha\opentelemetry-api-incubator-1.44.1-alpha.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\opentelemetry-sdk-trace\1.44.1\opentelemetry-sdk-trace-1.44.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\opentelemetry-sdk\1.44.1\opentelemetry-sdk-1.44.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\opentelemetry-sdk-metrics\1.44.1\opentelemetry-sdk-metrics-1.44.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\opentelemetry-sdk-logs\1.44.1\opentelemetry-sdk-logs-1.44.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\net\bytebuddy\byte-buddy\1.15.10\byte-buddy-1.15.10.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-os\4.27.0\selenium-os-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\commons\commons-exec\1.4.0\commons-exec-1.4.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-safari-driver\4.27.0\selenium-safari-driver-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-support\4.27.0\selenium-support-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\github\bonigarcia\webdrivermanager\5.9.2\webdrivermanager-5.9.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\google\code\gson\gson\2.11.0\gson-2.11.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\google\errorprone\error_prone_annotations\2.27.0\error_prone_annotations-2.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\github\docker-java\docker-java\3.4.0\docker-java-3.4.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\github\docker-java\docker-java-core\3.4.0\docker-java-core-3.4.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\github\docker-java\docker-java-api\3.4.0\docker-java-api-3.4.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.10.3\jackson-annotations-2.10.3.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.10.3\jackson-databind-2.10.3.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.10.3\jackson-core-2.10.3.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\slf4j\jcl-over-slf4j\1.7.30\jcl-over-slf4j-1.7.30.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\github\docker-java\docker-java-transport-httpclient5\3.4.0\docker-java-transport-httpclient5-3.4.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\github\docker-java\docker-java-transport\3.4.0\docker-java-transport-3.4.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\net\java\dev\jna\jna\5.13.0\jna-5.13.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\brotli\dec\0.1.2\dec-0.1.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\commons\commons-lang3\3.15.0\commons-lang3-3.15.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\commons\commons-compress\1.26.2\commons-compress-1.26.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\commons-codec\commons-codec\1.17.0\commons-codec-1.17.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\httpcomponents\client5\httpclient5\5.2.1\httpclient5-5.2.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\httpcomponents\core5\httpcore5\5.2\httpcore5-5.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\httpcomponents\core5\httpcore5-h2\5.2\httpcore5-h2-5.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\cucumber-java\7.21.1\cucumber-java-7.21.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\cucumber-core\7.21.1\cucumber-core-7.21.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\cucumber-gherkin\7.21.1\cucumber-gherkin-7.21.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\cucumber-gherkin-messages\7.21.1\cucumber-gherkin-messages-7.21.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\gherkin\31.0.0\gherkin-31.0.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\messages\27.2.0\messages-27.2.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\testng-xml-formatter\0.3.1\testng-xml-formatter-0.3.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\query\13.6.0\query-13.6.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\tag-expressions\6.1.2\tag-expressions-6.1.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\cucumber-expressions\18.0.1\cucumber-expressions-18.0.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\datatable\7.21.1\datatable-7.21.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\cucumber-plugin\7.21.1\cucumber-plugin-7.21.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\docstring\7.21.1\docstring-7.21.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\html-formatter\21.9.0\html-formatter-21.9.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\junit-xml-formatter\0.7.1\junit-xml-formatter-0.7.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\ci-environment\10.0.1\ci-environment-10.0.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\cucumber-junit-platform-engine\7.21.1\cucumber-junit-platform-engine-7.21.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\junit\platform\junit-platform-engine\1.11.4\junit-platform-engine-1.11.4.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.11.4\junit-jupiter-api-5.11.4.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\junit\platform\junit-platform-commons\1.11.4\junit-platform-commons-1.11.4.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.11.4\junit-jupiter-engine-5.11.4.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\junit\platform\junit-platform-suite\1.11.4\junit-platform-suite-1.11.4.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\junit\platform\junit-platform-suite-api\1.11.4\junit-platform-suite-api-1.11.4.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\junit\platform\junit-platform-launcher\1.11.4\junit-platform-launcher-1.11.4.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\junit\platform\junit-platform-suite-engine\1.11.4\junit-platform-suite-engine-1.11.4.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\junit\platform\junit-platform-suite-commons\1.11.4\junit-platform-suite-commons-1.11.4.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\aventstack\extentreports\5.1.2\extentreports-5.1.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\reactivex\rxjava3\rxjava\3.1.6\rxjava-3.1.6.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\reactivestreams\reactive-streams\1.0.4\reactive-streams-1.0.4.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\freemarker\freemarker\2.3.32\freemarker-2.3.32.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\projectlombok\lombok\1.18.26\lombok-1.18.26.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\qameta\allure\allure-cucumber7-jvm\2.29.1\allure-cucumber7-jvm-2.29.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\qameta\allure\allure-java-commons\2.29.1\allure-java-commons-2.29.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\qameta\allure\allure-model\2.29.1\allure-model-2.29.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\poi\poi-ooxml\5.4.0\poi-ooxml-5.4.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\poi\poi\5.4.0\poi-5.4.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\commons\commons-math3\3.6.1\commons-math3-3.6.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\zaxxer\SparseBitSet\1.3\SparseBitSet-1.3.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\poi\poi-ooxml-lite\5.4.0\poi-ooxml-lite-5.4.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\xmlbeans\xmlbeans\5.3.0\xmlbeans-5.3.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\commons-io\commons-io\2.18.0\commons-io-2.18.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\github\virtuald\curvesapi\1.08\curvesapi-1.08.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\logging\log4j\log4j-api\2.24.3\log4j-api-2.24.3.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\commons\commons-collections4\4.4\commons-collections4-4.4.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\net\datafaker\datafaker\2.4.2\datafaker-2.4.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\yaml\snakeyaml\2.3\snakeyaml-2.3.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\github\curious-odd-man\rgxgen\2.0\rgxgen-2.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\googlecode\libphonenumber\libphonenumber\8.13.50\libphonenumber-8.13.50.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\slf4j\slf4j-api\2.0.16\slf4j-api-2.0.16.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\ch\qos\logback\logback-classic\1.5.16\logback-classic-1.5.16.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\ch\qos\logback\logback-core\1.5.16\logback-core-1.5.16.jar;"/>
+    <property name="java.vm.vendor" value="Eclipse OpenJ9"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="com.ibm.vm.bitmode" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="com.ibm.oti.vm.library.version" value="29"/>
+    <property name="java.vendor.url" value="https://www.ibm.com/semeru-runtimes"/>
+    <property name="user.timezone" value="Asia/Calcutta"/>
+    <property name="jfr.unsupported.vm" value="true"/>
+    <property name="java.vm.specification.version" value="25"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="IN"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\IBM\ibm-semeru-certified-25-jdk\bin\default;C:\Program Files\IBM\ibm-semeru-certified-25-jdk\bin"/>
+    <property name="sun.java.command" value="C:\Users\MuhammadSulthanSulth\AppData\Local\Temp\surefire6558203851561922651\surefirebooter-20260916144546544_3.jar C:\Users\MuhammadSulthanSulth\AppData\Local\Temp\surefire6558203851561922651 2026-09-16T14-45-45_899-jvmRun1 surefire-20260916144546544_1tmp surefire_0-20260916144546544_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\Users\MuhammadSulthanSulth\Downloads\Github-Selenium-Automation\target\test-classes;C:\Users\MuhammadSulthanSulth\Downloads\Github-Selenium-Automation\target\classes;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-java\4.27.0\selenium-java-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-api\4.27.0\selenium-api-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\jspecify\jspecify\1.0.0\jspecify-1.0.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\4.27.0\selenium-chrome-driver-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\google\auto\service\auto-service-annotations\1.1.1\auto-service-annotations-1.1.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-chromium-driver\4.27.0\selenium-chromium-driver-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-json\4.27.0\selenium-json-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-manager\4.27.0\selenium-manager-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v129\4.27.0\selenium-devtools-v129-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v130\4.27.0\selenium-devtools-v130-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v131\4.27.0\selenium-devtools-v131-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v85\4.27.0\selenium-devtools-v85-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-edge-driver\4.27.0\selenium-edge-driver-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-firefox-driver\4.27.0\selenium-firefox-driver-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-http\4.27.0\selenium-http-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\dev\failsafe\failsafe\3.3.2\failsafe-3.3.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-ie-driver\4.27.0\selenium-ie-driver-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\4.27.0\selenium-remote-driver-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\google\guava\guava\33.3.1-jre\guava-33.3.1-jre.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\google\guava\failureaccess\1.0.2\failureaccess-1.0.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\google\guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\checkerframework\checker-qual\3.43.0\checker-qual-3.43.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\google\j2objc\j2objc-annotations\3.0.0\j2objc-annotations-3.0.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\semconv\opentelemetry-semconv\1.25.0-alpha\opentelemetry-semconv-1.25.0-alpha.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\opentelemetry-api\1.44.1\opentelemetry-api-1.44.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\opentelemetry-context\1.44.1\opentelemetry-context-1.44.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\opentelemetry-exporter-logging\1.44.1\opentelemetry-exporter-logging-1.44.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\opentelemetry-sdk-common\1.44.1\opentelemetry-sdk-common-1.44.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure-spi\1.44.1\opentelemetry-sdk-extension-autoconfigure-spi-1.44.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure\1.44.1\opentelemetry-sdk-extension-autoconfigure-1.44.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\opentelemetry-api-incubator\1.44.1-alpha\opentelemetry-api-incubator-1.44.1-alpha.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\opentelemetry-sdk-trace\1.44.1\opentelemetry-sdk-trace-1.44.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\opentelemetry-sdk\1.44.1\opentelemetry-sdk-1.44.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\opentelemetry-sdk-metrics\1.44.1\opentelemetry-sdk-metrics-1.44.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\opentelemetry\opentelemetry-sdk-logs\1.44.1\opentelemetry-sdk-logs-1.44.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\net\bytebuddy\byte-buddy\1.15.10\byte-buddy-1.15.10.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-os\4.27.0\selenium-os-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\commons\commons-exec\1.4.0\commons-exec-1.4.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-safari-driver\4.27.0\selenium-safari-driver-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\seleniumhq\selenium\selenium-support\4.27.0\selenium-support-4.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\github\bonigarcia\webdrivermanager\5.9.2\webdrivermanager-5.9.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\google\code\gson\gson\2.11.0\gson-2.11.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\google\errorprone\error_prone_annotations\2.27.0\error_prone_annotations-2.27.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\github\docker-java\docker-java\3.4.0\docker-java-3.4.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\github\docker-java\docker-java-core\3.4.0\docker-java-core-3.4.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\github\docker-java\docker-java-api\3.4.0\docker-java-api-3.4.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.10.3\jackson-annotations-2.10.3.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.10.3\jackson-databind-2.10.3.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.10.3\jackson-core-2.10.3.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\slf4j\jcl-over-slf4j\1.7.30\jcl-over-slf4j-1.7.30.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\github\docker-java\docker-java-transport-httpclient5\3.4.0\docker-java-transport-httpclient5-3.4.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\github\docker-java\docker-java-transport\3.4.0\docker-java-transport-3.4.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\net\java\dev\jna\jna\5.13.0\jna-5.13.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\brotli\dec\0.1.2\dec-0.1.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\commons\commons-lang3\3.15.0\commons-lang3-3.15.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\commons\commons-compress\1.26.2\commons-compress-1.26.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\commons-codec\commons-codec\1.17.0\commons-codec-1.17.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\httpcomponents\client5\httpclient5\5.2.1\httpclient5-5.2.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\httpcomponents\core5\httpcore5\5.2\httpcore5-5.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\httpcomponents\core5\httpcore5-h2\5.2\httpcore5-h2-5.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\cucumber-java\7.21.1\cucumber-java-7.21.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\cucumber-core\7.21.1\cucumber-core-7.21.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\cucumber-gherkin\7.21.1\cucumber-gherkin-7.21.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\cucumber-gherkin-messages\7.21.1\cucumber-gherkin-messages-7.21.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\gherkin\31.0.0\gherkin-31.0.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\messages\27.2.0\messages-27.2.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\testng-xml-formatter\0.3.1\testng-xml-formatter-0.3.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\query\13.6.0\query-13.6.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\tag-expressions\6.1.2\tag-expressions-6.1.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\cucumber-expressions\18.0.1\cucumber-expressions-18.0.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\datatable\7.21.1\datatable-7.21.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\cucumber-plugin\7.21.1\cucumber-plugin-7.21.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\docstring\7.21.1\docstring-7.21.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\html-formatter\21.9.0\html-formatter-21.9.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\junit-xml-formatter\0.7.1\junit-xml-formatter-0.7.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\ci-environment\10.0.1\ci-environment-10.0.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\cucumber\cucumber-junit-platform-engine\7.21.1\cucumber-junit-platform-engine-7.21.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\junit\platform\junit-platform-engine\1.11.4\junit-platform-engine-1.11.4.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.11.4\junit-jupiter-api-5.11.4.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\junit\platform\junit-platform-commons\1.11.4\junit-platform-commons-1.11.4.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.11.4\junit-jupiter-engine-5.11.4.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\junit\platform\junit-platform-suite\1.11.4\junit-platform-suite-1.11.4.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\junit\platform\junit-platform-suite-api\1.11.4\junit-platform-suite-api-1.11.4.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\junit\platform\junit-platform-launcher\1.11.4\junit-platform-launcher-1.11.4.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\junit\platform\junit-platform-suite-engine\1.11.4\junit-platform-suite-engine-1.11.4.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\junit\platform\junit-platform-suite-commons\1.11.4\junit-platform-suite-commons-1.11.4.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\aventstack\extentreports\5.1.2\extentreports-5.1.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\reactivex\rxjava3\rxjava\3.1.6\rxjava-3.1.6.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\reactivestreams\reactive-streams\1.0.4\reactive-streams-1.0.4.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\freemarker\freemarker\2.3.32\freemarker-2.3.32.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\projectlombok\lombok\1.18.26\lombok-1.18.26.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\qameta\allure\allure-cucumber7-jvm\2.29.1\allure-cucumber7-jvm-2.29.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\qameta\allure\allure-java-commons\2.29.1\allure-java-commons-2.29.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\io\qameta\allure\allure-model\2.29.1\allure-model-2.29.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\poi\poi-ooxml\5.4.0\poi-ooxml-5.4.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\poi\poi\5.4.0\poi-5.4.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\commons\commons-math3\3.6.1\commons-math3-3.6.1.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\zaxxer\SparseBitSet\1.3\SparseBitSet-1.3.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\poi\poi-ooxml-lite\5.4.0\poi-ooxml-lite-5.4.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\xmlbeans\xmlbeans\5.3.0\xmlbeans-5.3.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\commons-io\commons-io\2.18.0\commons-io-2.18.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\github\virtuald\curvesapi\1.08\curvesapi-1.08.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\logging\log4j\log4j-api\2.24.3\log4j-api-2.24.3.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\apache\commons\commons-collections4\4.4\commons-collections4-4.4.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\net\datafaker\datafaker\2.4.2\datafaker-2.4.2.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\yaml\snakeyaml\2.3\snakeyaml-2.3.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\github\curious-odd-man\rgxgen\2.0\rgxgen-2.0.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\com\googlecode\libphonenumber\libphonenumber\8.13.50\libphonenumber-8.13.50.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\org\slf4j\slf4j-api\2.0.16\slf4j-api-2.0.16.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\ch\qos\logback\logback-classic\1.5.16\logback-classic-1.5.16.jar;C:\Users\MuhammadSulthanSulth\.m2\repository\ch\qos\logback\logback-core\1.5.16\logback-core-1.5.16.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\MuhammadSulthanSulth"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2026-07-21"/>
+    <property name="java.home" value="C:\Program Files\IBM\ibm-semeru-certified-25-jdk"/>
+    <property name="ibm.signalhandling.rs" value="false"/>
+    <property name="openjdk.methodhandles" value="true"/>
+    <property name="jdk.extensions.name" value="Extensions for OpenJDK for Eclipse OpenJ9"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\MuhammadSulthanSulth\Downloads\Github-Selenium-Automation"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="com.ibm.util.extralibs.properties" value=""/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="com.ibm.oti.configuration" value="scar"/>
+    <property name="java.awt.fonts" value=""/>
+    <property name="surefire.real.class.path" value="C:\Users\MuhammadSulthanSulth\AppData\Local\Temp\surefire6558203851561922651\surefirebooter-20260916144546544_3.jar"/>
+    <property name="com.ibm.oti.shared.enabled" value="false"/>
+    <property name="com.ibm.oti.vm.bootstrap.library.path" value="C:\Program Files\IBM\ibm-semeru-certified-25-jdk\bin\default;C:\Program Files\IBM\ibm-semeru-certified-25-jdk\bin"/>
+    <property name="user.script" value=""/>
+    <property name="com.ibm.cpu.endian" value="little"/>
+    <property name="java.fullversion" value="25.0.4+7-LTS&#10;JRE 25 Windows 11 amd64-64-Bit Compressed References 20260721_274 (JIT enabled, AOT enabled)&#10;OpenJ9   - 396c827fb3&#10;OMR      - 2e3166f7a&#10;JCL      - 537c87ba6c2 based on jdk-25.0.4+7"/>
+    <property name="java.runtime.version" value="25.0.4+7-LTS"/>
+    <property name="user.name" value="MuhammadSulthanSulth"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="IBM Semeru Runtime Certified Edition"/>
+    <property name="ibm.signalhandling.sigint" value="true"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="browser" value=""/>
+    <property name="java.vm.name" value="Eclipse OpenJ9 VM"/>
+    <property name="openj9.compiler" value="j9jit29"/>
+    <property name="java.vendor.version" value="25.0.4.0"/>
+    <property name="ibm.signalhandling.sigchain" value="true"/>
+    <property name="localRepository" value="C:\Users\MuhammadSulthanSulth\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/ibmruntimes/Semeru-Runtimes/issues"/>
+    <property name="java.io.tmpdir" value="C:\Users\MUHAMM~1\AppData\Local\Temp\"/>
+    <property name="java.version" value="25.0.4"/>
+    <property name="cucumber.filter.tags" value="@smoke"/>
+    <property name="com.ibm.system.agent.path" value="C:\Program Files\IBM\ibm-semeru-certified-25-jdk\bin"/>
+    <property name="user.dir" value="C:\Users\MuhammadSulthanSulth\Downloads\Github-Selenium-Automation"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="org.eclipse.openj9.jfr.isJFREnabled" value="true"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="env" value=""/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="os.encoding" value="UTF-8"/>
+    <property name="headless" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\IBM\ibm-semeru-certified-25-jdk\bin\default;C:\Program Files\IBM\ibm-semeru-certified-25-jdk\bin;C:\windows\system32;C:\windows;C:\Program Files\Semeru\jre-25.0.4.10-openj9\bin;C:\Program Files\Semeru\jre-21.0.12.10-openj9\bin;C:\Program Files\IBM\ibm-semeru-certified-25-jdk\bin;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\maven\bin;C:\Program Files\IBM\ibm-semeru-certified-25-jdk\bin;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Users\MuhammadSulthanSulth\AppData\Local\Microsoft\WindowsApps;C:\Users\MuhammadSulthanSulth\AppData\Local\GitHubDesktop\bin;C:\Program Files\Semeru\jre-25.0.4.10-openj9\\bin;C:\Users\MuhammadSulthanSulth\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\MuhammadSulthanSulth\AppData\Local\Programs\Podman\;C:\Users\MuhammadSulthanSulth\AppData\Local\Programs\IBM Bob\bin;c:\Users\MuhammadSulthanSulth\.bobide\extensions\ms-python.debugpy-2026.6.0-win32-x64\bundled\scripts\noConfigScripts;C:\Users\MuhammadSulthanSulth\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\Scripts;;."/>
+    <property name="java.vm.info" value="JRE 25 Windows 11 amd64-64-Bit Compressed References 20260721_274 (JIT enabled, AOT enabled)&#10;OpenJ9   - 396c827fb3&#10;OMR      - 2e3166f7a&#10;JCL      - 537c87ba6c2 based on jdk-25.0.4+7"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="IBM Corporation"/>
+    <property name="java.vm.version" value="25.0.4+7-openj9-0.60.0"/>
+    <property name="stdin.encoding" value="Cp1252"/>
+    <property name="ibm.system.encoding" value="Cp1252"/>
+    <property name="com.ibm.jcl.checkClassPath" value=""/>
+    <property name="java.lang.invoke.VarHandle.VAR_HANDLE_GUARDS" value="false"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="69.0"/>
+  </properties>
+  <testcase name="GitHub Code Viewer - Repository file tree is visible and contains expected files" classname="GitHub Code Viewer" time="32.677">
+    <system-out><![CDATA[14:45:52,809 |-INFO in ch.qos.logback.classic.LoggerContext[default] - This is logback-classic version 1.5.16
+14:45:52,809 |-INFO in ch.qos.logback.classic.util.ContextInitializer@b6b081d4 - No custom configurators were discovered as a service.
+14:45:52,809 |-INFO in ch.qos.logback.classic.util.ContextInitializer@b6b081d4 - Trying to configure with ch.qos.logback.classic.joran.SerializedModelConfigurator
+14:45:52,818 |-INFO in ch.qos.logback.classic.util.ContextInitializer@b6b081d4 - Constructed configurator of type class ch.qos.logback.classic.joran.SerializedModelConfigurator
+14:45:52,818 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.scmo]
+14:45:52,818 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback.scmo]
+14:45:52,818 |-INFO in ch.qos.logback.classic.util.ContextInitializer@b6b081d4 - ch.qos.logback.classic.joran.SerializedModelConfigurator.configure() call lasted 0 milliseconds. ExecutionStatus=INVOKE_NEXT_IF_ANY
+14:45:52,818 |-INFO in ch.qos.logback.classic.util.ContextInitializer@b6b081d4 - Trying to configure with ch.qos.logback.classic.util.DefaultJoranConfigurator
+14:45:52,818 |-INFO in ch.qos.logback.classic.util.ContextInitializer@b6b081d4 - Constructed configurator of type class ch.qos.logback.classic.util.DefaultJoranConfigurator
+14:45:52,818 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback-test.xml] at [file:/C:/Users/MuhammadSulthanSulth/Downloads/Github-Selenium-Automation/target/test-classes/logback-test.xml]
+14:45:52,938 |-WARN in ch.qos.logback.core.joran.action.ConversionRuleAction - [converterClass] attribute is deprecated and replaced by [class]. See element [conversionRule] near line 19
+14:45:53,092 |-INFO in ch.qos.logback.core.model.processor.ConversionRuleModelHandler - registering conversion word clr with class [ch.qos.logback.core.pattern.color.ANSIConstants]
+14:45:53,102 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [CONSOLE]
+14:45:53,102 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+14:45:53,121 |-INFO in ch.qos.logback.core.model.processor.ImplicitModelHandler - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+14:45:53,279 |-INFO in ch.qos.logback.core.ConsoleAppender[CONSOLE] - BEWARE: Writing to the console can be very slow. Avoid logging to the 
+14:45:53,279 |-INFO in ch.qos.logback.core.ConsoleAppender[CONSOLE] - console in production environments, especially in high volume systems.
+14:45:53,279 |-INFO in ch.qos.logback.core.ConsoleAppender[CONSOLE] - See also https://logback.qos.ch/codes.html#slowConsole
+14:45:53,279 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [FILE]
+14:45:53,279 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.rolling.RollingFileAppender]
+14:45:53,329 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@-1747719499 - No compression will be used
+14:45:53,334 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@-1747719499 - Will use the pattern target/logs/test-run.%d{yyyy-MM-dd}.log for the active file
+14:45:53,341 |-INFO in c.q.l.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy - The date pattern is 'yyyy-MM-dd' from file name pattern 'target/logs/test-run.%d{yyyy-MM-dd}.log'.
+14:45:53,341 |-INFO in c.q.l.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy - Roll-over at midnight.
+14:45:53,355 |-INFO in c.q.l.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy - Setting initial period to 2026-09-16T09:13:32.361Z
+14:45:53,359 |-INFO in ch.qos.logback.core.model.processor.ImplicitModelHandler - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+14:45:53,365 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[FILE] - Active log file name: target/logs/test-run.log
+14:45:53,365 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[FILE] - File property is set to [target/logs/test-run.log]
+14:45:53,365 |-INFO in ch.qos.logback.classic.model.processor.RootLoggerModelHandler - Setting level of ROOT logger to INFO
+14:45:53,365 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ROOT]
+14:45:53,365 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [FILE] to Logger[ROOT]
+14:45:53,365 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting level of logger [io.github.bonigarcia] to WARN
+14:45:53,365 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting level of logger [org.openqa.selenium] to WARN
+14:45:53,365 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting level of logger [io.netty] to WARN
+14:45:53,365 |-INFO in ch.qos.logback.core.model.processor.DefaultProcessor@ef89447d - End of configuration.
+14:45:53,375 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@2328d890 - Registering current configuration as safe fallback point
+14:45:53,375 |-INFO in ch.qos.logback.classic.util.ContextInitializer@b6b081d4 - ch.qos.logback.classic.util.DefaultJoranConfigurator.configure() call lasted 557 milliseconds. ExecutionStatus=DO_NOT_INVOKE_NEXT_IF_ANY
+
+14:45:54.616 INFO  [main] reporting.ReportManager -   🧹  Deleted previous report: target\extent-reports\ExtentReport.html
+14:45:54.625 INFO  [main] reporting.ReportManager -   📄  Report entry-point: target/extent-reports/index.html  →  ExtentReport.html
+14:45:54.625 INFO  [main] reporting.LiveRunReporter -   📡  LiveRunReporter → target/ai-reports/LiveReport.html
+14:45:54.625 INFO  [main] reporting.LiveRunReporter -   📡  LiveRunReporter reset for new run → target/ai-reports/LiveReport.html
+14:45:54.642 INFO  [main] stepdefs.Hooks -   🧹  Cleared target/screenshots/ before run
+
+@regression @smoke
+Scenario: Repository file tree is visible and contains expected files &amp#27;[90m# features/01_codeviewer.feature:23&amp#27;[0m
+14:45:55.241 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  🚀 SCENARIO STARTING
+  Feature  : 01 Codeviewer
+  Scenario : Repository file tree is visible and contains expected files
+  Author   : Team — Group 5
+  Tags     : [@regression, @smoke]
+╚══════════════════════════════════════════════════════════════╝
+14:45:55.241 INFO  [main] stepdefs.Hooks -   🌐  Launching new browser instance
+14:46:02.075 INFO  [main] session.SessionManager -   🔐  Performing real login to cache session cookies…
+14:46:08.447 INFO  [main] utils.PageReadinessGuard -   [PageAgent] 🔎 Observing page signals for: https://github.com/login
+14:46:09.817 INFO  [main] utils.PageReadinessGuard -   [PageAgent] ✅ Page ready in 1370ms  passed=[DOM_READY, NETWORK_IDLE, FRAMEWORK_SETTLED, DOM_QUIET] skipped=[ANIMATIONS_SETTLED]
+14:46:15.114 INFO  [main] session.SessionManager -   ✅  Login successful — 13 cookies cached for session reuse
+  &amp#27;[32mGiven &amp#27;[0m&amp#27;[32mthe user is logged into GitHub&amp#27;[0m                                &amp#27;[90m# stepdefs.GistSteps.the_user_is_logged_into_github()&amp#27;[0m
+14:46:16.161 INFO  [main] stepdefs.Hooks -   📸 Step 1 screenshot → Repository_file_tree_is_visible_and_contains_expected_files_step1_20260916_144615_155.png
+14:46:19.528 INFO  [main] utils.PageReadinessGuard -   [PageAgent] 🔎 Observing page signals for: https://github.com/octocat/Hello-World
+14:46:22.776 INFO  [main] utils.PageReadinessGuard -   [PageAgent] ✅ Page ready in 3248ms  passed=[DOM_READY, NETWORK_IDLE, DOM_QUIET] skipped=[FRAMEWORK_SETTLED, ANIMATIONS_SETTLED]
+  &amp#27;[32mWhen &amp#27;[0m&amp#27;[32mI open the repository &amp#27;[0m&amp#27;[32m&amp#27;[1m"octocat/Hello-World"&amp#27;[0m                    &amp#27;[90m# stepdefs.CodeViewerSteps.i_open_the_repository(java.lang.String)&amp#27;[0m
+14:46:23.190 INFO  [main] stepdefs.Hooks -   📸 Step 2 screenshot → Repository_file_tree_is_visible_and_contains_expected_files_step2_20260916_144622_863.png
+  &amp#27;[32mThen &amp#27;[0m&amp#27;[32mthe file tree should be displayed&amp#27;[0m                              &amp#27;[90m# stepdefs.CodeViewerSteps.the_file_tree_should_be_displayed()&amp#27;[0m
+14:46:23.813 INFO  [main] stepdefs.Hooks -   📸 Step 3 screenshot → Repository_file_tree_is_visible_and_contains_expected_files_step3_20260916_144623_493.png
+  &amp#27;[32mAnd &amp#27;[0m&amp#27;[32man entry named &amp#27;[0m&amp#27;[32m&amp#27;[1m"README"&amp#27;[0m&amp#27;[32m should exist in the file tree&amp#27;[0m           &amp#27;[90m# stepdefs.CodeViewerSteps.an_entry_named_should_exist_in_the_file_tree(java.lang.String)&amp#27;[0m
+14:46:24.485 INFO  [main] stepdefs.Hooks -   📸 Step 4 screenshot → Repository_file_tree_is_visible_and_contains_expected_files_step4_20260916_144624_242.png
+14:46:24.809 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  ✅ PASSED : Repository file tree is visible and contains expected files
+╚══════════════════════════════════════════════════════════════╝
+]]></system-out>
+    <system-err><![CDATA[Sept 16, 2026 2:46:00 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 152
+Sept 16, 2026 2:46:00 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
+WARNING: Unable to find version of CDP to use for 152.0.7977.83. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.27.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+]]></system-err>
+  </testcase>
+  <testcase name="GitHub Code Viewer - File content and raw view are accessible" classname="GitHub Code Viewer" time="20.726">
+    <system-out><![CDATA[
+@regression @smoke
+Scenario: File content and raw view are accessible                                     &amp#27;[90m# features/01_codeviewer.feature:30&amp#27;[0m
+14:46:27.697 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  🚀 SCENARIO STARTING
+  Feature  : 01 Codeviewer
+  Scenario : File content and raw view are accessible
+  Author   : Team — Group 5
+  Tags     : [@regression, @smoke]
+╚══════════════════════════════════════════════════════════════╝
+14:46:28.021 INFO  [main] stepdefs.Hooks -   ♻️  Reusing existing browser (reset to about:blank)
+14:46:34.325 INFO  [main] utils.PageReadinessGuard -   [PageAgent] 🔎 Observing page signals for: https://github.com/
+14:46:37.491 INFO  [main] utils.PageReadinessGuard -   [PageAgent] ✅ Page ready in 3166ms  passed=[DOM_READY, NETWORK_IDLE, DOM_QUIET] skipped=[FRAMEWORK_SETTLED, ANIMATIONS_SETTLED]
+14:46:37.596 INFO  [main] session.SessionManager -   🍪  Session restored from cookie cache — login skipped
+  &amp#27;[32mGiven &amp#27;[0m&amp#27;[32mthe user is logged into GitHub&amp#27;[0m                                                 &amp#27;[90m# stepdefs.GistSteps.the_user_is_logged_into_github()&amp#27;[0m
+14:46:37.897 INFO  [main] stepdefs.Hooks -   📸 Step 1 screenshot → File_content_and_raw_view_are_accessible_step1_20260916_144637_596.png
+14:46:39.766 INFO  [main] utils.PageReadinessGuard -   [PageAgent] 🔎 Observing page signals for: https://github.com/octocat/Hello-World/blob/master/README
+14:46:42.988 INFO  [main] utils.PageReadinessGuard -   [PageAgent] ✅ Page ready in 3222ms  passed=[DOM_READY, NETWORK_IDLE, DOM_QUIET] skipped=[FRAMEWORK_SETTLED, ANIMATIONS_SETTLED]
+  &amp#27;[32mWhen &amp#27;[0m&amp#27;[32mI open the file &amp#27;[0m&amp#27;[32m&amp#27;[1m"README"&amp#27;[0m&amp#27;[32m in repository &amp#27;[0m&amp#27;[32m&amp#27;[1m"octocat/Hello-World"&amp#27;[0m&amp#27;[32m on branch &amp#27;[0m&amp#27;[32m&amp#27;[1m"master"&amp#27;[0m &amp#27;[90m# stepdefs.CodeViewerSteps.i_open_the_file_in_repository_on_branch(java.lang.String,java.lang.String,java.lang.String)&amp#27;[0m
+14:46:43.247 INFO  [main] stepdefs.Hooks -   📸 Step 2 screenshot → File_content_and_raw_view_are_accessible_step2_20260916_144643_061.png
+  &amp#27;[32mThen &amp#27;[0m&amp#27;[32mthe file content should be visible&amp#27;[0m                                              &amp#27;[90m# stepdefs.CodeViewerSteps.the_file_content_should_be_visible()&amp#27;[0m
+14:46:43.621 INFO  [main] stepdefs.Hooks -   📸 Step 3 screenshot → File_content_and_raw_view_are_accessible_step3_20260916_144643_458.png
+14:46:46.123 INFO  [main] utils.PageReadinessGuard -   [PageAgent] 🔎 Observing page signals for: https://raw.githubusercontent.com/octocat/Hello-World/refs/heads/master/README
+14:46:47.270 INFO  [main] utils.PageReadinessGuard -   [PageAgent] ✅ Page ready in 1147ms  passed=[DOM_READY, NETWORK_IDLE, FRAMEWORK_SETTLED, DOM_QUIET] skipped=[ANIMATIONS_SETTLED]
+  &amp#27;[32mWhen &amp#27;[0m&amp#27;[32mI click the Raw button&amp#27;[0m                                                          &amp#27;[90m# stepdefs.CodeViewerSteps.i_click_the_raw_button()&amp#27;[0m
+14:46:47.397 INFO  [main] stepdefs.Hooks -   📸 Step 4 screenshot → File_content_and_raw_view_are_accessible_step4_20260916_144647_286.png
+  &amp#27;[32mThen &amp#27;[0m&amp#27;[32mthe raw file content should not be empty&amp#27;[0m                                        &amp#27;[90m# stepdefs.CodeViewerSteps.the_raw_file_content_should_not_be_empty()&amp#27;[0m
+14:46:47.689 INFO  [main] stepdefs.Hooks -   📸 Step 5 screenshot → File_content_and_raw_view_are_accessible_step5_20260916_144647_561.png
+14:46:47.827 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  ✅ PASSED : File content and raw view are accessible
+╚══════════════════════════════════════════════════════════════╝
+]]></system-out>
+  </testcase>
+  <testcase name="GitHub Code Viewer - Commit history is visible and commit detail shows a SHA" classname="GitHub Code Viewer" time="19.857">
+    <system-out><![CDATA[
+@regression @smoke
+Scenario: Commit history is visible and commit detail shows a SHA             &amp#27;[90m# features/01_codeviewer.feature:38&amp#27;[0m
+14:46:48.265 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  🚀 SCENARIO STARTING
+  Feature  : 01 Codeviewer
+  Scenario : Commit history is visible and commit detail shows a SHA
+  Author   : Team — Group 5
+  Tags     : [@regression, @smoke]
+╚══════════════════════════════════════════════════════════════╝
+14:46:48.281 INFO  [main] stepdefs.Hooks -   ♻️  Reusing existing browser (reset to about:blank)
+14:46:51.741 INFO  [main] utils.PageReadinessGuard -   [PageAgent] 🔎 Observing page signals for: https://github.com/
+14:46:54.554 INFO  [main] utils.PageReadinessGuard -   [PageAgent] ✅ Page ready in 2813ms  passed=[DOM_READY, NETWORK_IDLE, DOM_QUIET] skipped=[FRAMEWORK_SETTLED, ANIMATIONS_SETTLED]
+14:46:54.586 INFO  [main] session.SessionManager -   🍪  Session restored from cookie cache — login skipped
+  &amp#27;[32mGiven &amp#27;[0m&amp#27;[32mthe user is logged into GitHub&amp#27;[0m                                        &amp#27;[90m# stepdefs.GistSteps.the_user_is_logged_into_github()&amp#27;[0m
+14:46:54.858 INFO  [main] stepdefs.Hooks -   📸 Step 1 screenshot → Commit_history_is_visible_and_commit_detail_shows_a_SHA_step1_20260916_144654_586.png
+14:46:56.361 INFO  [main] utils.PageReadinessGuard -   [PageAgent] 🔎 Observing page signals for: https://github.com/octocat/Hello-World/commits/master
+14:46:59.258 INFO  [main] utils.PageReadinessGuard -   [PageAgent] ✅ Page ready in 2897ms  passed=[DOM_READY, NETWORK_IDLE, DOM_QUIET] skipped=[FRAMEWORK_SETTLED, ANIMATIONS_SETTLED]
+  &amp#27;[32mWhen &amp#27;[0m&amp#27;[32mI open the commit history for &amp#27;[0m&amp#27;[32m&amp#27;[1m"octocat/Hello-World"&amp#27;[0m&amp#27;[32m on branch &amp#27;[0m&amp#27;[32m&amp#27;[1m"master"&amp#27;[0m &amp#27;[90m# stepdefs.CodeViewerSteps.i_open_the_commit_history_for_on_branch(java.lang.String,java.lang.String)&amp#27;[0m
+14:46:59.493 INFO  [main] stepdefs.Hooks -   📸 Step 2 screenshot → Commit_history_is_visible_and_commit_detail_shows_a_SHA_step2_20260916_144659_305.png
+  &amp#27;[32mThen &amp#27;[0m&amp#27;[32mthe commit list should be displayed&amp#27;[0m                                    &amp#27;[90m# stepdefs.CodeViewerSteps.the_commit_list_should_be_displayed()&amp#27;[0m
+14:46:59.932 INFO  [main] stepdefs.Hooks -   📸 Step 3 screenshot → Commit_history_is_visible_and_commit_detail_shows_a_SHA_step3_20260916_144659_712.png
+  &amp#27;[32mAnd &amp#27;[0m&amp#27;[32mthere should be at least &amp#27;[0m&amp#27;[32m&amp#27;[1m1&amp#27;[0m&amp#27;[32m commit visible&amp#27;[0m                               &amp#27;[90m# stepdefs.CodeViewerSteps.there_should_be_at_least_commit_visible(int)&amp#27;[0m
+14:47:00.541 INFO  [main] stepdefs.Hooks -   📸 Step 4 screenshot → Commit_history_is_visible_and_commit_detail_shows_a_SHA_step4_20260916_144700_325.png
+  &amp#27;[32mAnd &amp#27;[0m&amp#27;[32meach commit message should not be empty&amp#27;[0m                                 &amp#27;[90m# stepdefs.CodeViewerSteps.each_commit_message_should_not_be_empty()&amp#27;[0m
+14:47:01.172 INFO  [main] stepdefs.Hooks -   📸 Step 5 screenshot → Commit_history_is_visible_and_commit_detail_shows_a_SHA_step5_20260916_144700_997.png
+  &amp#27;[32mWhen &amp#27;[0m&amp#27;[32mI click on commit number &amp#27;[0m&amp#27;[32m&amp#27;[1m1&amp#27;[0m                                             &amp#27;[90m# stepdefs.CodeViewerSteps.i_click_on_commit_number(int)&amp#27;[0m
+14:47:01.969 INFO  [main] stepdefs.Hooks -   📸 Step 6 screenshot → Commit_history_is_visible_and_commit_detail_shows_a_SHA_step6_20260916_144701_768.png
+  &amp#27;[32mThen &amp#27;[0m&amp#27;[32mthe commit detail page should display a SHA&amp#27;[0m                            &amp#27;[90m# stepdefs.CodeViewerSteps.the_commit_detail_page_should_display_a_sha()&amp#27;[0m
+14:47:03.793 INFO  [main] stepdefs.Hooks -   📸 Step 7 screenshot → Commit_history_is_visible_and_commit_detail_shows_a_SHA_step7_20260916_144703_126.png
+14:47:04.893 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  ✅ PASSED : Commit history is visible and commit detail shows a SHA
+╚══════════════════════════════════════════════════════════════╝
+]]></system-out>
+  </testcase>
+  <testcase name="GitHub Gist management - Create a public gist" classname="GitHub Gist management" time="54.434">
+    <system-out><![CDATA[
+@regression @smoke
+Scenario: Create a public gist                                                                            &amp#27;[90m# features/02_gist.feature:32&amp#27;[0m
+14:47:08.291 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  🚀 SCENARIO STARTING
+  Feature  : 02 Gist
+  Scenario : Create a public gist
+  Author   : Naveen
+  Tags     : [@regression, @smoke]
+╚══════════════════════════════════════════════════════════════╝
+14:47:08.541 INFO  [main] stepdefs.Hooks -   ♻️  Reusing existing browser (reset to about:blank)
+14:47:15.944 INFO  [main] utils.PageReadinessGuard -   [PageAgent] 🔎 Observing page signals for: https://github.com/
+14:47:19.048 INFO  [main] utils.PageReadinessGuard -   [PageAgent] ✅ Page ready in 3104ms  passed=[DOM_READY, NETWORK_IDLE, DOM_QUIET] skipped=[FRAMEWORK_SETTLED, ANIMATIONS_SETTLED]
+14:47:19.089 INFO  [main] session.SessionManager -   🍪  Session restored from cookie cache — login skipped
+  &amp#27;[32mGiven &amp#27;[0m&amp#27;[32mthe user is logged into GitHub&amp#27;[0m                                                                    &amp#27;[90m# stepdefs.GistSteps.the_user_is_logged_into_github()&amp#27;[0m
+14:47:19.294 INFO  [main] stepdefs.Hooks -   📸 Step 1 screenshot → Create_a_public_gist_step1_20260916_144719_091.png
+14:47:22.280 INFO  [main] utils.PageReadinessGuard -   [PageAgent] 🔎 Observing page signals for: https://gist.github.com/
+14:47:24.937 INFO  [main] utils.PageReadinessGuard -   [PageAgent] ✅ Page ready in 2657ms  passed=[DOM_READY, NETWORK_IDLE, DOM_QUIET] skipped=[FRAMEWORK_SETTLED, ANIMATIONS_SETTLED]
+  &amp#27;[32mGiven &amp#27;[0m&amp#27;[32mthe user navigates to the Gist creation page&amp#27;[0m                                                      &amp#27;[90m# stepdefs.GistSteps.the_user_navigates_to_the_gist_creation_page()&amp#27;[0m
+14:47:26.393 INFO  [main] stepdefs.Hooks -   📸 Step 2 screenshot → Create_a_public_gist_step2_20260916_144726_210.png
+  &amp#27;[32mWhen &amp#27;[0m&amp#27;[32mthe user creates a &amp#27;[0m&amp#27;[32m&amp#27;[1mpublic&amp#27;[0m&amp#27;[32m gist with filename &amp#27;[0m&amp#27;[32m&amp#27;[1m"public_test.txt"&amp#27;[0m&amp#27;[32m and content &amp#27;[0m&amp#27;[32m&amp#27;[1m"This is a public gist"&amp#27;[0m &amp#27;[90m# stepdefs.GistSteps.the_user_creates_gist_by_visibility(java.lang.String,java.lang.String,java.lang.String)&amp#27;[0m
+14:47:29.975 INFO  [main] stepdefs.Hooks -   📸 Step 3 screenshot → Create_a_public_gist_step3_20260916_144729_607.png
+  &amp#27;[32mThen &amp#27;[0m&amp#27;[32mthe gist should be created successfully&amp#27;[0m                                                            &amp#27;[90m# stepdefs.GistSteps.the_gist_should_be_created_successfully()&amp#27;[0m
+14:47:30.385 INFO  [main] stepdefs.Hooks -   📸 Step 4 screenshot → Create_a_public_gist_step4_20260916_144730_181.png
+  &amp#27;[32mAnd &amp#27;[0m&amp#27;[32mthe gist should be public&amp#27;[0m                                                                           &amp#27;[90m# stepdefs.GistSteps.the_gist_should_be_public()&amp#27;[0m
+14:47:32.855 INFO  [main] stepdefs.Hooks -   📸 Step 5 screenshot → Create_a_public_gist_step5_20260916_144732_741.png
+  &amp#27;[32mAnd &amp#27;[0m&amp#27;[32mthe gist content should contain &amp#27;[0m&amp#27;[32m&amp#27;[1m"This is a public gist"&amp#27;[0m                                             &amp#27;[90m# stepdefs.GistSteps.the_gist_content_should_contain(java.lang.String)&amp#27;[0m
+14:47:33.133 INFO  [main] stepdefs.Hooks -   📸 Step 6 screenshot → Create_a_public_gist_step6_20260916_144733_024.png
+14:47:33.263 INFO  [main] utils.TestDataRegistry -   🧹  Running TestDataRegistry cleanup (1 item(s))
+14:48:01.744 INFO  [main] utils.TestDataRegistry -   ✅  Cleaned up: gist:https://gist.github.com/Group5ProjectIBM/bb78f5940573564857906e83a7eeb027
+14:48:01.744 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  ✅ PASSED : Create a public gist
+╚══════════════════════════════════════════════════════════════╝
+]]></system-out>
+  </testcase>
+  <testcase name="GitHub Gist management - Create a secret gist" classname="GitHub Gist management" time="66.391">
+    <system-out><![CDATA[
+@regression @smoke
+Scenario: Create a secret gist                                                                            &amp#27;[90m# features/02_gist.feature:40&amp#27;[0m
+14:48:02.627 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  🚀 SCENARIO STARTING
+  Feature  : 02 Gist
+  Scenario : Create a secret gist
+  Author   : Naveen
+  Tags     : [@regression, @smoke]
+╚══════════════════════════════════════════════════════════════╝
+14:48:02.677 INFO  [main] stepdefs.Hooks -   ♻️  Reusing existing browser (reset to about:blank)
+14:48:11.993 INFO  [main] utils.PageReadinessGuard -   [PageAgent] 🔎 Observing page signals for: https://github.com/
+14:48:15.897 INFO  [main] utils.PageReadinessGuard -   [PageAgent] ✅ Page ready in 3904ms  passed=[DOM_READY, NETWORK_IDLE, DOM_QUIET] skipped=[FRAMEWORK_SETTLED, ANIMATIONS_SETTLED]
+14:48:16.077 INFO  [main] session.SessionManager -   🍪  Session restored from cookie cache — login skipped
+  &amp#27;[32mGiven &amp#27;[0m&amp#27;[32mthe user is logged into GitHub&amp#27;[0m                                                                    &amp#27;[90m# stepdefs.GistSteps.the_user_is_logged_into_github()&amp#27;[0m
+14:48:16.662 INFO  [main] stepdefs.Hooks -   📸 Step 1 screenshot → Create_a_secret_gist_step1_20260916_144816_085.png
+14:48:20.390 INFO  [main] utils.PageReadinessGuard -   [PageAgent] 🔎 Observing page signals for: https://gist.github.com/
+14:48:23.149 INFO  [main] utils.PageReadinessGuard -   [PageAgent] ✅ Page ready in 2759ms  passed=[DOM_READY, NETWORK_IDLE, DOM_QUIET] skipped=[FRAMEWORK_SETTLED, ANIMATIONS_SETTLED]
+  &amp#27;[32mGiven &amp#27;[0m&amp#27;[32mthe user navigates to the Gist creation page&amp#27;[0m                                                      &amp#27;[90m# stepdefs.GistSteps.the_user_navigates_to_the_gist_creation_page()&amp#27;[0m
+14:48:24.792 INFO  [main] stepdefs.Hooks -   📸 Step 2 screenshot → Create_a_secret_gist_step2_20260916_144824_531.png
+  &amp#27;[32mWhen &amp#27;[0m&amp#27;[32mthe user creates a &amp#27;[0m&amp#27;[32m&amp#27;[1msecret&amp#27;[0m&amp#27;[32m gist with filename &amp#27;[0m&amp#27;[32m&amp#27;[1m"secret_test.txt"&amp#27;[0m&amp#27;[32m and content &amp#27;[0m&amp#27;[32m&amp#27;[1m"This is a secret gist"&amp#27;[0m &amp#27;[90m# stepdefs.GistSteps.the_user_creates_gist_by_visibility(java.lang.String,java.lang.String,java.lang.String)&amp#27;[0m
+14:48:28.674 INFO  [main] stepdefs.Hooks -   📸 Step 3 screenshot → Create_a_secret_gist_step3_20260916_144828_477.png
+  &amp#27;[32mThen &amp#27;[0m&amp#27;[32mthe gist should be created successfully&amp#27;[0m                                                            &amp#27;[90m# stepdefs.GistSteps.the_gist_should_be_created_successfully()&amp#27;[0m
+14:48:29.111 INFO  [main] stepdefs.Hooks -   📸 Step 4 screenshot → Create_a_secret_gist_step4_20260916_144828_911.png
+  &amp#27;[32mAnd &amp#27;[0m&amp#27;[32mthe gist should be secret&amp#27;[0m                                                                           &amp#27;[90m# stepdefs.GistSteps.the_gist_should_be_secret()&amp#27;[0m
+14:48:31.750 INFO  [main] stepdefs.Hooks -   📸 Step 5 screenshot → Create_a_secret_gist_step5_20260916_144831_491.png
+  &amp#27;[32mAnd &amp#27;[0m&amp#27;[32mthe gist content should contain &amp#27;[0m&amp#27;[32m&amp#27;[1m"This is a secret gist"&amp#27;[0m                                             &amp#27;[90m# stepdefs.GistSteps.the_gist_content_should_contain(java.lang.String)&amp#27;[0m
+14:48:32.240 INFO  [main] stepdefs.Hooks -   📸 Step 6 screenshot → Create_a_secret_gist_step6_20260916_144832_024.png
+14:48:32.441 INFO  [main] utils.TestDataRegistry -   🧹  Running TestDataRegistry cleanup (1 item(s))
+14:49:08.656 INFO  [main] utils.TestDataRegistry -   ✅  Cleaned up: gist:https://gist.github.com/Group5ProjectIBM/9aa9798564ba3d78d57a1dedfc84f587
+14:49:08.668 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  ✅ PASSED : Create a secret gist
+╚══════════════════════════════════════════════════════════════╝
+]]></system-out>
+  </testcase>
+  <testcase name="GitHub Gist management - Edit a public gist (create then edit in one session)" classname="GitHub Gist management" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Gist management - Edit a secret gist (create then edit in one session)" classname="GitHub Gist management" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Gist management - Delete a public gist (create then delete in one session)" classname="GitHub Gist management" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Gist management - Delete a secret gist (create then delete in one session)" classname="GitHub Gist management" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Gist management - Full lifecycle — create, edit, then delete a public gist" classname="GitHub Gist management" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Gist management - Gist creation is blocked when filename is empty" classname="GitHub Gist management" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Gist management - Gist creation is blocked when content is empty" classname="GitHub Gist management" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Gist management - Gist creation page is accessible without JavaScript errors" classname="GitHub Gist management" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Gist management - Create gists with various filenames and content - Examples - Example #1.1" classname="GitHub Gist management - Create gists with various filenames and content - Examples" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Gist management - Create gists with various filenames and content - Examples - Example #1.2" classname="GitHub Gist management - Create gists with various filenames and content - Examples" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Gist management - Create gists with various filenames and content - Examples - Example #1.3" classname="GitHub Gist management - Create gists with various filenames and content - Examples" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Gist management - Create gists with various filenames and content - Examples - Example #1.4" classname="GitHub Gist management - Create gists with various filenames and content - Examples" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Issues - Open the repository issues page" classname="GitHub Issues" time="26.546">
+    <system-out><![CDATA[
+@regression @smoke
+Scenario: Open the repository issues page  &amp#27;[90m# features/03_issues.feature:16&amp#27;[0m
+14:49:09.125 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  🚀 SCENARIO STARTING
+  Feature  : 03 Issues
+  Scenario : Open the repository issues page
+  Author   : Deva Vignan
+  Tags     : [@regression, @smoke]
+╚══════════════════════════════════════════════════════════════╝
+14:49:09.326 INFO  [main] stepdefs.Hooks -   ♻️  Reusing existing browser (reset to about:blank)
+14:49:15.631 INFO  [main] utils.PageReadinessGuard -   [PageAgent] 🔎 Observing page signals for: https://github.com/
+14:49:20.509 INFO  [main] utils.PageReadinessGuard -   [PageAgent] ✅ Page ready in 4878ms  passed=[DOM_READY, NETWORK_IDLE, DOM_QUIET] skipped=[FRAMEWORK_SETTLED, ANIMATIONS_SETTLED]
+14:49:20.678 INFO  [main] session.SessionManager -   🍪  Session restored from cookie cache — login skipped
+  &amp#27;[32mGiven &amp#27;[0m&amp#27;[32mthe user is logged into GitHub&amp#27;[0m     &amp#27;[90m# stepdefs.GistSteps.the_user_is_logged_into_github()&amp#27;[0m
+14:49:21.481 INFO  [main] stepdefs.Hooks -   📸 Step 1 screenshot → Open_the_repository_issues_page_step1_20260916_144920_708.png
+  &amp#27;[32mAnd &amp#27;[0m&amp#27;[32ma GitHub repository is configured&amp#27;[0m    &amp#27;[90m# stepdefs.IssueSteps.repositoryIsConfigured()&amp#27;[0m
+14:49:22.391 INFO  [main] stepdefs.Hooks -   📸 Step 2 screenshot → Open_the_repository_issues_page_step2_20260916_144921_945.png
+  &amp#27;[32mWhen &amp#27;[0m&amp#27;[32mI open the repository issues page&amp#27;[0m   &amp#27;[90m# stepdefs.IssueSteps.openRepositoryIssuesPage()&amp#27;[0m
+14:49:28.482 INFO  [main] stepdefs.Hooks -   📸 Step 3 screenshot → Open_the_repository_issues_page_step3_20260916_144927_963.png
+  &amp#27;[32mThen &amp#27;[0m&amp#27;[32mthe issues page should be displayed&amp#27;[0m &amp#27;[90m# stepdefs.IssueSteps.issuesPageShouldBeDisplayed()&amp#27;[0m
+14:49:31.297 INFO  [main] stepdefs.Hooks -   📸 Step 4 screenshot → Open_the_repository_issues_page_step4_20260916_144930_016.png
+14:49:32.261 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  ✅ PASSED : Open the repository issues page
+╚══════════════════════════════════════════════════════════════╝
+]]></system-out>
+  </testcase>
+  <testcase name="GitHub Issues - Create a new issue" classname="GitHub Issues" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Issues - Issue creation is blocked when title is empty" classname="GitHub Issues" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Issues - Issue title with only whitespace is rejected" classname="GitHub Issues" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Issues - Issues page shows correct empty state when no issues exist" classname="GitHub Issues" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Issues - Create issues with different titles and descriptions - Examples - Example #1.1" classname="GitHub Issues - Create issues with different titles and descriptions - Examples" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Issues - Create issues with different titles and descriptions - Examples - Example #1.2" classname="GitHub Issues - Create issues with different titles and descriptions - Examples" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Issues - Create issues with different titles and descriptions - Examples - Example #1.3" classname="GitHub Issues - Create issues with different titles and descriptions - Examples" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Repository Management - Create a public repository, verify it, then clean up" classname="GitHub Repository Management" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Repository Management - Repository creation form requires a name" classname="GitHub Repository Management" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Repository Management - Repository name with only spaces is rejected" classname="GitHub Repository Management" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Repository Management - New repository form is displayed for a logged-in user" classname="GitHub Repository Management" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Repository Management - Create repositories with different visibility settings - Examples - Example #1.1" classname="GitHub Repository Management - Create repositories with different visibility settings - Examples" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Repository Management - Create repositories with different visibility settings - Examples - Example #1.2" classname="GitHub Repository Management - Create repositories with different visibility settings - Examples" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Search and Explore - Search GitHub repositories" classname="GitHub Search and Explore" time="9.836">
+    <system-out><![CDATA[
+@regression @smoke
+Scenario: Search GitHub repositories               &amp#27;[90m# features/06_search.feature:12&amp#27;[0m
+14:49:36.162 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  🚀 SCENARIO STARTING
+  Feature  : 06 Search
+  Scenario : Search GitHub repositories
+  Author   : Yazeen
+  Tags     : [@regression, @smoke]
+╚══════════════════════════════════════════════════════════════╝
+14:49:36.701 INFO  [main] stepdefs.Hooks -   ♻️  Reusing existing browser (reset to about:blank)
+14:49:38.654 INFO  [main] utils.PageReadinessGuard -   [PageAgent] 🔎 Observing page signals for: https://github.com/search
+14:49:40.200 INFO  [main] utils.PageReadinessGuard -   [PageAgent] ✅ Page ready in 1546ms  passed=[DOM_READY, NETWORK_IDLE, FRAMEWORK_SETTLED, DOM_QUIET] skipped=[ANIMATIONS_SETTLED]
+  &amp#27;[32mGiven &amp#27;[0m&amp#27;[32mI am on the GitHub search page&amp#27;[0m             &amp#27;[90m# stepdefs.SearchSteps.openSearchPage()&amp#27;[0m
+14:49:40.969 INFO  [main] stepdefs.Hooks -   📸 Step 1 screenshot → Search_GitHub_repositories_step1_20260916_144940_216.png
+14:49:42.214 INFO  [main] utils.PageReadinessGuard -   [PageAgent] 🔎 Observing page signals for: https://github.com/search?q=&type=repositories
+14:49:43.390 INFO  [main] utils.PageReadinessGuard -   [PageAgent] ✅ Page ready in 1176ms  passed=[DOM_READY, NETWORK_IDLE, FRAMEWORK_SETTLED, DOM_QUIET] skipped=[ANIMATIONS_SETTLED]
+  &amp#27;[32mWhen &amp#27;[0m&amp#27;[32mI search for &amp#27;[0m&amp#27;[32m&amp#27;[1m"selenium"&amp#27;[0m                     &amp#27;[90m# stepdefs.SearchSteps.searchFor(java.lang.String)&amp#27;[0m
+14:49:43.789 INFO  [main] stepdefs.Hooks -   📸 Step 2 screenshot → Search_GitHub_repositories_step2_20260916_144943_674.png
+  &amp#27;[32mThen &amp#27;[0m&amp#27;[32mthe GitHub search results page is displayed&amp#27;[0m &amp#27;[90m# stepdefs.SearchSteps.verifySearchResultsPage()&amp#27;[0m
+14:49:44.146 INFO  [main] stepdefs.Hooks -   📸 Step 3 screenshot → Search_GitHub_repositories_step3_20260916_144943_991.png
+  &amp#27;[32mAnd &amp#27;[0m&amp#27;[32mthe search results contain &amp#27;[0m&amp#27;[32m&amp#27;[1m"selenium"&amp#27;[0m        &amp#27;[90m# stepdefs.SearchSteps.verifySearchResults(java.lang.String)&amp#27;[0m
+14:49:44.424 INFO  [main] stepdefs.Hooks -   📸 Step 4 screenshot → Search_GitHub_repositories_step4_20260916_144944_290.png
+14:49:44.590 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  ✅ PASSED : Search GitHub repositories
+╚══════════════════════════════════════════════════════════════╝
+]]></system-out>
+  </testcase>
+  <testcase name="GitHub Search and Explore - Explore trending repositories" classname="GitHub Search and Explore" time="11.787">
+    <system-out><![CDATA[
+@regression @smoke
+Scenario: Explore trending repositories      &amp#27;[90m# features/06_search.feature:19&amp#27;[0m
+14:49:45.768 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  🚀 SCENARIO STARTING
+  Feature  : 06 Search
+  Scenario : Explore trending repositories
+  Author   : Yazeen
+  Tags     : [@regression, @smoke]
+╚══════════════════════════════════════════════════════════════╝
+14:49:45.784 INFO  [main] stepdefs.Hooks -   ♻️  Reusing existing browser (reset to about:blank)
+14:49:49.028 INFO  [main] utils.PageReadinessGuard -   [PageAgent] 🔎 Observing page signals for: https://github.com/explore
+14:49:50.175 INFO  [main] utils.PageReadinessGuard -   [PageAgent] ✅ Page ready in 1147ms  passed=[DOM_READY, NETWORK_IDLE, FRAMEWORK_SETTLED, DOM_QUIET] skipped=[ANIMATIONS_SETTLED]
+  &amp#27;[32mGiven &amp#27;[0m&amp#27;[32mI am on the GitHub Explore page&amp#27;[0m      &amp#27;[90m# stepdefs.SearchSteps.openExplorePage()&amp#27;[0m
+14:49:51.127 INFO  [main] stepdefs.Hooks -   📸 Step 1 screenshot → Explore_trending_repositories_step1_20260916_144950_183.png
+  &amp#27;[32mThen &amp#27;[0m&amp#27;[32mthe GitHub Explore page is displayed&amp#27;[0m  &amp#27;[90m# stepdefs.SearchSteps.verifyExplorePage()&amp#27;[0m
+14:49:52.404 INFO  [main] stepdefs.Hooks -   📸 Step 2 screenshot → Explore_trending_repositories_step2_20260916_144951_863.png
+14:49:54.645 INFO  [main] utils.PageReadinessGuard -   [PageAgent] 🔎 Observing page signals for: https://github.com/trending
+14:49:55.860 INFO  [main] utils.PageReadinessGuard -   [PageAgent] ✅ Page ready in 1215ms  passed=[DOM_READY, NETWORK_IDLE, FRAMEWORK_SETTLED, DOM_QUIET] skipped=[ANIMATIONS_SETTLED]
+  &amp#27;[32mWhen &amp#27;[0m&amp#27;[32mI open trending repositories&amp#27;[0m          &amp#27;[90m# stepdefs.SearchSteps.openTrendingRepositories()&amp#27;[0m
+14:49:56.289 INFO  [main] stepdefs.Hooks -   📸 Step 3 screenshot → Explore_trending_repositories_step3_20260916_144955_958.png
+  &amp#27;[32mThen &amp#27;[0m&amp#27;[32mthe GitHub trending page is displayed&amp#27;[0m &amp#27;[90m# stepdefs.SearchSteps.verifyTrendingPage()&amp#27;[0m
+14:49:56.809 INFO  [main] stepdefs.Hooks -   📸 Step 4 screenshot → Explore_trending_repositories_step4_20260916_144956_614.png
+14:49:57.047 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  ✅ PASSED : Explore trending repositories
+╚══════════════════════════════════════════════════════════════╝
+]]></system-out>
+  </testcase>
+  <testcase name="GitHub Search and Explore - Search with special characters does not crash the page" classname="GitHub Search and Explore" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Search and Explore - Search with a very long query string is handled gracefully" classname="GitHub Search and Explore" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Search and Explore - Empty search redirects back to search page or shows all results" classname="GitHub Search and Explore" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Search and Explore - Search returns results for known programming topics - Examples - Example #1.1" classname="GitHub Search and Explore - Search returns results for known programming topics - Examples" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Search and Explore - Search returns results for known programming topics - Examples - Example #1.2" classname="GitHub Search and Explore - Search returns results for known programming topics - Examples" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Search and Explore - Search returns results for known programming topics - Examples - Example #1.3" classname="GitHub Search and Explore - Search returns results for known programming topics - Examples" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Search and Explore - Search returns results for known programming topics - Examples - Example #1.4" classname="GitHub Search and Explore - Search returns results for known programming topics - Examples" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Login and Session - Confirm the user is logged in before running logout and negative tests" classname="GitHub Login and Session" time="10.77">
+    <system-out><![CDATA[
+@regression @smoke
+Scenario: Confirm the user is logged in before running logout and negative tests &amp#27;[90m# features/07_login.feature:31&amp#27;[0m
+14:49:57.640 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  🚀 SCENARIO STARTING
+  Feature  : 07 Login
+  Scenario : Confirm the user is logged in before running logout and negative tests
+  Author   : Jothi Sri
+  Tags     : [@regression, @smoke]
+╚══════════════════════════════════════════════════════════════╝
+14:49:57.657 INFO  [main] stepdefs.Hooks -   ♻️  Reusing existing browser (reset to about:blank)
+14:50:02.696 INFO  [main] utils.PageReadinessGuard -   [PageAgent] 🔎 Observing page signals for: https://github.com/
+14:50:05.473 INFO  [main] utils.PageReadinessGuard -   [PageAgent] ✅ Page ready in 2777ms  passed=[DOM_READY, NETWORK_IDLE, DOM_QUIET] skipped=[FRAMEWORK_SETTLED, ANIMATIONS_SETTLED]
+14:50:05.523 INFO  [main] session.SessionManager -   🍪  Session restored from cookie cache — login skipped
+  &amp#27;[32mGiven &amp#27;[0m&amp#27;[32mthe user is logged into GitHub&amp#27;[0m                                           &amp#27;[90m# stepdefs.GistSteps.the_user_is_logged_into_github()&amp#27;[0m
+14:50:06.129 INFO  [main] stepdefs.Hooks -   📸 Step 1 screenshot → Confirm_the_user_is_logged_in_before_running_logout_and_negative_tests_step1_20260916_145005_523.png
+  &amp#27;[32mThen &amp#27;[0m&amp#27;[32mI should be redirected to my GitHub dashboard&amp#27;[0m                             &amp#27;[90m# stepdefs.LoginSteps.i_should_be_redirected_to_my_github_dashboard()&amp#27;[0m
+14:50:06.958 INFO  [main] stepdefs.Hooks -   📸 Step 2 screenshot → Confirm_the_user_is_logged_in_before_running_logout_and_negative_tests_step2_20260916_145006_733.png
+  &amp#27;[32mAnd &amp#27;[0m&amp#27;[32mthe account menu should be visible&amp#27;[0m                                         &amp#27;[90m# stepdefs.LoginSteps.the_account_menu_should_be_visible()&amp#27;[0m
+14:50:07.457 INFO  [main] stepdefs.Hooks -   📸 Step 3 screenshot → Confirm_the_user_is_logged_in_before_running_logout_and_negative_tests_step3_20260916_145007_241.png
+14:50:07.807 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  ✅ PASSED : Confirm the user is logged in before running logout and negative tests
+╚══════════════════════════════════════════════════════════════╝
+]]></system-out>
+  </testcase>
+  <testcase name="GitHub Login and Session - Logout after completing all authenticated scenarios" classname="GitHub Login and Session" time="19.212">
+    <system-out><![CDATA[
+@regression @smoke
+Scenario: Logout after completing all authenticated scenarios &amp#27;[90m# features/07_login.feature:41&amp#27;[0m
+14:50:08.373 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  🚀 SCENARIO STARTING
+  Feature  : 07 Login
+  Scenario : Logout after completing all authenticated scenarios
+  Author   : Jothi Sri
+  Tags     : [@regression, @smoke]
+╚══════════════════════════════════════════════════════════════╝
+14:50:08.386 INFO  [main] stepdefs.Hooks -   ♻️  Reusing existing browser (reset to about:blank)
+14:50:14.703 INFO  [main] utils.PageReadinessGuard -   [PageAgent] 🔎 Observing page signals for: https://github.com/
+14:50:18.390 INFO  [main] utils.PageReadinessGuard -   [PageAgent] ✅ Page ready in 3687ms  passed=[DOM_READY, NETWORK_IDLE, DOM_QUIET] skipped=[FRAMEWORK_SETTLED, ANIMATIONS_SETTLED]
+14:50:18.634 INFO  [main] session.SessionManager -   🍪  Session restored from cookie cache — login skipped
+  &amp#27;[32mGiven &amp#27;[0m&amp#27;[32mthe user is logged into GitHub&amp#27;[0m                        &amp#27;[90m# stepdefs.GistSteps.the_user_is_logged_into_github()&amp#27;[0m
+14:50:19.330 INFO  [main] stepdefs.Hooks -   📸 Step 1 screenshot → Logout_after_completing_all_authenticated_scenarios_step1_20260916_145018_700.png
+14:50:21.543 INFO  [main] session.SessionManager -   🗑️  Session cache invalidated — next scenario will do a fresh login
+  &amp#27;[32mWhen &amp#27;[0m&amp#27;[32mI sign out from my account&amp#27;[0m                             &amp#27;[90m# stepdefs.LoginSteps.i_sign_out_from_my_account()&amp#27;[0m
+14:50:22.005 INFO  [main] stepdefs.Hooks -   📸 Step 2 screenshot → Logout_after_completing_all_authenticated_scenarios_step2_20260916_145021_552.png
+  &amp#27;[32mThen &amp#27;[0m&amp#27;[32mthe account menu should no longer be visible&amp#27;[0m           &amp#27;[90m# stepdefs.LoginSteps.the_account_menu_should_no_longer_be_visible()&amp#27;[0m
+14:50:24.777 INFO  [main] stepdefs.Hooks -   📸 Step 3 screenshot → Logout_after_completing_all_authenticated_scenarios_step3_20260916_145024_491.png
+14:50:25.092 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  ✅ PASSED : Logout after completing all authenticated scenarios
+╚══════════════════════════════════════════════════════════════╝
+]]></system-out>
+  </testcase>
+  <testcase name="GitHub Login and Session - Login fails with an invalid password" classname="GitHub Login and Session" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Login and Session - Login fails with an empty password" classname="GitHub Login and Session" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Login and Session - Login fails with an empty username" classname="GitHub Login and Session" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Login and Session - Login fails with both fields empty" classname="GitHub Login and Session" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Login and Session - Login fails for various invalid credential combinations - Examples - Example #1.1" classname="GitHub Login and Session - Login fails for various invalid credential combinations - Examples" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Login and Session - Login fails for various invalid credential combinations - Examples - Example #1.2" classname="GitHub Login and Session - Login fails for various invalid credential combinations - Examples" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Login and Session - Login fails for various invalid credential combinations - Examples - Example #1.3" classname="GitHub Login and Session - Login fails for various invalid credential combinations - Examples" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="GitHub Login and Session - Login fails for various invalid credential combinations - Examples - Example #1.4" classname="GitHub Login and Session - Login fails for various invalid credential combinations - Examples" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="Autonomous AI-Driven Page Exploration - Autonomous goal — navigate and assert" classname="Autonomous AI-Driven Page Exploration" time="18.222">
+    <system-out><![CDATA[
+@regression @smoke
+Scenario: Autonomous goal — navigate and assert                                                         &amp#27;[90m# features/09_explorer.feature:29&amp#27;[0m
+14:50:27.648 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  🚀 SCENARIO STARTING
+  Feature  : 09 Explorer
+  Scenario : Autonomous goal — navigate and assert
+  Author   : Group 5 — AI Engine
+  Tags     : [@regression, @smoke]
+╚══════════════════════════════════════════════════════════════╝
+14:50:27.756 INFO  [main] stepdefs.Hooks -   ♻️  Reusing existing browser (reset to about:blank)
+14:50:27.873 INFO  [main] session.SessionManager -   🔐  Performing real login to cache session cookies…
+14:50:28.833 INFO  [main] utils.PageReadinessGuard -   [PageAgent] 🔎 Observing page signals for: https://github.com/login
+14:50:30.173 INFO  [main] utils.PageReadinessGuard -   [PageAgent] ✅ Page ready in 1340ms  passed=[DOM_READY, NETWORK_IDLE, FRAMEWORK_SETTLED, DOM_QUIET] skipped=[ANIMATIONS_SETTLED]
+14:50:34.622 INFO  [main] session.SessionManager -   ✅  Login successful — 13 cookies cached for session reuse
+  &amp#27;[32mGiven &amp#27;[0m&amp#27;[32mthe user is logged into GitHub&amp#27;[0m                                                                  &amp#27;[90m# stepdefs.GistSteps.the_user_is_logged_into_github()&amp#27;[0m
+14:50:35.278 INFO  [main] stepdefs.Hooks -   📸 Step 1 screenshot → Autonomous_goal___navigate_and_assert_step1_20260916_145034_622.png
+14:50:35.789 INFO  [main] stepdefs.ExplorerSteps -   [ExplorerSteps] 🤖 Goal: «navigate to /dashboard then assert url contains github.com»
+14:50:35.804 INFO  [main] ai.TaskPlanner -   [Planner] Planning goal: «navigate to /dashboard then assert url contains github.com»
+14:50:35.804 INFO  [main] ai.TaskPlanner -   [Planner]   + Navigate:https://github.com/dashboard
+14:50:35.804 INFO  [main] ai.TaskPlanner -   [Planner]   + Assert:url contains github.com
+14:50:35.804 INFO  [main] ai.TaskPlanner -   [Planner] Plan ready — 2 task(s)
+14:50:35.804 INFO  [main] ai.TaskExecutor - 
+╔══════════════════════════════════════════════════════════════╗
+14:50:35.821 INFO  [main] ai.TaskExecutor -   🤖 AUTONOMOUS EXECUTOR — running 2 task(s)
+14:50:35.821 INFO  [main] ai.TaskExecutor - ╚══════════════════════════════════════════════════════════════╝
+14:50:35.823 INFO  [main] ai.tasks.NavigationTask -   [NavTask] Navigating to: https://github.com/dashboard
+14:50:38.724 INFO  [main] ai.tasks.NavigationTask -   [NavTask] Landed on: https://github.com/dashboard
+14:50:38.730 INFO  [main] ai.TaskExecutor -   ✅ [PASS] Navigate:https://github.com/dashboard (2902ms)
+14:50:39.022 INFO  [main] ai.tasks.AssertionTask -   [Assert] url contains «github.com» → true
+14:50:39.045 INFO  [main] ai.TaskExecutor -   ✅ [PASS] Assert:url contains github.com (292ms)
+14:50:39.053 INFO  [main] utils.AdaptiveWait -   ┌─── AdaptiveWait Timing Summary ──────────────────────────────────
+14:50:39.105 INFO  [main] utils.AdaptiveWait -   │  avg=19000 ms  samples=  2  locator=…], button.Button--danger, button[data-testid='delete-gist']
+14:50:39.118 INFO  [main] utils.AdaptiveWait -   │  avg=  169 ms  samples=  1  locator=…ector: button[data-login], img[data-testid='github-avatar']
+14:50:39.122 INFO  [main] utils.AdaptiveWait -   │  avg=  107 ms  samples=  2  locator=…-password'], input[name='password'], input[type='password']
+14:50:39.122 INFO  [main] utils.AdaptiveWait -   │  avg=  103 ms  samples=  2  locator=…lue='Sign in'], button[type='submit'], input[type='submit']
+14:50:39.139 INFO  [main] utils.AdaptiveWait -   │  avg=  101 ms  samples=  4  locator=…mplete='username'], input[name='login'], input[type='text']
+14:50:39.139 INFO  [main] utils.AdaptiveWait -   │  avg=   96 ms  samples=  1  locator=By.cssSelector: a[data-testid='raw-button'], a#raw-url
+14:50:39.139 INFO  [main] utils.AdaptiveWait -   │  avg=   96 ms  samples=  1  locator=By.cssSelector: main
+14:50:39.139 INFO  [main] utils.AdaptiveWait -   │  avg=   74 ms  samples=  2  locator=…ecret gist') or contains(normalize-space(), 'Create gist')]
+14:50:39.166 INFO  [main] utils.AdaptiveWait -   │  avg=   65 ms  samples=  1  locator=…elect-menu-item') and contains(normalize-space(),'Public')]
+14:50:39.166 INFO  [main] utils.AdaptiveWait -   │  avg=   64 ms  samples=  1  locator=…er, .js-file-line, [data-testid='file-content'], .highlight
+14:50:39.182 INFO  [main] utils.AdaptiveWait -   │  avg=   60 ms  samples=  2  locator=By.id: gists-header-new-gist
+14:50:39.182 INFO  [main] utils.AdaptiveWait -   │  avg=   59 ms  samples=  1  locator=…ry, button[aria-label*='isibility'], summary[aria-haspopup]
+14:50:39.182 INFO  [main] utils.AdaptiveWait -   │  avg=   52 ms  samples=  1  locator=By.id: __adaptive__pageLoad:https://github.com/dashboard
+14:50:39.182 INFO  [main] utils.AdaptiveWait -   │  avg=   41 ms  samples=  2  locator=…Selector: .blob-code-inner, .js-file-line, .react-code-text
+14:50:39.182 INFO  [main] utils.AdaptiveWait -   │  avg=   33 ms  samples=  1  locator=By.cssSelector: pre, body
+14:50:39.182 INFO  [main] utils.AdaptiveWait -   │  avg=   13 ms  samples=  2  locator=By.id: __adaptive__reactPageLoad
+14:50:39.182 INFO  [main] utils.AdaptiveWait -   └──────────────────────────────────────────────────────────────────
+14:50:39.182 INFO  [main] ai.TaskExecutor - 
+══════════════════════ EXECUTION COMPLETE ══════════════════════
+14:50:39.188 INFO  [main] ai.TaskExecutor -   Results: 2 passed  0 failed  0 skipped  (total 2)
+14:50:39.188 INFO  [main] ai.TaskExecutor - ════════════════════════════════════════════════════════════════
+
+14:50:39.358 INFO  [main] ai.reporting.AutonomousReporter -   📊 Autonomous HTML report → C:\Users\MuhammadSulthanSulth\Downloads\Github-Selenium-Automation\target\ai-reports\AutonomousReport_20260916_145039.html
+14:50:39.358 INFO  [main] ai.reporting.AutonomousReporter -   📋 Autonomous JSON report → C:\Users\MuhammadSulthanSulth\Downloads\Github-Selenium-Automation\target\ai-reports\AutonomousReport_20260916_145039.json
+  &amp#27;[32mWhen &amp#27;[0m&amp#27;[32mthe autonomous engine runs the goal &amp#27;[0m&amp#27;[32m&amp#27;[1m"navigate to /dashboard then assert url contains github.com"&amp#27;[0m &amp#27;[90m# stepdefs.ExplorerSteps.theAutonomousEngineRunsTheGoal(java.lang.String)&amp#27;[0m
+14:50:40.000 INFO  [main] stepdefs.Hooks -   📸 Step 2 screenshot → Autonomous_goal___navigate_and_assert_step2_20260916_145039_390.png
+  &amp#27;[32mThen &amp#27;[0m&amp#27;[32mthe autonomous run should pass&amp#27;[0m                                                                   &amp#27;[90m# stepdefs.ExplorerSteps.theAutonomousRunShouldPass()&amp#27;[0m
+14:50:41.316 INFO  [main] stepdefs.Hooks -   📸 Step 3 screenshot → Autonomous_goal___navigate_and_assert_step3_20260916_145040_820.png
+14:50:42.340 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  ✅ PASSED : Autonomous goal — navigate and assert
+╚══════════════════════════════════════════════════════════════╝
+]]></system-out>
+  </testcase>
+  <testcase name="Autonomous AI-Driven Page Exploration - Autonomous goal — navigate to settings" classname="Autonomous AI-Driven Page Exploration" time="14.334">
+    <system-out><![CDATA[
+@regression @smoke
+Scenario: Autonomous goal — navigate to settings                                                     &amp#27;[90m# features/09_explorer.feature:34&amp#27;[0m
+14:50:46.043 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  🚀 SCENARIO STARTING
+  Feature  : 09 Explorer
+  Scenario : Autonomous goal — navigate to settings
+  Author   : Group 5 — AI Engine
+  Tags     : [@regression, @smoke]
+╚══════════════════════════════════════════════════════════════╝
+14:50:46.235 INFO  [main] stepdefs.Hooks -   ♻️  Reusing existing browser (reset to about:blank)
+14:50:51.529 INFO  [main] utils.PageReadinessGuard -   [PageAgent] 🔎 Observing page signals for: https://github.com/
+14:50:54.931 INFO  [main] utils.PageReadinessGuard -   [PageAgent] ✅ Page ready in 3402ms  passed=[DOM_READY, NETWORK_IDLE, DOM_QUIET] skipped=[FRAMEWORK_SETTLED, ANIMATIONS_SETTLED]
+14:50:54.963 INFO  [main] session.SessionManager -   🍪  Session restored from cookie cache — login skipped
+  &amp#27;[32mGiven &amp#27;[0m&amp#27;[32mthe user is logged into GitHub&amp#27;[0m                                                               &amp#27;[90m# stepdefs.GistSteps.the_user_is_logged_into_github()&amp#27;[0m
+14:50:55.291 INFO  [main] stepdefs.Hooks -   📸 Step 1 screenshot → Autonomous_goal___navigate_to_settings_step1_20260916_145054_963.png
+14:50:55.725 INFO  [main] stepdefs.ExplorerSteps -   [ExplorerSteps] 🤖 Goal: «navigate to /settings then assert url contains settings»
+14:50:55.725 INFO  [main] ai.TaskPlanner -   [Planner] Planning goal: «navigate to /settings then assert url contains settings»
+14:50:55.725 INFO  [main] ai.TaskPlanner -   [Planner]   + Navigate:https://github.com/settings
+14:50:55.725 INFO  [main] ai.TaskPlanner -   [Planner]   + Assert:url contains settings
+14:50:55.725 INFO  [main] ai.TaskPlanner -   [Planner] Plan ready — 2 task(s)
+14:50:55.725 INFO  [main] ai.TaskExecutor - 
+╔══════════════════════════════════════════════════════════════╗
+14:50:55.725 INFO  [main] ai.TaskExecutor -   🤖 AUTONOMOUS EXECUTOR — running 2 task(s)
+14:50:55.725 INFO  [main] ai.TaskExecutor - ╚══════════════════════════════════════════════════════════════╝
+14:50:55.725 INFO  [main] ai.tasks.NavigationTask -   [NavTask] Navigating to: https://github.com/settings
+14:50:58.183 INFO  [main] ai.tasks.NavigationTask -   [NavTask] Landed on: https://github.com/settings
+14:50:58.189 INFO  [main] ai.TaskExecutor -   ✅ [PASS] Navigate:https://github.com/settings (2463ms)
+14:50:58.199 INFO  [main] ai.tasks.AssertionTask -   [Assert] url contains «settings» → true
+14:50:58.199 INFO  [main] ai.TaskExecutor -   ✅ [PASS] Assert:url contains settings (10ms)
+14:50:58.199 INFO  [main] utils.AdaptiveWait -   ┌─── AdaptiveWait Timing Summary ──────────────────────────────────
+14:50:58.199 INFO  [main] utils.AdaptiveWait -   │  avg=19000 ms  samples=  2  locator=…], button.Button--danger, button[data-testid='delete-gist']
+14:50:58.199 INFO  [main] utils.AdaptiveWait -   │  avg=  229 ms  samples=  1  locator=By.id: __adaptive__pageLoad:https://github.com/settings
+14:50:58.199 INFO  [main] utils.AdaptiveWait -   │  avg=  169 ms  samples=  1  locator=…ector: button[data-login], img[data-testid='github-avatar']
+14:50:58.199 INFO  [main] utils.AdaptiveWait -   │  avg=  107 ms  samples=  2  locator=…-password'], input[name='password'], input[type='password']
+14:50:58.199 INFO  [main] utils.AdaptiveWait -   │  avg=  103 ms  samples=  2  locator=…lue='Sign in'], button[type='submit'], input[type='submit']
+14:50:58.199 INFO  [main] utils.AdaptiveWait -   │  avg=  101 ms  samples=  4  locator=…mplete='username'], input[name='login'], input[type='text']
+14:50:58.199 INFO  [main] utils.AdaptiveWait -   │  avg=   96 ms  samples=  1  locator=By.cssSelector: a[data-testid='raw-button'], a#raw-url
+14:50:58.199 INFO  [main] utils.AdaptiveWait -   │  avg=   96 ms  samples=  1  locator=By.cssSelector: main
+14:50:58.199 INFO  [main] utils.AdaptiveWait -   │  avg=   74 ms  samples=  2  locator=…ecret gist') or contains(normalize-space(), 'Create gist')]
+14:50:58.199 INFO  [main] utils.AdaptiveWait -   │  avg=   65 ms  samples=  1  locator=…elect-menu-item') and contains(normalize-space(),'Public')]
+14:50:58.199 INFO  [main] utils.AdaptiveWait -   │  avg=   64 ms  samples=  1  locator=…er, .js-file-line, [data-testid='file-content'], .highlight
+14:50:58.199 INFO  [main] utils.AdaptiveWait -   │  avg=   60 ms  samples=  2  locator=By.id: gists-header-new-gist
+14:50:58.199 INFO  [main] utils.AdaptiveWait -   │  avg=   59 ms  samples=  1  locator=…ry, button[aria-label*='isibility'], summary[aria-haspopup]
+14:50:58.199 INFO  [main] utils.AdaptiveWait -   │  avg=   52 ms  samples=  1  locator=By.id: __adaptive__pageLoad:https://github.com/dashboard
+14:50:58.199 INFO  [main] utils.AdaptiveWait -   │  avg=   41 ms  samples=  2  locator=…Selector: .blob-code-inner, .js-file-line, .react-code-text
+14:50:58.199 INFO  [main] utils.AdaptiveWait -   │  avg=   33 ms  samples=  1  locator=By.cssSelector: pre, body
+14:50:58.199 INFO  [main] utils.AdaptiveWait -   │  avg=   13 ms  samples=  2  locator=By.id: __adaptive__reactPageLoad
+14:50:58.205 INFO  [main] utils.AdaptiveWait -   └──────────────────────────────────────────────────────────────────
+14:50:58.206 INFO  [main] ai.TaskExecutor - 
+══════════════════════ EXECUTION COMPLETE ══════════════════════
+14:50:58.208 INFO  [main] ai.TaskExecutor -   Results: 2 passed  0 failed  0 skipped  (total 2)
+14:50:58.208 INFO  [main] ai.TaskExecutor - ════════════════════════════════════════════════════════════════
+
+14:50:58.208 INFO  [main] ai.reporting.AutonomousReporter -   📊 Autonomous HTML report → C:\Users\MuhammadSulthanSulth\Downloads\Github-Selenium-Automation\target\ai-reports\AutonomousReport_20260916_145058.html
+14:50:58.208 INFO  [main] ai.reporting.AutonomousReporter -   📋 Autonomous JSON report → C:\Users\MuhammadSulthanSulth\Downloads\Github-Selenium-Automation\target\ai-reports\AutonomousReport_20260916_145058.json
+  &amp#27;[32mWhen &amp#27;[0m&amp#27;[32mthe autonomous engine runs the goal &amp#27;[0m&amp#27;[32m&amp#27;[1m"navigate to /settings then assert url contains settings"&amp#27;[0m &amp#27;[90m# stepdefs.ExplorerSteps.theAutonomousEngineRunsTheGoal(java.lang.String)&amp#27;[0m
+14:50:58.587 INFO  [main] stepdefs.Hooks -   📸 Step 2 screenshot → Autonomous_goal___navigate_to_settings_step2_20260916_145058_216.png
+  &amp#27;[32mThen &amp#27;[0m&amp#27;[32mthe autonomous run should pass&amp#27;[0m                                                                &amp#27;[90m# stepdefs.ExplorerSteps.theAutonomousRunShouldPass()&amp#27;[0m
+14:50:59.174 INFO  [main] stepdefs.Hooks -   📸 Step 3 screenshot → Autonomous_goal___navigate_to_settings_step3_20260916_145058_964.png
+14:50:59.390 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  ✅ PASSED : Autonomous goal — navigate to settings
+╚══════════════════════════════════════════════════════════════╝
+]]></system-out>
+  </testcase>
+  <testcase name="Autonomous AI-Driven Page Exploration - Autonomous planner chains multiple tasks" classname="Autonomous AI-Driven Page Exploration" time="23.873">
+    <system-out><![CDATA[
+@regression @smoke
+Scenario: Autonomous planner chains multiple tasks                                                                                                              &amp#27;[90m# features/09_explorer.feature:39&amp#27;[0m
+14:51:00.273 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  🚀 SCENARIO STARTING
+  Feature  : 09 Explorer
+  Scenario : Autonomous planner chains multiple tasks
+  Author   : Group 5 — AI Engine
+  Tags     : [@regression, @smoke]
+╚══════════════════════════════════════════════════════════════╝
+14:51:00.357 INFO  [main] stepdefs.Hooks -   ♻️  Reusing existing browser (reset to about:blank)
+14:51:06.174 INFO  [main] utils.PageReadinessGuard -   [PageAgent] 🔎 Observing page signals for: https://github.com/
+14:51:09.790 INFO  [main] utils.PageReadinessGuard -   [PageAgent] ✅ Page ready in 3616ms  passed=[DOM_READY, NETWORK_IDLE, DOM_QUIET] skipped=[FRAMEWORK_SETTLED, ANIMATIONS_SETTLED]
+14:51:09.857 INFO  [main] session.SessionManager -   🍪  Session restored from cookie cache — login skipped
+  &amp#27;[32mGiven &amp#27;[0m&amp#27;[32mthe user is logged into GitHub&amp#27;[0m                                                                                                                          &amp#27;[90m# stepdefs.GistSteps.the_user_is_logged_into_github()&amp#27;[0m
+14:51:10.390 INFO  [main] stepdefs.Hooks -   📸 Step 1 screenshot → Autonomous_planner_chains_multiple_tasks_step1_20260916_145109_873.png
+14:51:10.857 INFO  [main] stepdefs.ExplorerSteps -   [ExplorerSteps] 🤖 Goal: «navigate to /explore then assert url contains explore then navigate to /trending then assert url contains trending»
+14:51:10.873 INFO  [main] ai.TaskPlanner -   [Planner] Planning goal: «navigate to /explore then assert url contains explore then navigate to /trending then assert url contains trending»
+14:51:10.873 INFO  [main] ai.TaskPlanner -   [Planner]   + Navigate:https://github.com/explore
+14:51:10.873 INFO  [main] ai.TaskPlanner -   [Planner]   + Assert:url contains explore
+14:51:10.873 INFO  [main] ai.TaskPlanner -   [Planner]   + Navigate:https://github.com/trending
+14:51:10.873 INFO  [main] ai.TaskPlanner -   [Planner]   + Assert:url contains trending
+14:51:10.873 INFO  [main] ai.TaskPlanner -   [Planner] Plan ready — 4 task(s)
+14:51:10.873 INFO  [main] ai.TaskExecutor - 
+╔══════════════════════════════════════════════════════════════╗
+14:51:10.873 INFO  [main] ai.TaskExecutor -   🤖 AUTONOMOUS EXECUTOR — running 4 task(s)
+14:51:10.873 INFO  [main] ai.TaskExecutor - ╚══════════════════════════════════════════════════════════════╝
+14:51:10.873 INFO  [main] ai.tasks.NavigationTask -   [NavTask] Navigating to: https://github.com/explore
+14:51:17.752 INFO  [main] ai.tasks.NavigationTask -   [NavTask] Landed on: https://github.com/explore
+14:51:17.796 INFO  [main] ai.TaskExecutor -   ✅ [PASS] Navigate:https://github.com/explore (6886ms)
+14:51:17.897 INFO  [main] ai.tasks.AssertionTask -   [Assert] url contains «explore» → true
+14:51:17.897 INFO  [main] ai.TaskExecutor -   ✅ [PASS] Assert:url contains explore (101ms)
+14:51:17.897 INFO  [main] ai.tasks.NavigationTask -   [NavTask] Navigating to: https://github.com/trending
+14:51:21.613 INFO  [main] ai.tasks.NavigationTask -   [NavTask] Landed on: https://github.com/trending
+14:51:21.613 INFO  [main] ai.TaskExecutor -   ✅ [PASS] Navigate:https://github.com/trending (3715ms)
+14:51:21.938 INFO  [main] ai.tasks.AssertionTask -   [Assert] url contains «trending» → true
+14:51:21.938 INFO  [main] ai.TaskExecutor -   ✅ [PASS] Assert:url contains trending (325ms)
+14:51:21.938 INFO  [main] utils.AdaptiveWait -   ┌─── AdaptiveWait Timing Summary ──────────────────────────────────
+14:51:21.938 INFO  [main] utils.AdaptiveWait -   │  avg=19000 ms  samples=  2  locator=…], button.Button--danger, button[data-testid='delete-gist']
+14:51:21.943 INFO  [main] utils.AdaptiveWait -   │  avg=  229 ms  samples=  1  locator=By.id: __adaptive__pageLoad:https://github.com/settings
+14:51:21.943 INFO  [main] utils.AdaptiveWait -   │  avg=  169 ms  samples=  1  locator=…ector: button[data-login], img[data-testid='github-avatar']
+14:51:21.943 INFO  [main] utils.AdaptiveWait -   │  avg=  125 ms  samples=  1  locator=By.id: __adaptive__pageLoad:https://github.com/explore
+14:51:21.943 INFO  [main] utils.AdaptiveWait -   │  avg=  107 ms  samples=  2  locator=…-password'], input[name='password'], input[type='password']
+14:51:21.943 INFO  [main] utils.AdaptiveWait -   │  avg=  103 ms  samples=  2  locator=…lue='Sign in'], button[type='submit'], input[type='submit']
+14:51:21.943 INFO  [main] utils.AdaptiveWait -   │  avg=  101 ms  samples=  4  locator=…mplete='username'], input[name='login'], input[type='text']
+14:51:21.943 INFO  [main] utils.AdaptiveWait -   │  avg=   96 ms  samples=  1  locator=By.cssSelector: a[data-testid='raw-button'], a#raw-url
+14:51:21.943 INFO  [main] utils.AdaptiveWait -   │  avg=   96 ms  samples=  1  locator=By.cssSelector: main
+14:51:21.943 INFO  [main] utils.AdaptiveWait -   │  avg=   74 ms  samples=  2  locator=…ecret gist') or contains(normalize-space(), 'Create gist')]
+14:51:21.943 INFO  [main] utils.AdaptiveWait -   │  avg=   65 ms  samples=  1  locator=…elect-menu-item') and contains(normalize-space(),'Public')]
+14:51:21.943 INFO  [main] utils.AdaptiveWait -   │  avg=   64 ms  samples=  1  locator=…er, .js-file-line, [data-testid='file-content'], .highlight
+14:51:21.943 INFO  [main] utils.AdaptiveWait -   │  avg=   60 ms  samples=  2  locator=By.id: gists-header-new-gist
+14:51:21.943 INFO  [main] utils.AdaptiveWait -   │  avg=   59 ms  samples=  1  locator=…ry, button[aria-label*='isibility'], summary[aria-haspopup]
+14:51:21.943 INFO  [main] utils.AdaptiveWait -   │  avg=   52 ms  samples=  1  locator=By.id: __adaptive__pageLoad:https://github.com/dashboard
+14:51:21.943 INFO  [main] utils.AdaptiveWait -   │  avg=   41 ms  samples=  2  locator=…Selector: .blob-code-inner, .js-file-line, .react-code-text
+14:51:21.943 INFO  [main] utils.AdaptiveWait -   │  avg=   40 ms  samples=  1  locator=By.id: __adaptive__pageLoad:https://github.com/trending
+14:51:21.943 INFO  [main] utils.AdaptiveWait -   │  avg=   33 ms  samples=  1  locator=By.cssSelector: pre, body
+14:51:21.943 INFO  [main] utils.AdaptiveWait -   │  avg=   13 ms  samples=  2  locator=By.id: __adaptive__reactPageLoad
+14:51:21.943 INFO  [main] utils.AdaptiveWait -   └──────────────────────────────────────────────────────────────────
+14:51:21.943 INFO  [main] ai.TaskExecutor - 
+══════════════════════ EXECUTION COMPLETE ══════════════════════
+14:51:21.943 INFO  [main] ai.TaskExecutor -   Results: 4 passed  0 failed  0 skipped  (total 4)
+14:51:21.943 INFO  [main] ai.TaskExecutor - ════════════════════════════════════════════════════════════════
+
+14:51:21.981 INFO  [main] ai.reporting.AutonomousReporter -   📊 Autonomous HTML report → C:\Users\MuhammadSulthanSulth\Downloads\Github-Selenium-Automation\target\ai-reports\AutonomousReport_20260916_145121.html
+14:51:21.981 INFO  [main] ai.reporting.AutonomousReporter -   📋 Autonomous JSON report → C:\Users\MuhammadSulthanSulth\Downloads\Github-Selenium-Automation\target\ai-reports\AutonomousReport_20260916_145121.json
+  &amp#27;[32mWhen &amp#27;[0m&amp#27;[32mthe autonomous engine runs the goal &amp#27;[0m&amp#27;[32m&amp#27;[1m"navigate to /explore then assert url contains explore then navigate to /trending then assert url contains trending"&amp#27;[0m &amp#27;[90m# stepdefs.ExplorerSteps.theAutonomousEngineRunsTheGoal(java.lang.String)&amp#27;[0m
+14:51:22.445 INFO  [main] stepdefs.Hooks -   📸 Step 2 screenshot → Autonomous_planner_chains_multiple_tasks_step2_20260916_145121_991.png
+  &amp#27;[32mThen &amp#27;[0m&amp#27;[32mthe autonomous run should pass&amp#27;[0m                                                                                                                           &amp#27;[90m# stepdefs.ExplorerSteps.theAutonomousRunShouldPass()&amp#27;[0m
+14:51:22.955 INFO  [main] stepdefs.Hooks -   📸 Step 3 screenshot → Autonomous_planner_chains_multiple_tasks_step3_20260916_145122_717.png
+14:51:23.262 INFO  [main] stepdefs.Hooks - 
+╔══════════════════════════════════════════════════════════════╗
+  ✅ PASSED : Autonomous planner chains multiple tasks
+╚══════════════════════════════════════════════════════════════╝
+]]></system-out>
+  </testcase>
+  <testcase name="Autonomous AI-Driven Page Exploration - Explorer crawls the dashboard and records all findings" classname="Autonomous AI-Driven Page Exploration" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="Autonomous AI-Driven Page Exploration - Explorer visits the Explore page and samples other users&apos; repos" classname="Autonomous AI-Driven Page Exploration" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+  <testcase name="Autonomous AI-Driven Page Exploration - Explorer scans the configured test repository" classname="Autonomous AI-Driven Page Exploration" time="0.0">
+    <skipped message="&apos;cucumber.filter.tags=@smoke&apos; did not match this scenario"/>
+  </testcase>
+</testsuite>

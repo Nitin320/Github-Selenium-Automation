@@ -1,0 +1,21 @@
+{
+  "runLabel": "ExplorePageExplorer",
+  "goal": "Explorer crawl from: https://github.com/explore",
+  "generatedAt": "20260915_132037",
+  "summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0
+  },
+  "tasks": [
+    {
+      "name": "Explorer:https://github.com/explore",
+      "status": "PASS",
+      "durationMs": 140972,
+      "startedAt": "2026-09-15T13:18:16.8879983+05:30",
+      "screenshotPath": null,
+      "details": ["Pages visited (own account + special pages): 30", "Other-user repos spot-checked: 2", "External links recorded (not followed): 9", "Dangerous elements noted (not clicked): 0", "  [REDIRECT] Get the latest developer and open source news       →  https://www.youtube.com/playlist?list=PL0lo9MOBetEE0goMLEl97vO7slruNVj43  (from: https://github.com/explore)", "  [REDIRECT] https://www.youtube.com/watch?v=9oAcwmrUE44         →  https://www.youtube.com/watch?v=9oAcwmrUE44  (from: https://github.com/explore)", "  [REDIRECT] Copilot vs. raw API access: What are you actually paying for?  →  https://github.blog/ai-and-ml/github-copilot/copilot-vs-raw-api-access-what-are-you-actually-paying-for/  (from: https://github.com/explore)", "  [REDIRECT] abaplint.app                                        →  https://abaplint.app/  (from: https://github.com/explore)", "  [REDIRECT] abapGit                                             →  https://abapgit.org/  (from: https://github.com/explore)", "  [REDIRECT] Status                                              →  https://www.githubstatus.com/  (from: https://github.com/explore)", "  [REDIRECT] Download for Windows                                →  https://gh.io/copilot-app-win64  (from: https://github.com/)", "  [REDIRECT] Start playlist                                      →  https://www.youtube.com/watch?v=r8jQ9hVA2qs&list=PL0lo9MOBetEFcp4SCWinBdpml9B2U25-f  (from: https://github.com/)", "  [REDIRECT] Download                                            →  https://code.visualstudio.com/download  (from: https://github.com/)", "  [REPO-SAMPLE] https://github.com/copilot  —  loaded=true  buttons=18  links=9", "  [REPO-SAMPLE] https://github.com/repos  —  loaded=true  buttons=14  links=26"]
+    }
+  ]
+}

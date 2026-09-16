@@ -1,0 +1,29 @@
+{
+  "runLabel": "CucumberGoal",
+  "goal": "navigate to /dashboard then assert url contains github.com",
+  "generatedAt": "20260916_111450",
+  "summary": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0
+  },
+  "tasks": [
+    {
+      "name": "Navigate:https://github.com/dashboard",
+      "status": "PASS",
+      "durationMs": 1671,
+      "startedAt": "2026-09-16T11:14:48.8392949+05:30",
+      "screenshotPath": null,
+      "details": ["Requested: https://github.com/dashboard", "Arrived at: https://github.com/dashboard", "Page title: GitHub Dashboard"]
+    },
+    {
+      "name": "Assert:url contains github.com",
+      "status": "PASS",
+      "durationMs": 54,
+      "startedAt": "2026-09-16T11:14:50.5110254+05:30",
+      "screenshotPath": null,
+      "details": ["PASS: URL «https://github.com/dashboard» contains «github.com»"]
+    }
+  ]
+}

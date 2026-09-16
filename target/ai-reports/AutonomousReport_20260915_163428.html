@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Autonomous Report — ExplorePageExplorer</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+  font-size: 14px; line-height: 1.6;
+  background: #0d1117; color: #c9d1d9;
+}
+.header {
+  background: #161b22; border-bottom: 1px solid #30363d;
+  padding: 20px 32px;
+}
+.header h1 { font-size: 22px; color: #f0f6fc; margin-bottom: 6px; }
+.meta, .goal { color: #8b949e; font-size: 13px; }
+.goal { margin-top: 4px; }
+.goal code {
+  background: #21262d; padding: 2px 6px; border-radius: 4px;
+  font-size: 12px; color: #79c0ff;
+}
+.summary {
+  display: flex; gap: 16px;
+  padding: 20px 32px; background: #161b22;
+  border-bottom: 1px solid #30363d;
+}
+.stat {
+  background: #21262d; border: 1px solid #30363d;
+  border-radius: 6px; padding: 12px 20px; text-align: center; min-width: 120px;
+}
+.stat span { display: block; font-size: 28px; font-weight: 700; }
+.stat { font-size: 11px; color: #8b949e; text-transform: uppercase; letter-spacing: .04em; }
+.stat-pass span { color: #3fb950; }
+.stat-fail span { color: #f85149; }
+.stat-skip span { color: #d29922; }
+.stat-time span { color: #58a6ff; }
+table {
+  width: 100%; border-collapse: collapse; margin: 0;
+}
+th {
+  background: #161b22; padding: 10px 16px; text-align: left;
+  border-bottom: 2px solid #30363d; font-size: 12px;
+  text-transform: uppercase; letter-spacing: .04em; color: #8b949e;
+}
+td {
+  padding: 10px 16px; border-bottom: 1px solid #21262d;
+  vertical-align: top;
+}
+.row-pass td { border-left: 3px solid #3fb950; }
+.row-fail td { border-left: 3px solid #f85149; }
+.row-skip td { border-left: 3px solid #d29922; }
+.task-name { font-family: monospace; font-size: 13px; color: #79c0ff; max-width: 320px; word-break: break-all; }
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 10px;
+  font-size: 11px; font-weight: 600;
+}
+.badge-pass  { background: #1a3a1a; color: #3fb950; }
+.badge-fail  { background: #3a1a1a; color: #f85149; }
+.badge-error { background: #3a1a2a; color: #ff7b72; }
+.badge-skip  { background: #3a2e1a; color: #d29922; }
+.detail-list { list-style: none; padding: 0; }
+.detail-list li { font-size: 12px; color: #8b949e; padding: 1px 0; }
+table a { color: #58a6ff; }
+footer {
+  padding: 20px 32px; color: #57606a; font-size: 12px;
+  border-top: 1px solid #21262d; text-align: center;
+}
+
+</style></head><body>
+<div class='header'>
+  <h1>🤖 Autonomous Test Report</h1>
+  <div class='meta'>Run: <b>ExplorePageExplorer</b> &nbsp;|&nbsp; Sept 15, 2026 16:34:28</div>
+  <div class='goal'>Goal: <code>Explorer crawl from: https://github.com/explore</code></div>
+</div>
+<div class='summary'>
+  <div class='stat stat-pass'><span>1</span>PASSED</div>
+  <div class='stat stat-fail'><span>0</span>FAILED</div>
+  <div class='stat stat-skip'><span>0</span>SKIPPED</div>
+  <div class='stat stat-time'><span>225566ms</span>TOTAL TIME</div>
+</div>
+<table>
+<thead><tr><th>#</th><th>Task</th><th>Status</th><th>Duration</th><th>Details</th><th>Screenshot</th></tr></thead>
+<tbody>
+<tr class='row-pass'>
+  <td>1</td>
+  <td class='task-name'>Explorer:https://github.com/explore</td>
+  <td><span class='badge badge-pass'>PASS</span></td>
+  <td>225566ms</td>
+  <td><ul class='detail-list'><li>Pages visited (own account + special pages): 30</li><li>Other-user repos spot-checked: 2</li><li>External links recorded (not followed): 45</li><li>Dangerous elements noted (not clicked): 3</li><li>  [REDIRECT] Discover the world of open source with Open Source Friday  →  https://www.youtube.com/playlist?list=PL0lo9MOBetEFmtstItnKlhJJVmMghxc0P  (from: https://github.com/explore)</li><li>  [REDIRECT] https://github.blog/ai-and-ml/github-copilot/copilot-vs-raw-api-access-what-are-you-actually-paying-for/  →  https://github.blog/ai-and-ml/github-copilot/copilot-vs-raw-api-access-what-are-you-actually-paying-for/  (from: https://github.com/explore)</li><li>  [REDIRECT] Copilot CLI update: chronicle, plugins, and fleet mode  →  https://www.youtube.com/watch?v=9oAcwmrUE44  (from: https://github.com/explore)</li><li>  [REDIRECT] Status                                              →  https://www.githubstatus.com/  (from: https://github.com/explore)</li><li>  [REDIRECT] Download for Windows                                →  https://gh.io/copilot-app-win64  (from: https://github.com/)</li><li>  [REDIRECT] Start playlist                                      →  https://www.youtube.com/watch?v=r8jQ9hVA2qs&amp;list=PL0lo9MOBetEFcp4SCWinBdpml9B2U25-f  (from: https://github.com/)</li><li>  [REDIRECT] Download                                            →  https://code.visualstudio.com/download  (from: https://github.com/)</li><li>  [REDIRECT] Electron                                            →  https://electronjs.org/docs/latest  (from: https://docs.github.com/en)</li><li>  [REDIRECT] npm                                                 →  https://docs.npmjs.com/  (from: https://docs.github.com/en)</li><li>  [REDIRECT] Blog                                                →  https://github.blog/  (from: https://docs.github.com/en)</li><li>  [REDIRECT] Careers                                             →  https://github.careers/  (from: https://github.com/apps/desktop)</li><li>  [REDIRECT] Shop                                                →  https://thegithubshop.com/  (from: https://github.com/apps/desktop)</li><li>  [REDIRECT] GitHub on LinkedIn                                  →  https://www.linkedin.com/company/github  (from: https://github.com/apps/desktop)</li><li>  [REDIRECT] GitHub on Instagram                                 →  https://www.instagram.com/github  (from: https://github.com/apps/desktop)</li><li>  [REDIRECT] GitHub on YouTube                                   →  https://www.youtube.com/github  (from: https://github.com/apps/desktop)</li><li>  [REDIRECT] GitHub on X                                         →  https://x.com/github  (from: https://github.com/apps/desktop)</li><li>  [REDIRECT] GitHub on TikTok                                    →  https://www.tiktok.com/@github  (from: https://github.com/apps/desktop)</li><li>  [REDIRECT] GitHub on Twitch                                    →  https://www.twitch.tv/github  (from: https://github.com/apps/desktop)</li><li>  [REDIRECT] GitHub Copilot app: The agent-native desktop experience  →  https://github.blog/news-insights/product-news/github-copilot-app-the-agent-native-desktop-experience/  (from: https://help.github.com/?tags=dotcom-footer)</li><li>  [REDIRECT] Open source guides                                  →  https://opensource.guide/  (from: https://help.github.com/?tags=dotcom-footer)</li><li>  [REDIRECT] Changelog                                           →  https://github.blog/changelog/  (from: https://help.github.com/?tags=dotcom-footer)</li><li>  [REDIRECT] Shop                                                →  https://www.thegithubshop.com/  (from: https://help.github.com/?tags=dotcom-footer)</li><li>  [REDIRECT] https://www.facebook.com/GitHub                     →  https://www.facebook.com/GitHub  (from: https://help.github.com/?tags=dotcom-footer)</li><li>  [REDIRECT] https://youtube.com/github                          →  https://youtube.com/github  (from: https://help.github.com/?tags=dotcom-footer)</li><li>  [REDIRECT] https://gauzy.co                                    →  https://gauzy.co/  (from: https://github.com/trending)</li><li>  [REDIRECT] GitHub Universe 2026                                →  https://githubuniverse.com/?utm_source=Site&amp;utm_medium=GitHub&amp;utm_campaign=event_uni_26  (from: https://github.com/resources/events)</li><li>  [REDIRECT] Dev Days                                            →  https://gh.io/join-dev-days  (from: https://github.com/resources/events)</li><li>  [REDIRECT] GitHub Connect Auckland                             →  https://github.registration.goldcast.io/events/9b080b41-e30c-4623-bd1b-d572fed29283?utm_medium=website&amp;utm_source=github&amp;utm_campaign=701hR000006TsWHQA0  (from: https://github.com/resources/events)</li><li>  [REDIRECT] GitHub Connect Wellington                           →  https://github.registration.goldcast.io/events/27904d30-464f-4f97-91e1-b4f178cb5b64?utm_medium=website&amp;utm_source=github  (from: https://github.com/resources/events)</li><li>  [REDIRECT] Copilot 201: Engineering Workflows with CLI, Agents, and MCP  →  https://github.registration.goldcast.io/webinar/68ae5cc5-0c79-4da6-8c1b-2b1f709c4a58  (from: https://github.com/resources/events)</li><li>  [REDIRECT] Orchestrating Agentic Workflows: From Idea to Trusted Production  →  https://github.registration.goldcast.io/events/68b45c95-ca20-4e32-99d9-fb54a94f948c  (from: https://github.com/resources/events)</li><li>  [REDIRECT] Controlling GitHub Copilot Spend                    →  https://www.insight.com/en_US/content-and-resources/webinars/controlling-github-copilot-spend.html  (from: https://github.com/resources/events)</li><li>  [REDIRECT] How to Trust the Code You Ship                      →  https://github.registration.goldcast.io/webinar/ee84b400-2894-4c13-b8a7-f37359108ea6?utm_source=GHEventsPage&amp;utm_medium=Web&amp;utm_campaign=Sec_Sept29  (from: https://github.com/resources/events)</li><li>  [REDIRECT] GitHub Universe 2026 Ticket Giveaway                →  https://gh.io/win  (from: https://github.com/resources/events)</li><li>  [REDIRECT] Master GitHub Copilot Usage-Based Billing           →  https://events.xebia.com/master-github-usage-based-billing-oct-6  (from: https://github.com/resources/events)</li><li>  [REDIRECT] Optimize GitHub Copilot Token Costs &amp; Boost Productivity  →  https://www.andela.com/webinar/optimize-github-copilot-token-costs/october  (from: https://github.com/resources/events)</li><li>  [REDIRECT] Spend Smarter: Optimizing Copilot Tokens Without Slowing Builders  →  https://github.registration.goldcast.io/webinar/319dc29a-5c6d-4b09-afc3-22da968edfbb  (from: https://github.com/resources/events)</li><li>  [REDIRECT] Understanding Budgets for Usage Based Billing       →  https://canaryswebinar.ecanarys.com/  (from: https://github.com/resources/events)</li><li>  [REDIRECT] Wikipedia                                           →  https://en.wikipedia.org/wiki/React_(JavaScript_library)  (from: https://github.com/topics/react)</li><li>  [REDIRECT] Wikipedia                                           →  https://en.wikipedia.org/wiki/Scala_(programming_language)  (from: https://github.com/topics/scala)</li><li>  [REDIRECT] https://git.io/linux                                →  https://git.io/linux  (from: https://github.com/topics/chrome)</li><li>  [REDIRECT] https://vlang.io                                    →  https://vlang.io/  (from: https://github.com/topics/compiler)</li><li>  [REDIRECT] Wikipedia                                           →  https://en.wikipedia.org/wiki/Compiler  (from: https://github.com/topics/compiler)</li><li>  [REDIRECT] https://www.youtube.com/channel/UC7PNRuno1rzYPb1xLa4yktw  →  https://www.youtube.com/channel/UC7PNRuno1rzYPb1xLa4yktw  (from: https://github.com/topics/css)</li><li>  [REDIRECT] Wikipedia                                           →  https://en.wikipedia.org/wiki/Cascading_Style_Sheets  (from: https://github.com/topics/css)</li><li>  [REPO-SAMPLE] https://github.com/copilot  —  loaded=true  buttons=18  links=9</li><li>  [REPO-SAMPLE] https://github.com/repos  —  loaded=true  buttons=14  links=26</li><li>  [DANGER] [https://github.com/orgs/community/discussions/] Link: «Student Developer Pack email still linked to my deleted GitHub account» → https://github.com/orgs/community/discussions/207911</li><li>  [DANGER] [https://github.com/topics/chrome] Link: «archive» → https://github.com/topics/archive</li><li>  [DANGER] [https://github.com/topics/chrome] Link: «archiver» → https://github.com/topics/archiver</li></ul></td>
+  <td>—</td>
+</tr>
+</tbody></table>
+<footer>Made with IBM Bob &mdash; Autonomous AI Engine &mdash; Group 5</footer>
+</body></html>

@@ -1,0 +1,21 @@
+{
+  "runLabel": "ExplorePageExplorer",
+  "goal": "Explorer crawl from: https://github.com/explore",
+  "generatedAt": "20260915_130322",
+  "summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0
+  },
+  "tasks": [
+    {
+      "name": "Explorer:https://github.com/explore",
+      "status": "PASS",
+      "durationMs": 18252,
+      "startedAt": "2026-09-15T13:03:03.9063741+05:30",
+      "screenshotPath": null,
+      "details": ["Pages visited (own account + special pages): 1", "Other-user repos spot-checked: 0", "External links recorded (not followed): 0", "Dangerous elements noted (not clicked): 0"]
+    }
+  ]
+}

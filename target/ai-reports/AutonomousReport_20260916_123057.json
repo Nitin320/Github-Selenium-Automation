@@ -1,0 +1,21 @@
+{
+  "runLabel": "DashboardExplorer",
+  "goal": "Explorer crawl from: https://github.com/",
+  "generatedAt": "20260916_123057",
+  "summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0
+  },
+  "tasks": [
+    {
+      "name": "Explorer:https://github.com/",
+      "status": "PASS",
+      "durationMs": 412207,
+      "startedAt": "2026-09-16T12:24:04.8233772+05:30",
+      "screenshotPath": null,
+      "details": ["Pages visited: 100", "Navigation steps: 82", "Graph edges total: 819", "  CRAWLED edges: 81", "  REDIRECT edges: 18", "  EXTERNAL edges: 140", "  SKIPPED edges: 580", "Other-user repos sampled: 2", "Danger elements noted: 17"]
+    }
+  ]
+}

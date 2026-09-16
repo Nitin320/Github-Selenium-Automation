@@ -1,0 +1,21 @@
+{
+  "runLabel": "RepoExplorer",
+  "goal": "Explorer crawl from: https://github.com/Group5ProjectIBM/test-automation-repo",
+  "generatedAt": "20260916_121001",
+  "summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0
+  },
+  "tasks": [
+    {
+      "name": "Explorer:https://github.com/Group5ProjectIBM/test-automation-repo",
+      "status": "PASS",
+      "durationMs": 20037,
+      "startedAt": "2026-09-16T12:09:41.6792797+05:30",
+      "screenshotPath": null,
+      "details": ["Pages visited (own account + special pages): 6", "Navigation steps recorded (with redirects): 5", "Other-user repos spot-checked: 1", "External links recorded (not followed): 4", "Dangerous elements noted (not clicked): 0", "  [NAV] depth=0  https://github.com/Group5ProjectIBM/test-automation-repo  (1632ms)  «Group5ProjectIBM/test-automation-repo»", "  [NAV] depth=1  https://github.com/  (1806ms)  «GitHub»", "  [NAV] depth=1  https://github.com/Group5ProjectIBM  (1220ms)  «Group5ProjectIBM»", "  [NAV] depth=1  https://github.com/copilot  (1225ms)  «New conversation · GitHub Copilot»", "  [NAV] depth=1  https://github.com/issues  →  Redirected → https://github.com/issues/assigned  (1437ms)", "  [REDIRECT] Status                                              →  https://www.githubstatus.com/  (from: https://github.com/Group5ProjectIBM/test-automation-repo)", "  [REDIRECT] Download for Windows                                →  https://gh.io/copilot-app-win64  (from: https://github.com/)", "  [REDIRECT] Start playlist                                      →  https://www.youtube.com/watch?v=r8jQ9hVA2qs&list=PL0lo9MOBetEFcp4SCWinBdpml9B2U25-f  (from: https://github.com/)", "  [REDIRECT] Download                                            →  https://code.visualstudio.com/download  (from: https://github.com/)", "  [REPO-SAMPLE] https://github.com/copilot  —  loaded=true  buttons=17  links=9"]
+    }
+  ]
+}

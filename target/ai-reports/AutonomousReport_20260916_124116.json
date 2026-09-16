@@ -1,0 +1,21 @@
+{
+  "runLabel": "RepoExplorer",
+  "goal": "Explorer crawl from: https://github.com/Group5ProjectIBM/test-automation-repo",
+  "generatedAt": "20260916_124116",
+  "summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0
+  },
+  "tasks": [
+    {
+      "name": "Explorer:https://github.com/Group5ProjectIBM/test-automation-repo",
+      "status": "PASS",
+      "durationMs": 284395,
+      "startedAt": "2026-09-16T12:36:32.305787+05:30",
+      "screenshotPath": null,
+      "details": ["Pages visited: 57", "Navigation steps: 47", "Graph edges total: 294", "  CRAWLED edges: 46", "  REDIRECT edges: 10", "  EXTERNAL edges: 136", "  SKIPPED edges: 102", "Other-user repos sampled: 2", "Danger elements noted: 3"]
+    }
+  ]
+}

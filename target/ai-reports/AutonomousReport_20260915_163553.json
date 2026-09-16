@@ -1,0 +1,21 @@
+{
+  "runLabel": "RepoExplorer",
+  "goal": "Explorer crawl from: https://github.com/Group5ProjectIBM/test-automation-repo",
+  "generatedAt": "20260915_163553",
+  "summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0
+  },
+  "tasks": [
+    {
+      "name": "Explorer:https://github.com/Group5ProjectIBM/test-automation-repo",
+      "status": "PASS",
+      "durationMs": 80998,
+      "startedAt": "2026-09-15T16:34:32.6594805+05:30",
+      "screenshotPath": null,
+      "details": ["Pages visited (own account + special pages): 30", "Other-user repos spot-checked: 2", "External links recorded (not followed): 21", "Dangerous elements noted (not clicked): 1", "  [REDIRECT] Status                                              →  https://www.githubstatus.com/  (from: https://github.com/Group5ProjectIBM/test-automation-repo)", "  [REDIRECT] Download for Windows                                →  https://gh.io/copilot-app-win64  (from: https://github.com/)", "  [REDIRECT] Start playlist                                      →  https://www.youtube.com/watch?v=r8jQ9hVA2qs&list=PL0lo9MOBetEFcp4SCWinBdpml9B2U25-f  (from: https://github.com/)", "  [REDIRECT] Download                                            →  https://code.visualstudio.com/download  (from: https://github.com/)", "  [REDIRECT] Electron                                            →  https://electronjs.org/docs/latest  (from: https://docs.github.com/en)", "  [REDIRECT] npm                                                 →  https://docs.npmjs.com/  (from: https://docs.github.com/en)", "  [REDIRECT] Blog                                                →  https://github.blog/  (from: https://docs.github.com/en)", "  [REDIRECT] Careers                                             →  https://github.careers/  (from: https://github.com/apps/desktop)", "  [REDIRECT] Shop                                                →  https://thegithubshop.com/  (from: https://github.com/apps/desktop)", "  [REDIRECT] GitHub on LinkedIn                                  →  https://www.linkedin.com/company/github  (from: https://github.com/apps/desktop)", "  [REDIRECT] GitHub on Instagram                                 →  https://www.instagram.com/github  (from: https://github.com/apps/desktop)", "  [REDIRECT] GitHub on YouTube                                   →  https://www.youtube.com/github  (from: https://github.com/apps/desktop)", "  [REDIRECT] GitHub on X                                         →  https://x.com/github  (from: https://github.com/apps/desktop)", "  [REDIRECT] GitHub on TikTok                                    →  https://www.tiktok.com/@github  (from: https://github.com/apps/desktop)", "  [REDIRECT] GitHub on Twitch                                    →  https://www.twitch.tv/github  (from: https://github.com/apps/desktop)", "  [REDIRECT] GitHub Copilot app: The agent-native desktop experience  →  https://github.blog/news-insights/product-news/github-copilot-app-the-agent-native-desktop-experience/  (from: https://help.github.com/?tags=dotcom-footer)", "  [REDIRECT] Open source guides                                  →  https://opensource.guide/  (from: https://help.github.com/?tags=dotcom-footer)", "  [REDIRECT] Changelog                                           →  https://github.blog/changelog/  (from: https://help.github.com/?tags=dotcom-footer)", "  [REDIRECT] Shop                                                →  https://www.thegithubshop.com/  (from: https://help.github.com/?tags=dotcom-footer)", "  [REDIRECT] https://www.facebook.com/GitHub                     →  https://www.facebook.com/GitHub  (from: https://help.github.com/?tags=dotcom-footer)", "  [REDIRECT] https://youtube.com/github                          →  https://youtube.com/github  (from: https://help.github.com/?tags=dotcom-footer)", "  [REPO-SAMPLE] https://github.com/copilot  —  loaded=true  buttons=18  links=9", "  [REPO-SAMPLE] https://github.com/repos  —  loaded=true  buttons=14  links=26", "  [DANGER] [https://github.com/orgs/community/discussions/] Link: «Student Developer Pack email still linked to my deleted GitHub account» → https://github.com/orgs/community/discussions/207911"]
+    }
+  ]
+}

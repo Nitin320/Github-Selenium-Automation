@@ -1,0 +1,21 @@
+{
+  "runLabel": "ExplorePageExplorer",
+  "goal": "Explorer crawl from: https://github.com/explore",
+  "generatedAt": "20260916_120929",
+  "summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0
+  },
+  "tasks": [
+    {
+      "name": "Explorer:https://github.com/explore",
+      "status": "PASS",
+      "durationMs": 28391,
+      "startedAt": "2026-09-16T12:09:01.1074257+05:30",
+      "screenshotPath": null,
+      "details": ["Pages visited (own account + special pages): 5", "Navigation steps recorded (with redirects): 4", "Other-user repos spot-checked: 1", "External links recorded (not followed): 7", "Dangerous elements noted (not clicked): 0", "  [NAV] depth=0  https://github.com/explore  (7041ms)  «Explore GitHub»", "  [NAV] depth=1  https://github.com/  (1757ms)  «GitHub»", "  [NAV] depth=1  https://github.com/copilot  (1660ms)  «New conversation · GitHub Copilot»", "  [NAV] depth=1  https://github.com/issues  →  Redirected → https://github.com/issues/assigned  (1764ms)", "  [REDIRECT] Hack on open source with us                         →  https://www.youtube.com/playlist?list=PL0lo9MOBetEEkxEQuYjIvrCbJTrsvRj36  (from: https://github.com/explore)", "  [REDIRECT] https://github.blog/ai-and-ml/github-copilot/copilot-vs-raw-api-access-what-are-you-actually-paying-for/  →  https://github.blog/ai-and-ml/github-copilot/copilot-vs-raw-api-access-what-are-you-actually-paying-for/  (from: https://github.com/explore)", "  [REDIRECT] Fixing merge conflicts and PRs with Copilot cloud agent | GitHub Checkout  →  https://youtu.be/ws_3hiXLKjQ?si=0p8CCgP600eBmh6l  (from: https://github.com/explore)", "  [REDIRECT] Status                                              →  https://www.githubstatus.com/  (from: https://github.com/explore)", "  [REDIRECT] Download for Windows                                →  https://gh.io/copilot-app-win64  (from: https://github.com/)", "  [REDIRECT] Start playlist                                      →  https://www.youtube.com/watch?v=r8jQ9hVA2qs&list=PL0lo9MOBetEFcp4SCWinBdpml9B2U25-f  (from: https://github.com/)", "  [REDIRECT] Download                                            →  https://code.visualstudio.com/download  (from: https://github.com/)", "  [REPO-SAMPLE] https://github.com/copilot  —  loaded=true  buttons=18  links=9"]
+    }
+  ]
+}

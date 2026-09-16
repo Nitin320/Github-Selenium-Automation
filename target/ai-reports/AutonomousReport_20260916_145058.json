@@ -1,0 +1,29 @@
+{
+  "runLabel": "CucumberGoal",
+  "goal": "navigate to /settings then assert url contains settings",
+  "generatedAt": "20260916_145058",
+  "summary": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0
+  },
+  "tasks": [
+    {
+      "name": "Navigate:https://github.com/settings",
+      "status": "PASS",
+      "durationMs": 2463,
+      "startedAt": "2026-09-16T14:50:55.7257739+05:30",
+      "screenshotPath": null,
+      "details": ["Requested: https://github.com/settings", "Arrived at: https://github.com/settings", "Page title: Your profile"]
+    },
+    {
+      "name": "Assert:url contains settings",
+      "status": "PASS",
+      "durationMs": 10,
+      "startedAt": "2026-09-16T14:50:58.1893941+05:30",
+      "screenshotPath": null,
+      "details": ["PASS: URL «https://github.com/settings» contains «settings»"]
+    }
+  ]
+}
